@@ -477,7 +477,6 @@
 
             // 1. Data dari JSON | 2. Kode data
             validasi = (n, kode) => {
-                // if (kode === 26) alert(Array.isArray(n))
                 let nT = arrayDataTunggal(n), nG = arrayDataGanda(n), nM3 = arrayData3(n);
                 kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
 
@@ -571,7 +570,7 @@
                     return '<a onclick="bukaTutup(\'halamanAktivitas\', \'halamanUtama\')" title="' + nM3.length + ' data">Daftar Aktivitas</a>' ;
                 }
                 else if (validString(n))
-                    return remove(n, [' ', ',', '?', '-', '_', ]).length > 0 ? n : q;
+                    return remove(n, [' ', ',', '?', '-', '_', ]).length > 0 ? DAFESE(n) : q;
 
                 else
                     return q;
