@@ -446,7 +446,7 @@
             // Untuk mendeteksi jenjang SMA sederajat
             jenisSM = (n, kode) => {
                 kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
-                if (validString(n) && kode === 13) {
+                if (kode === 14 && validString(n)) {
                     n = n.toUpperCase();    
                     if (n.slice(0, 3) === 'SMA' || n.slice(0, 4) === 'SMA ' || n.slice(0, 5) === 'SMAN ' || n.includes('SEKOLAH MENENGAH ATAS'))
                         return 'SMA';
