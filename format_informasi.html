@@ -88,6 +88,7 @@
             margin-top: 29px;
         }
         #halamanUtama {
+            margin-top: 50px;
             margin-left: 70px;
         }
         .label {
@@ -133,7 +134,7 @@
     </style>
 </head>
 <body class="">
-    <div id="halamanUtama" class="hidden headerMargin">
+    <div id="halamanUtama" class="">
         <table cellspacing="2" cellpadding="2" class="tabelUtama">
             <tbody id="target1">
                 <tr>
@@ -312,7 +313,7 @@
             </table>
         </div>
     </div>
-    <div id="halamanAktivitas" class="headerMargin">
+    <div id="halamanAktivitas" class="hidden headerMargin">
         <button onclick="bukaTutup('halamanUtama', 'halamanAktivitas')"><< Kembali</button>
         <h2>Aktivitas</h2>
         <div style="width: 78%; margin: auto;">
@@ -383,7 +384,7 @@
 
             arrayDataTunggal = n => Array.isArray(n) ? n.filter(e => validString(e)) : [] ,
             arrayDataGanda = n => Array.isArray(n) ? validString(n[0]) && validString(n[1]) ? n : n.filter(e => Array.isArray(e) && validString(e[0]) && validString(e[1])) : [] ,
-            arrayData3 = n => Array.isArray(n) ? validString(n[0]) && validString(n[1]) && validString(n2) ? n : n.filter(e => Array.isArray(e) && e.filter(E => validString(E)).length > 2) : [] ,
+            arrayData3 = n => Array.isArray(n) ? validString(n[0]) && validString(n[1]) && validString(n[2]) ? n : n.filter(e => Array.isArray(e) && e.filter(E => validString(E)).length > 2) : [] ,
 
             // Double_And_FrontEnd_Space_Eraser (DAFESE)
             DAFESE = n => {
@@ -452,7 +453,7 @@
 
             // 1. Data dari JSON | 2. Kode data
             validasi = (n, kode) => {
-                let nT = arrayDataTunggal(n), nG = arrayDataGanda(n), nM3 = arrayData3(n),
+                let nT = arrayDataTunggal(n), nG = arrayDataGanda(n), nM3 = arrayData3(n);
                 kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
 
                 if (clearSpace(n) === '-' || loopString(n, '-'))
