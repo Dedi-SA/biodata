@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script>
+        let data = {
+        "namaLengkap": "",
+        "namaPanggilan": "",
+        "jenisKelamin": "",
+        "ttl": "",
+        "alamat": "",
+        "ayah": "",
+        "ibu": "",
+        "nisn": "",
+        "SD": "",
+        "keteranganSD": "",
+        "SMP": "",
+        "keteranganSMP": "",
+        "SMA": "",
+        "keteranganSMA": "",
+        "perguruanTinggi": "",
+        "keteranganPerguruanTinggi": "",
+        "kerabat": "",
+        "email": "",
+        "nomorWA": "",
+        "instagram": "",
+        "facebook": ["", ""],
+        "twitter": "",
+        "telegram": "",
+        "akunLain": "",
+        "jejakDigital": [["MMMMS", "https://ll"], ["abcde", "http://abcde.com"]],
+        "informasiTambahan": ["abcd", "abcdenj"],
+        "aktivitas": ""
+    }
+    </script>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h1, h2 {
+            text-align: center;
+            padding-top: 29px;
+        }
+        .tabelUtama {
+            width: 95%;
+        }
+        .hiddenTable {
+            width: 100%;
+            margin-top: 50px;
+            background-color: black;
+        }
+        td {
+            background-color: white;
+            height: 22px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        a:hover {
+            color: blue;
+            transition: color .6s;
+        }
+        button {
+            border: 2px solid black;
+            border-radius: 5px;
+            background-color: blue;
+            transition: background-color .7s;
+            color: white;
+            font-size: inherit;
+            font-weight: bold;
+            width: 110px;
+            height: 40px;
+            cursor: pointer;
+            margin-left:  20px;
+            position: fixed;
+        }
+        button:hover {
+            background-color: darkblue;
+            transition: background-color .7s;
+        }
+        .headerMargin {
+            margin-top: 29px;
+        }
+        #halamanUtama {
+            margin-left: 70px;
+        }
+        .label {
+            /* background-color: lightblue !important; */
+            padding-bottom: 10px;
+            padding-left: 5px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px !important;
+        }
+        .spasi {
+            font-size: 0px;
+            color: transparent;
+        }
+        .keteranganData {
+            padding: 0 0 0 25px;
+            width: 250px;
+        }
+        .containerHiddenTable {
+            width: 70%;
+            margin: auto;
+        }
+        .tabel-nomor {
+            width: 50px;
+            text-align: center;
+        }
+        .tabel-tanggal {
+            width: 190px;
+            text-align: center;
+        }
+        .tabel-lokasi {
+            text-align: center;
+        }
+        .tabel-keterangan {
+            text-align: center;
+        }
+        .tabel-konten {
+            padding-left: 10px;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="">
+    <div id="halamanUtama" class="hidden headerMargin">
+        <table cellspacing="2" cellpadding="2" class="tabelUtama">
+            <tbody id="target1">
+                <tr>
+                    <td class="label" colspan="2">Data Pribadi</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Nama Lengkap</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>    
+                    <td class="keteranganData">Nama Panggilan</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Jenis kelamin</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Tempat, Tanggal Lahir</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Alamat</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Nama Ayah</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Nama Ibu</td>
+                    <td>:&ensp;</td>
+                </tr>
+                
+                <tr> <!-- spasi -->
+                    <td class="spasi" colspan="2"></td>
+                </tr>
+                <tr> <!-- spasi -->
+                    <td class="spasi" colspan="2"></td>
+                </tr>
+
+                <tr>
+                    <td class="label" colspan="2">Pendidikan</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">NISN</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">SD</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData"></td>
+                    <td>&emsp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">SMP</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData"></td>
+                    <td>&emsp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">SMA</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData"></td>
+                    <td>&emsp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Perguruan Tinggi</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData"></td>
+                    <td>&emsp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Kerabat</td>
+                    <td>:&ensp;</td>
+                </tr>
+                
+                <tr> <!-- spasi -->
+                    <td class="spasi" colspan="2"></td>
+                </tr>
+                <tr> <!-- spasi -->
+                    <td class="spasi" colspan="2"></td>
+                </tr>
+
+                <tr>
+                    <td class="label" colspan="2">Dunia Maya</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Alamat e-mail</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Nomor WA</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Akun Instagram</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Akun Facebook</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Akun Twitter</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Akun Telegram</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Akun Lain</td>
+                    <td>:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Jejak Digital</td>
+                    <td class="sub">:&ensp;</td>
+                </tr>
+                
+                <tr> <!-- spasi -->
+                    <td class="spasi" colspan="2"></td>
+                </tr>
+                <tr> <!-- spasi -->
+                    <td class="spasi" colspan="2"></td>
+                </tr>
+
+                <tr>
+                    <td class="label" colspan="2">Lain-lain</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Informasi Tambahan</td>
+                    <td class="sub">:&ensp;</td>
+                </tr>
+                <tr>
+                    <td class="keteranganData">Aktivitas</td>
+                    <td class="sub">:&ensp;</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="margin-bottom: 600px;"></div>
+    </div>
+    <div id="halamanJejakDigital" class="hidden headerMargin">
+        <button onclick="bukaTutup('halamanUtama', 'halamanJejakDigital')"><< Kembali</button>
+        <h2>Jejak Digital</h2>
+        <div class="containerHiddenTable">
+            <table class="hiddenTable" cellpadding="2" cellspacing="2">
+                <tbody id="target2">
+                    <tr>
+                        <td class="tabel-nomor">No.</td>
+                        <td class="tabel-keterangan">Alamat</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="halamanInformasiTambahan" class="hidden headerMargin">
+        <button onclick="bukaTutup('halamanUtama', 'halamanInformasiTambahan')"><< Kembali</button>
+        <h2>Informasi Tambahan</h2>
+        <div class="containerHiddenTable">
+            <table class="hiddenTable" cellpadding="2" cellspacing="2">
+                <tbody id="target3">
+                    <tr>
+                        <td class="tabel-nomor">No.</td>
+                        <td class="tabel-keterangan">Keterangan</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="halamanAktivitas" class="headerMargin">
+        <button onclick="bukaTutup('halamanUtama', 'halamanAktivitas')"><< Kembali</button>
+        <h2>Aktivitas</h2>
+        <div style="width: 78%; margin: auto;">
+            <table class="hiddenTable" cellpadding="2" cellspacing="2">
+                <tbody id="target4">
+                    <tr>
+                        <td class="tabel-nomor">No.</td>
+                        <td class="tabel-tanggal">Tanggal</td>
+                        <td class="tabel-lokasi">Lokasi</td>
+                        <td class="tabel-keterangan">Keterangan</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        let a = document.getElementById('target1').children,
+            q = '??',
+
+            remove = (n, char) => {
+                if (Array.isArray(n)) {
+                    if (typeof char === 'string')
+                        return n.filter(e => e !== 'string');
+                    
+                    else if (Array.isArray(char))
+                        return n.filter(e => !char.includes(e));
+                }
+                else if (typeof n === 'string') {
+                    if (typeof char === 'string')
+                        return n.split(char).join('');
+                    
+                    else if (Array.isArray(char)) {
+                        char.filter(e => typeof e === 'string').forEach(e => n = n.split(e).join(''));
+                        return n;
+                    }
+                }
+            },
+
+            clearSpace = n => typeof n === 'string' || Array.isArray(n) ? remove(n, ' ') : false ,
+
+            // Memeriksa string yang masuk, jika string yang masuk hanya berisi spasi, maka hasilnya false
+            validString = n => typeof n === 'string' && clearSpace(n.toLowerCase()).length > 0,
+
+            // Mengecek string yang masuk, jika string tersebut memiliki 9 atau lebih karakter dan diawali dengan http:// atau https:// maka true
+            validURL = n => validString(n) && clearSpace(n).length >= 9 && (n.toLowerCase().slice(0, 8).includes('http://') || n.toLowerCase().slice(0, 8).includes('https://') || n.toLowerCase().slice(0, 8).includes('file:///')),
+
+            D = {
+                create: n => validString(n) && n.length === clearSpace(n).length ? document.createElement(n) : false,
+                get: {
+                    id: n => validString(n) ? document.getElementById(n) : false ,
+                    class: n => validString(n) ? document.getElementsByClassName(n) : false,
+                    tag: (n, i) => validString(n) ? ( Number.isInteger(Math.abs(i)) && Math.abs(i) !== 0 ) ? document.getElementsByTagName(n)[Math.abs(i)] : document.getElementsByTagName(n) : false
+                }
+            },
+
+            /* (SPASI tidak dihitung)
+               Jika parameter bernilai string dan hanya memiliki 1 jenis karakter yang muncul berulang kali,
+               maka hasilnya true */
+            loopString = (n, char) => {
+                if (typeof n === 'string' && ((typeof char === 'string' && n.toLowerCase().length > 1) || (typeof char !== 'string' && clearSpace(n.toLowerCase()).length > 1))) {
+                    n = typeof char === 'string' ? n.toLowerCase() : clearSpace(n.toLowerCase()) ;
+                    let N = new Set(n);
+                    return N.size === 1 ;
+                }
+                else
+                    return false;
+            },
+
+            arrayDataTunggal = n => Array.isArray(n) ? n.filter(e => validString(e)) : [] ,
+            arrayDataGanda = n => Array.isArray(n) ? validString(n[0]) && validString(n[1]) ? n : n.filter(e => Array.isArray(e) && validString(e[0]) && validString(e[1])) : [] ,
+            arrayData3 = n => Array.isArray(n) ? validString(n[0]) && validString(n[1]) && validString(n2) ? n : n.filter(e => Array.isArray(e) && e.filter(E => validString(E)).length > 2) : [] ,
+
+            // Double_And_FrontEnd_Space_Eraser (DAFESE)
+            DAFESE = n => {
+                if (typeof n === 'string') {
+                    do {
+                        if (n.includes('  ')) n = n.split('  ').join(' '); // Mengganti double-space '  ' menjadi single-space ' ' di dalam string
+                        
+                        if (n.slice(0, 1) === ' ') n = n.slice(1); // Menghapus single-space ' ' yang ada di posisi paling depan
+                        
+                        if (n.slice(-1) === ' ') n = n.slice(0, -1); // Menghapus single-space ' ' yang ada di posisi paling belakang
+                        
+                    } while (n.includes('  ') || n.slice(0, 1) === ' ' || n.slice(-1) === ' ')
+                    return n;
+                }
+                else 
+                    return '';
+            },
+
+            validETusername = n => validString(n) && !DAFESE(n).includes(' ') && !DAFESE(n).slice(1).includes('@'),
+
+            displayKeterangan1 = (status, n) => {
+                if ((validString(n) && !isNaN(Number(n))) || Number.isInteger(n)) {
+                    n = validString(n) ? n.toString() : n ;
+                    status === '-' || status === q ? a[n].style.display = 'none' : false;
+                }
+            },
+
+            // Untuk mendeteksi jenjang SMA sederajat
+            jenisSM = (n, kode) => {
+                kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
+                if (validString(n) && kode === 13) {
+                    n = n.toUpperCase();    
+                    if (n.slice(0, 3) === 'SMA' || n.slice(0, 4) === 'SMA ' || n.slice(0, 5) === 'SMAN ' || n.includes('SEKOLAH MENENGAH ATAS'))
+                        return 'SMA';
+                    else if (n.slice(0, 3) === 'SMK' || n.slice(0, 4) === 'SMK ' || n.slice(0, 5) === 'SMKN ' || n.includes('SEKOLAH MENENGAH KEJURUAN'))
+                        return 'SMK';
+                    else if (n.slice(0, 3) === 'MA ' || n.slice(0, 4) === 'MAN ' || n.includes('MADRASAH ALIYAH') || n.includes('MADRASAH ALIAH'))
+                        return 'MA';
+                    else
+                        return 'SMA / SMK / MA';
+                }
+                else
+                    return 'SMA / SMK / MA';
+            },
+
+            bukaTutup = (H1, H2) => {
+                let includesHidden = n => n.includes(' hidden ') || n.slice(0, 7) === 'hidden ' || n.slice(-7) === ' hidden' || clearSpace(n) === 'hidden',
+                    h1 = D.get.id(H1),
+                    h2 = D.get.id(H2);
+                
+                h1.className = validString(h1.className) ? DAFESE(h1.className.toLowerCase()) : '' ;
+                h2.className = validString(h2.className) ? DAFESE(h2.className.toLowerCase()) : '' ;
+
+                    while (includesHidden(h1.className) || loopString(h1.className, ' ')) {
+                        if (h1.className.includes(' hidden '))
+                            h1.className = h1.className.split(' hidden ').join(' ');
+                        if (h1.className.slice(0, 7) === 'hidden ')
+                            h1.className = h1.className.slice(7);
+                        if (h1.className.slice(-7) === ' hidden')
+                            h1.className = h1.className.slice(0, -7);
+                        if (clearSpace(h1.className) === 'hidden' || loopString(h1.className, ' '))
+                            h1.className = '';
+                    }
+                    h2.className = DAFESE(h2.className + ' hidden');
+            },
+
+            // 1. Data dari JSON | 2. Kode data
+            validasi = (n, kode) => {
+                let nT = arrayDataTunggal(n), nG = arrayDataGanda(n), nM3 = arrayData3(n),
+                kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
+
+                if (clearSpace(n) === '-' || loopString(n, '-'))
+                    return ( kode === 7 || kode === 6 ) ? q : '-' ;
+                
+                else if ([20, 21, 22, 23, 24].includes(kode))
+                    throw('Kesalahan penempatan data : kode ' + kode + ' berada dalam validasi()');
+
+                // Fungsi untuk mempersingkat penulisan jenis kelamin
+                else if (validString(n) && kode === 3) {
+                    if (n.toLowerCase() === 'l' || loopString(n, 'l') || ((n.toLowerCase().includes('laki') || n.toLowerCase().includes('pria')) && (!n.toLowerCase().includes('wanita') && !n.toLowerCase().includes('perempuan'))))
+                        return 'Laki-laki';
+                    else if (n.toLowerCase() === 'p' || loopString(n, 'p') || ((n.toLowerCase().includes('perempuan') || n.toLowerCase().includes('wanita')) && (!n.toLowerCase().includes('laki') && !n.toLowerCase().includes('pria'))))
+                        return 'Perempuan';
+                    else
+                        return q;
+                }
+
+                else if (kode === 25 && nG.length > 0) {
+                    if (validURL(nG[1]) || (nG.length === 1 && validURL(nG[0][1])) ) {
+                        nG = nG.length === 1 ? nG.flat() : nG ;
+                        return '<a href="' + nG[1] + '" target="_blank" title="Klik untuk mengunjungi">' + nG[0] + '</a>';
+                    }
+                    else if (nG.length > 1 && validURL(nG[0][1])) {
+                        nG.forEach((e, i) => {
+                            let newTabel = D.create('tr');
+                            D.get.id('target2').appendChild(newTabel);
+                                let newTabel_A = D.create('td')
+                                    newTabel_A.className = 'tabel-nomor';
+                                    newTabel_A.innerHTML = (i + 1) + '.';
+                                newTabel.appendChild(newTabel_A);
+                                let newTabel_B = D.create('td');
+                                    newTabel_B.className = 'tabel-konten';
+                                    newTabel_B.innerHTML = '<a href="' + e[1] + '" target="_blank" title="Jejak digital ' + (i + 1) + '">' + e[0] + '</a>';
+                                newTabel.appendChild(newTabel_B);
+                        });
+                        return '<a onclick="bukaTutup(\'halamanJejakDigital\', \'halamanUtama\')" title="' + n.length + ' data">Daftar jejak digital</a>';
+                    }
+                    else
+                        return q;
+                }
+                else if (kode === 26 && (validString(n) || nT.length > 0)) {
+                    if (validString(n))
+                        return n;
+                    
+                    else if (nT.length === 1)
+                        return n[0]
+                    else {
+                        nT.forEach((e, i) => {
+                            let barisBaru = D.create('tr');
+                            D.get.id('target3').appendChild(barisBaru);
+                                let kolom_A = D.create('td');
+                                    kolom_A.className = 'tabel-nomor';
+                                    kolom_A.innerHTML = (i + 1) + '.';
+                                barisBaru.appendChild(kolom_A);
+                                let kolom_B = D.create('td');
+                                    kolom_B.className = 'tabel-konten';
+                                    kolom_B.innerHTML = e;
+                                barisBaru.appendChild(kolom_B);
+                        })
+                        return '<a onclick="bukaTutup(\'halamanInformasiTambahan\', \'halamanUtama\')" title="' + nT.length + ' data">Daftar Informasi Tambahan</a>' ;
+                    }
+                }
+                else if (kode === 27 && (validString(nM3[2]) || nM3.length > 0)) {
+                    if (validString(nM3[2]))
+                        return n;
+                    else if (nT.length === 1)
+                        return n[0];
+                    else {
+                        nT.forEach(e => {
+                            let barisBaru = D.create('tr');
+                            D.get.id('target4').appendChild(barisBaru);
+                                let kolomA = D.create('td');
+                                    kolomA.className = 'tabel-nomor';
+                                    // kolomA.innerHTML = 
+                        })
+                        return '<a onclick="bukaTutup(\'halamanInformasiTambahan\', \'halamanUtama\')" title="' + nT.length + ' data">Daftar Informasi Tambahan</a>' ;
+                    }
+                }
+                else if (validString(n))
+                    return remove(n, [' ', ',', '?', '-', '_', ]).length > 0 ? n : q;
+
+                else
+                    return q;
+            },
+
+            Akun = {
+                // tipe data 'n' hanya boleh berupa string atau array
+                akun: (n, kode) => {
+                    let nT = arrayDataTunggal(n), nG = arrayDataGanda(n);
+                    kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
+                    
+                    if (clearSpace(n) === '-' || loopString(n, '-'))
+                        return '-';
+
+                    // Instagram
+                    else if (kode === 20 && (validETusername(n) || nT.filter(e => validETusername(e)).length > 0)) {
+                        if (validString(n))
+                            return Akun.ig(remove(n, '@'));
+                        
+                        else {
+                            let temp = [];
+                            nT = nT.filter(e => validETusername(e));
+                            nT.forEach(e => temp.push(Akun.ig(e)));
+                            return temp.join(' | ');
+                        }
+                    }
+                    // Facebook
+                    else if (kode === 21 && nG.length > 0) {
+                        if (validURL(nG[1]) || (validURL(nG[0][1]) && nG.length === 1)) {
+                            nG = nG.flat();
+                            return Akun.fb(nG[0], nG[1]);
+                        }
+                        else {
+                            let temp = [];
+                            nG.forEach(e => temp.push(Akun.fb(e[0], e[1])));
+                            return temp.join(' | ');
+                        }
+                    }
+                    // Twitter
+                    else if (kode === 22 && (validETusername(n) || nT.filter(e => validETusername(e)).length > 0)) {
+                        if (validString(n))
+                            return Akun.tw(remove(n, '@'));
+                        
+                        else {
+                            let temp = [];
+                            nT = nT.filter(e => validETusername(e));
+                            nT.forEach(e => temp.push(Akun.tw(e)))
+                            return temp.join(' | ');
+                        }
+                    }
+                    // Telegram
+                    else if (kode === 23 && (validETusername(n) || nT.filter(e => validETusername(e)).length > 0)) {
+                        if (validString(n))
+                            return Akun.tele(remove(n, '@'));
+                        
+                        else {
+                            let temp = [];
+                            nT = nT.filter(e => validETusername(e));
+                            nT.forEach(e => temp.push(Akun.tele(e)));
+                            return temp.join(' | ');
+                        }
+                    }
+                    // Akun lain
+                    else if (kode === 24 && nG.length > 0) {
+                        if (validURL(nG[1]) || (validURL(nG[0][1]) && nG.length === 1)) {
+                            nG = nG.flat();
+                            return Akun.lain(nG[0], nG[1])
+                        }
+                        else {
+                            let temp = [];
+                            nG.forEach(e => temp.push(Akun.lain(e[0], e[1])));
+                            return temp.join(' | ');
+                        }
+                    }
+                    else
+                        return q;
+                },
+                ig: username => {
+                    if (validETusername(username) && !username.includes('-')) {
+                        username = remove(username, '@');
+                        return '<a href="http://www.instagram.com/' + username + '" target="_blank" title="Instagram | @' + username + '">@' + username + '</a>';
+                    }
+                },
+                fb: (nama, link) => {
+                    if (validString(nama) && validString(link))
+                        return '<a href="http://www.facebook.com/' + link + '" target="_blank" title="Facebook | ' + nama + '">' + nama + '</a>';
+                    
+                },
+                tw: username => {
+                    if (validETusername(username)) {
+                        username = remove(username, '@');
+                        return '<a href="http://twitter.com/' + username + '" target="_blank" title="Twitter | ' + nama + '">@' + username + '</a>';
+                    }
+                },
+                tele: username => validETusername(username) ? '@' + remove(username, '@') : '' ,
+                
+                // link harus berupa string dan harus diawali dengan http:// atau https://
+                lain: (namaSitus, link) => validString(namaSitus) && validURL(link) ? '<a href="' + link + '" target="_blank">' + namaSitus + '</a>' : '' ,
+            };
+        document.head.getElementsByTagName('title')[0].innerHTML = validasi(data.namaLengkap) === '-' ? validasi(data.namaPanggilan) : validasi(data.namaLengkap) ;
+        
+        a[1].children[1].innerHTML += validasi(data.namaLengkap, 1); // Nama lengkap
+        a[2].children[1].innerHTML += validasi(data.namaPanggilan, 2); // Nama panggilan
+        a[3].children[1].innerHTML += validasi(data.jenisKelamin, 3) ; // Jenis kelamin
+        a[4].children[1].innerHTML += validasi(data.ttl, 4); // Tempat, tanggal lahir
+        a[5].children[1].innerHTML += validasi(data.alamat, 5); // Alamat
+        a[6].children[1].innerHTML += validasi(data.ayah, 6) ; // Nama ayah
+        a[7].children[1].innerHTML += validasi(data.ibu, 7) ; // Nama ibu
+        a[11].children[1].innerHTML += validasi(data.nisn, 8); // NISN
+        a[12].children[1].innerHTML += validasi(data.SD, 9); // SD
+        a[13].children[1].innerHTML += validasi(data.keteranganSD, 10); displayKeterangan1(validasi(data.keteranganSD, 10), 13); // Keterangan SD
+        a[14].children[1].innerHTML += validasi(data.SMP, 11); // SMP
+        a[15].children[1].innerHTML += validasi(data.keteranganSMP, 12); displayKeterangan1(validasi(data.keteranganSMP), 15) // Keterangan SMP
+            a[16].children[0].innerHTML = jenisSM(data.SMA, 13);
+        a[16].children[1].innerHTML += validasi(data.SMA, 13); // SMA / SMK / MA
+        a[17].children[1].innerHTML += validasi(data.keteranganSMA, 14); displayKeterangan1(validasi(data.keteranganSMA), 17) // Keterangan SMA / SMK / MA
+        a[18].children[1].innerHTML += validasi(data.perguruanTinggi, 15); // Perguruan Tinggi
+        a[19].children[1].innerHTML += validasi(data.keteranganPerguruanTinggi, 16); displayKeterangan1(validasi(data.keteranganPerguruanTinggi), 19) // Keterangan perguruan tinggi
+        a[20].children[1].innerHTML += validasi(data.kerabatm, 17); // Kerabat
+        a[24].children[1].innerHTML += validasi(data.email, 18); // Alamat e-mail
+        a[25].children[1].innerHTML += validasi(data.nomorWA, 19); // Nomor WA
+        a[26].children[1].innerHTML += Akun.akun(data.instagram, 20); // Akun Instagram
+        a[27].children[1].innerHTML += Akun.akun(data.facebook, 21); // Akun Facebook
+        a[28].children[1].innerHTML += Akun.akun(data.twitter, 22); // Akun Twitter
+        a[29].children[1].innerHTML += Akun.akun(data.telegram, 23); // Akun Telegram
+        a[30].children[1].innerHTML += Akun.akun(data.akunLain, 24); // Akun lain (data ganda)
+        a[31].children[1].innerHTML += validasi(data.jejakDigital, 25); // Jejak digital (data ganda)
+        a[35].children[1].innerHTML += validasi(data.informasiTambahan, 26); // Informasi tambahan
+        a[36].children[1].innerHTML += validasi(data.aktivitas, 27); // Aktivitas terakhir
+
+        document.body.className = DAFESE(remove(document.body.className, 'hidden'));
+    </script>
+</body>
+</html>
