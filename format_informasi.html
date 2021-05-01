@@ -6,34 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <script>
+        // Catatan : Biodata berikut hanya fiktif belaka
         let data = {
-        "namaLengkap": "",
-        "namaPanggilan": "",
-        "jenisKelamin": "",
-        "ttl": "",
-        "alamat": "",
-        "ayah": "",
-        "ibu": "",
-        "nisn": "",
-        "SD": "",
+        "namaLengkap": "Reza Alviansyah",
+        "namaPanggilan": "Reza",
+        "jenisKelamin": "l",
+        "ttl": "16 Maret 1992",
+        "alamat": "Jl. Masjid, Dusun Kesambi, Kesambi, Porong, Kabupaten Sidoarjo, Jawa Timur",
+        "ayah": "Suriyo",
+        "ibu": "Laili",
+        "nisn": "00738277",
+        "SD": "SDN Porong, Sidoarjo",
         "keteranganSD": "",
-        "SMP": "",
+        "SMP": "SMPN 2 Porong",
         "keteranganSMP": "",
-        "SMA": "",
-        "keteranganSMA": "",
-        "perguruanTinggi": "",
+        "SMA": "SMAN 1 Porong",
+        "keteranganSMA": "Ketua Osis 2009/2010",
+        "perguruanTinggi": "Jurusan Teknik Geomatika FTSPK Institut Teknologi Sepuluh Nopember (2010 - 2014)",
         "keteranganPerguruanTinggi": "",
-        "kerabat": "",
-        "email": "",
-        "nomorWA": "",
-        "instagram": "",
-        "facebook": ["", ""],
-        "twitter": "",
-        "telegram": "",
-        "akunLain": "",
-        "jejakDigital": [["MMMMS", "https://ll"], ["abcde", "http://abcde.com"]],
-        "informasiTambahan": ["abcd", "abcdenj"],
-        "aktivitas": ""
+        "kerabat": "Laili Nur Fadhilah (kakak kandung perempuan)",
+        "email": "reza.alviansyah45@gmail.com",
+        "nomorWA": "0821-8332-6819",
+        "instagram": "@reza.aliviansyah18", // Username Instagram
+        "facebook": [["Reza Alviansyah 1", "https://www.facebook.com/RezaAlviansyah"], ["Reza Alviansyah 2", "https://www.facebook.com/AlviansyahReza"]], // [Keterangan link, link yang dituju]
+        "twitter": "@reza_alviansyah69",
+        "telegram": "@reza_alviansyah50",
+        "akunLain": [
+                ["Github", "https://www.github.com/Dedi-SA"], // [Keterangan link, link yang dituju]
+                ["Absensi guru SMAN 1 Porong", "http://sman1porong.sch.id/html/guru.php?id=dbguru"]
+            ],
+        "jejakDigital": [
+                ["Scribd", "https://scribd.com/"], // [Keterangan link, link yang dituju]
+                ["Blogger", "http://blogger.blogspot.com"]
+            ],
+        "informasiTambahan": ["Juara Badminton tingkat SMP 2006", "Pernah menjadi Ketua OSIS di SMAN 1 Porong"],
+        "aktivitas": [
+            ["12 Juni 2020", "Surabaya", "Makan  bersama"], // Kapan | di mana | sedang apa
+            ["14 Maret 2017", "Semarang", "Rekreasi"]
+        ]
     }
     </script>
     <style>
@@ -285,13 +295,27 @@
         </table>
         <div style="margin-bottom: 600px;"></div>
     </div>
+    <div id="halamanAkunLain" class="hidden headerMargin">
+        <button onclick="bukaTutup('halamanUtama', 'halamanAkunLain')"><< Kembali</button>
+        <h2>Akun lain</h2>
+        <div class="containerHiddenTable">
+            <table class="hiddenTable" cellpadding="2" cellspacing="2">
+                <tbody id="target2">
+                    <tr style="font-weight: bold;">
+                        <td class="tabel-nomor">No.</td>
+                        <td class="tabel-keterangan">Alamat</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div id="halamanJejakDigital" class="hidden headerMargin">
         <button onclick="bukaTutup('halamanUtama', 'halamanJejakDigital')"><< Kembali</button>
         <h2>Jejak Digital</h2>
         <div class="containerHiddenTable">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
-                <tbody id="target2">
-                    <tr>
+                <tbody id="target3">
+                    <tr style="font-weight: bold;">
                         <td class="tabel-nomor">No.</td>
                         <td class="tabel-keterangan">Alamat</td>
                     </tr>
@@ -304,8 +328,8 @@
         <h2>Informasi Tambahan</h2>
         <div class="containerHiddenTable">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
-                <tbody id="target3">
-                    <tr>
+                <tbody id="target4">
+                    <tr style="font-weight: bold;">
                         <td class="tabel-nomor">No.</td>
                         <td class="tabel-keterangan">Keterangan</td>
                     </tr>
@@ -318,8 +342,8 @@
         <h2>Aktivitas</h2>
         <div style="width: 78%; margin: auto;">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
-                <tbody id="target4">
-                    <tr>
+                <tbody id="target5">
+                    <tr style="font-weight: bold;">
                         <td class="tabel-nomor">No.</td>
                         <td class="tabel-tanggal">Tanggal</td>
                         <td class="tabel-lokasi">Lokasi</td>
@@ -355,7 +379,7 @@
             clearSpace = n => typeof n === 'string' || Array.isArray(n) ? remove(n, ' ') : false ,
 
             // Memeriksa string yang masuk, jika string yang masuk hanya berisi spasi, maka hasilnya false
-            validString = n => typeof n === 'string' && clearSpace(n.toLowerCase()).length > 0,
+            validString = n => typeof n === 'string' && clearSpace(n).length > 0,
 
             // Mengecek string yang masuk, jika string tersebut memiliki 9 atau lebih karakter dan diawali dengan http:// atau https:// maka true
             validURL = n => validString(n) && clearSpace(n).length >= 9 && (n.toLowerCase().slice(0, 8).includes('http://') || n.toLowerCase().slice(0, 8).includes('https://') || n.toLowerCase().slice(0, 8).includes('file:///')),
@@ -384,7 +408,7 @@
 
             arrayDataTunggal = n => Array.isArray(n) ? n.filter(e => validString(e)) : [] ,
             arrayDataGanda = n => Array.isArray(n) ? validString(n[0]) && validString(n[1]) ? n : n.filter(e => Array.isArray(e) && validString(e[0]) && validString(e[1])) : [] ,
-            arrayData3 = n => Array.isArray(n) ? validString(n[0]) && validString(n[1]) && validString(n[2]) ? n : n.filter(e => Array.isArray(e) && e.filter(E => validString(E)).length > 2) : [] ,
+            arrayData3 = n => Array.isArray(n) ? validString(n[0]) && validString(n[1]) && validString(n[2]) ? [n] : n.filter(e => Array.isArray(e) && e.filter(E => validString(E)).length > 2) : [] ,
 
             // Double_And_FrontEnd_Space_Eraser (DAFESE)
             DAFESE = n => {
@@ -403,7 +427,7 @@
                     return '';
             },
 
-            validETusername = n => validString(n) && !DAFESE(n).includes(' ') && !DAFESE(n).slice(1).includes('@'),
+            validETusername = n => validString(n) && !DAFESE(n).includes(' ') && !DAFESE(n).slice(1).includes('@') && !loopString(DAFESE(n).slice(1), '.'),
 
             displayKeterangan1 = (status, n) => {
                 if ((validString(n) && !isNaN(Number(n))) || Number.isInteger(n)) {
@@ -453,6 +477,7 @@
 
             // 1. Data dari JSON | 2. Kode data
             validasi = (n, kode) => {
+                // if (kode === 26) alert(Array.isArray(n))
                 let nT = arrayDataTunggal(n), nG = arrayDataGanda(n), nM3 = arrayData3(n);
                 kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
 
@@ -472,6 +497,7 @@
                         return q;
                 }
 
+                // Jejak digital
                 else if (kode === 25 && nG.length > 0) {
                     if (validURL(nG[1]) || (nG.length === 1 && validURL(nG[0][1])) ) {
                         nG = nG.length === 1 ? nG.flat() : nG ;
@@ -480,7 +506,7 @@
                     else if (nG.length > 1 && validURL(nG[0][1])) {
                         nG.forEach((e, i) => {
                             let newTabel = D.create('tr');
-                            D.get.id('target2').appendChild(newTabel);
+                            D.get.id('target3').appendChild(newTabel);
                                 let newTabel_A = D.create('td')
                                     newTabel_A.className = 'tabel-nomor';
                                     newTabel_A.innerHTML = (i + 1) + '.';
@@ -495,16 +521,18 @@
                     else
                         return q;
                 }
+
+                // Informasi tambahan
                 else if (kode === 26 && (validString(n) || nT.length > 0)) {
                     if (validString(n))
                         return n;
                     
                     else if (nT.length === 1)
-                        return n[0]
+                        return n[0];
                     else {
                         nT.forEach((e, i) => {
                             let barisBaru = D.create('tr');
-                            D.get.id('target3').appendChild(barisBaru);
+                            D.get.id('target4').appendChild(barisBaru);
                                 let kolom_A = D.create('td');
                                     kolom_A.className = 'tabel-nomor';
                                     kolom_A.innerHTML = (i + 1) + '.';
@@ -517,21 +545,30 @@
                         return '<a onclick="bukaTutup(\'halamanInformasiTambahan\', \'halamanUtama\')" title="' + nT.length + ' data">Daftar Informasi Tambahan</a>' ;
                     }
                 }
-                else if (kode === 27 && (validString(nM3[2]) || nM3.length > 0)) {
-                    if (validString(nM3[2]))
-                        return n;
-                    else if (nT.length === 1)
-                        return n[0];
-                    else {
-                        nT.forEach(e => {
-                            let barisBaru = D.create('tr');
-                            D.get.id('target4').appendChild(barisBaru);
-                                let kolomA = D.create('td');
-                                    kolomA.className = 'tabel-nomor';
-                                    // kolomA.innerHTML = 
-                        })
-                        return '<a onclick="bukaTutup(\'halamanInformasiTambahan\', \'halamanUtama\')" title="' + nT.length + ' data">Daftar Informasi Tambahan</a>' ;
-                    }
+                
+                // Aktivitas
+                else if (kode === 27 && nM3.length > 0) {
+                    nM3.forEach((e, i) => {
+                        let barisBaru = D.create('tr');
+                        D.get.id('target5').appendChild(barisBaru);
+                            let kolomA = D.create('td');
+                                kolomA.className = 'tabel-nomor';
+                                kolomA.innerHTML = (i + 1) + '.';
+                            barisBaru.appendChild(kolomA);
+                            let kolomB = D.create('td');
+                                kolomB.className = 'tabel-tanggal';
+                                kolomB.innerHTML = e[0];
+                            barisBaru.appendChild(kolomB);
+                            let kolomC = D.create('td');
+                                kolomC.className = 'tabel-lokasi';
+                                kolomC.innerHTML = e[1];
+                            barisBaru.appendChild(kolomC);
+                            let kolomD = D.create('td');
+                                kolomD.className = 'tabel-keterangan';
+                                kolomD.innerHTML = e[2];
+                            barisBaru.appendChild(kolomD);
+                    })
+                    return '<a onclick="bukaTutup(\'halamanAktivitas\', \'halamanUtama\')" title="' + nM3.length + ' data">Daftar Aktivitas</a>' ;
                 }
                 else if (validString(n))
                     return remove(n, [' ', ',', '?', '-', '_', ]).length > 0 ? n : q;
@@ -598,15 +635,28 @@
                         }
                     }
                     // Akun lain
-                    else if (kode === 24 && nG.length > 0) {
-                        if (validURL(nG[1]) || (validURL(nG[0][1]) && nG.length === 1)) {
-                            nG = nG.flat();
-                            return Akun.lain(nG[0], nG[1])
-                        }
+                    else if (kode === 24 && (validURL(nG[1]) || (nG.length > 0 && nG.filter(e => validURL(e[1])).length > 0))) {
+                        nG = nG.filter(e => validURL(e[1]));
+                        if (validURL(nG[1]))
+                            return Akun.lain(nG[0], nG[1]);
+                        
+                        else if (nG.length === 1)
+                            return Akun.lain(nG[0][0], nG[0][1]);
+                        
                         else {
-                            let temp = [];
-                            nG.forEach(e => temp.push(Akun.lain(e[0], e[1])));
-                            return temp.join(' | ');
+                            nG.forEach((e, i) => {
+                                let barisBaru = D.create('tr');
+                                D.get.id('target2').appendChild(barisBaru);
+                                    let kolomA = D.create('td');
+                                        kolomA.className = 'tabel-nomor';
+                                        kolomA.innerHTML = (i + 1) + '.';
+                                    barisBaru.appendChild(kolomA);
+                                    let kolomB = D.create('td');
+                                        kolomB.className = 'tabel-konten';
+                                        kolomB.innerHTML = Akun.lain(e[0], e[1]);
+                                    barisBaru.appendChild(kolomB);
+                            });
+                            return '<a onclick="bukaTutup(\'halamanAkunLain\', \'halamanUtama\')" title="' + nG.length + ' akun">Daftar akun lain</a>';
                         }
                     }
                     else
@@ -626,7 +676,7 @@
                 tw: username => {
                     if (validETusername(username)) {
                         username = remove(username, '@');
-                        return '<a href="http://twitter.com/' + username + '" target="_blank" title="Twitter | ' + nama + '">@' + username + '</a>';
+                        return '<a href="http://twitter.com/' + username + '" target="_blank" title="Twitter | @' + username + '">@' + username + '</a>';
                     }
                 },
                 tele: username => validETusername(username) ? '@' + remove(username, '@') : '' ,
@@ -653,17 +703,17 @@
         a[17].children[1].innerHTML += validasi(data.keteranganSMA, 14); displayKeterangan1(validasi(data.keteranganSMA), 17) // Keterangan SMA / SMK / MA
         a[18].children[1].innerHTML += validasi(data.perguruanTinggi, 15); // Perguruan Tinggi
         a[19].children[1].innerHTML += validasi(data.keteranganPerguruanTinggi, 16); displayKeterangan1(validasi(data.keteranganPerguruanTinggi), 19) // Keterangan perguruan tinggi
-        a[20].children[1].innerHTML += validasi(data.kerabatm, 17); // Kerabat
+        a[20].children[1].innerHTML += validasi(data.kerabat, 17); // Kerabat
         a[24].children[1].innerHTML += validasi(data.email, 18); // Alamat e-mail
         a[25].children[1].innerHTML += validasi(data.nomorWA, 19); // Nomor WA
         a[26].children[1].innerHTML += Akun.akun(data.instagram, 20); // Akun Instagram
-        a[27].children[1].innerHTML += Akun.akun(data.facebook, 21); // Akun Facebook
+        a[27].children[1].innerHTML += Akun.akun(data.facebook, 21); // Akun Facebook (data ganda)
         a[28].children[1].innerHTML += Akun.akun(data.twitter, 22); // Akun Twitter
         a[29].children[1].innerHTML += Akun.akun(data.telegram, 23); // Akun Telegram
         a[30].children[1].innerHTML += Akun.akun(data.akunLain, 24); // Akun lain (data ganda)
         a[31].children[1].innerHTML += validasi(data.jejakDigital, 25); // Jejak digital (data ganda)
         a[35].children[1].innerHTML += validasi(data.informasiTambahan, 26); // Informasi tambahan
-        a[36].children[1].innerHTML += validasi(data.aktivitas, 27); // Aktivitas terakhir
+        a[36].children[1].innerHTML += validasi(data.aktivitas, 27); // Aktivitas (3 data)
 
         document.body.className = DAFESE(remove(document.body.className, 'hidden'));
     </script>
