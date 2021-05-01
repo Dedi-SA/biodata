@@ -404,8 +404,9 @@
             loopString = (n, char) => {
                 if (typeof n === 'string' && ((typeof char === 'string' && n.toLowerCase().length > 1) || (typeof char !== 'string' && clearSpace(n.toLowerCase()).length > 1))) {
                     n = typeof char === 'string' ? n.toLowerCase() : clearSpace(n.toLowerCase()) ;
+                    char = typeof char === 'string' ? char.toLowerCase() : char ;
                     let N = new Set(n);
-                    return N.size === 1 ;
+                    return N.size === 1 && (typeof char === 'string' ? [...N][0] === char : true);
                 }
                 else
                     return false;
