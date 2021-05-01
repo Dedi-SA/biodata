@@ -436,6 +436,10 @@
 
             validEmail = n => validString(n) && n.includes('@') && !DAFESE(n).includes(' ') && DAFESE(n).slice(1, n.length-1).includes('@'),
 
+            eror = (Kode, lokasi) => {
+                throw('Kesalahan penempatan data' + (Number.isInteger(Kode) ? ' : kode ' + Kode : '') + (Number.isInteger(Kode) && validString(lokasi) ? ' berada dalam ' + lokasi : ''));
+            },
+
             displayKeterangan1 = (status, n) => {
                 if ((validString(n) && !isNaN(Number(n))) || Number.isInteger(n)) {
                     n = validString(n) ? n.toString() : n ;
@@ -446,7 +450,7 @@
             // Untuk mendeteksi jenjang SMA sederajat
             jenisSM = (n, kode) => {
                 kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
-                if (kode === 14 && validString(n)) {
+                if (kode === 17 && validString(n)) {
                     n = n.toUpperCase();    
                     if (n.slice(0, 3) === 'SMA' || n.slice(0, 4) === 'SMA ' || n.slice(0, 5) === 'SMAN ' || n.includes('SEKOLAH MENENGAH ATAS'))
                         return 'SMA';
@@ -490,9 +494,10 @@
                 if (clearSpace(n) === '-' || loopString(n, '-'))
                     return ( kode === 7 || kode === 8 ) ? q : '-' ;
                 
-                else if ([21, 22, 23, 24, 25].includes(kode))
-                    throw('Kesalahan penempatan data : kode ' + kode + ' berada dalam validasi()');
-
+                else if ([27, 28, 29, 30, 31].includes(kode)) {
+                    eror(kode, 'validasi()');
+                    return q;
+                }
                 // Fungsi untuk mempersingkat penulisan jenis kelamin
                 else if (kode === 3 && validString(n)) {
                     if (n.toLowerCase() === 'l' || loopString(n, 'l') || ((n.toLowerCase().includes('laki') || n.toLowerCase().includes('pria')) && (!n.toLowerCase().includes('wanita') && !n.toLowerCase().includes('perempuan'))))
@@ -504,11 +509,11 @@
                 }
 
                 // E-mail
-                else if (kode === 19 && validEmail(n))
+                else if (kode === 25 && validEmail(n))
                     return n;
 
                 // Jejak digital
-                else if (kode === 26 && nG.length > 0) {
+                else if (kode === 32 && nG.length > 0) {
                     if (validURL(nG[1]) || (nG.length === 1 && validURL(nG[0][1])) ) {
                         nG = nG.length === 1 ? nG.flat() : nG ;
                         return '<a href="' + nG[1] + '" target="_blank" title="Klik untuk mengunjungi">' + nG[0] + '</a>';
@@ -533,7 +538,7 @@
                 }
 
                 // Informasi tambahan
-                else if (kode === 27 && (validString(n) || nT.length > 0)) {
+                else if (kode === 36 && (validString(n) || nT.length > 0)) {
                     if (validString(n))
                         return n;
                     
@@ -557,7 +562,7 @@
                 }
                 
                 // Aktivitas
-                else if (kode === 28 && nM3.length > 0) {
+                else if (kode === 37 && nM3.length > 0) {
                     nM3.forEach((e, i) => {
                         let barisBaru = D.create('tr');
                         D.get.id('target5').appendChild(barisBaru);
@@ -580,7 +585,8 @@
                     })
                     return '<a onclick="bukaTutup(\'halamanAktivitas\', \'halamanUtama\')" title="' + nM3.length + ' data">Daftar Aktivitas</a>' ;
                 }
-                else if (validString(n) && ![3, 19, 26, 27, 28].includes(kode))
+                
+                else if (validString(n) && ![3, 25, 32, 36, 37].includes(kode))
                     return remove(n, [' ', ',', '?', '-', '_', ]).length > 0 ? DAFESE(n) : q;
 
                 else
@@ -593,11 +599,15 @@
                     let nT = arrayDataTunggal(n), nG = arrayDataGanda(n);
                     kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
                     
-                    if (clearSpace(n) === '-' || loopString(n, '-'))
+                    if (clearSpace(n) === '-' || loopString(n, '-')) {
+                        if (![27, 28, 29, 30, 31].includes(kode)) eror(kode, 'Akun.akun() and contain \'-\' character');
                         return '-';
+                    }
+                    else if (![27, 28, 29, 30, 31].includes(kode))
+                        eror(kode, 'Akun.akun()');
 
                     // Instagram
-                    else if (kode === 21 && (validETusername(n) || nT.filter(e => validETusername(e)).length > 0)) {
+                    else if (kode === 27 && (validETusername(n) || nT.filter(e => validETusername(e)).length > 0)) {
                         if (validString(n))
                             return Akun.ig(remove(n, '@'));
                         
@@ -610,7 +620,7 @@
                     }
 
                     // Facebook
-                    else if (kode === 22 && nG.length > 0) {
+                    else if (kode === 28 && nG.length > 0) {
                         if (validURL(nG[1]) || (validURL(nG[0][1]) && nG.length === 1)) {
                             nG = nG.flat();
                             return Akun.fb(nG[0], nG[1]);
@@ -623,7 +633,7 @@
                     }
 
                     // Twitter
-                    else if (kode === 23 && (validETusername(n) || nT.filter(e => validETusername(e)).length > 0)) {
+                    else if (kode === 29 && (validETusername(n) || nT.filter(e => validETusername(e)).length > 0)) {
                         if (validString(n))
                             return Akun.tw(remove(n, '@'));
                         
@@ -636,7 +646,7 @@
                     }
 
                     // Telegram
-                    else if (kode === 24 && (validETusername(n) || nT.filter(e => validETusername(e)).length > 0)) {
+                    else if (kode === 30 && (validETusername(n) || nT.filter(e => validETusername(e)).length > 0)) {
                         if (validString(n))
                             return Akun.tele(remove(n, '@'));
                         
@@ -649,7 +659,7 @@
                     }
                     
                     // Akun lain
-                    else if (kode === 25 && (validURL(nG[1]) || (nG.length > 0 && nG.filter(e => validURL(e[1])).length > 0))) {
+                    else if (kode === 31 && (validURL(nG[1]) || (nG.length > 0 && nG.filter(e => validURL(e[1])).length > 0))) {
                         nG = nG.filter(e => validURL(e[1]));
                         if (validURL(nG[1]))
                             return Akun.lain(nG[0], nG[1]);
@@ -696,7 +706,7 @@
                 tele: username => validETusername(username) ? '@' + remove(username, '@') : '' ,
                 
                 // link harus berupa string dan harus diawali dengan http:// atau https://
-                lain: (namaSitus, link) => validString(namaSitus) && validURL(link) ? '<a href="' + link + '" target="_blank">' + namaSitus + '</a>' : '' ,
+                lain: (namaSitus, link) => validString(namaSitus) && validURL(link) ? '<a href="' + link + '" target="_blank">' + namaSitus + '</a>' : ''
             };
         document.head.getElementsByTagName('title')[0].innerHTML = validasi(data.namaLengkap) === '-' ? validasi(data.namaPanggilan) : validasi(data.namaLengkap) ;
         
@@ -708,27 +718,27 @@
         a[6].children[1].innerHTML += validasi(data.nik, 6); // Nomor Induk Kependudukan
         a[7].children[1].innerHTML += validasi(data.ayah, 7) ; // Nama ayah
         a[8].children[1].innerHTML += validasi(data.ibu, 8) ; // Nama ibu
-        a[12].children[1].innerHTML += validasi(data.nisn, 9); // NISN
-        a[13].children[1].innerHTML += validasi(data.SD, 10); // SD
-        a[14].children[1].innerHTML += validasi(data.keteranganSD, 11); displayKeterangan1(validasi(data.keteranganSD, 11), 14); // Keterangan SD
-        a[15].children[1].innerHTML += validasi(data.SMP, 12); // SMP
-        a[16].children[1].innerHTML += validasi(data.keteranganSMP, 13); displayKeterangan1(validasi(data.keteranganSMP, 13), 16) // Keterangan SMP
-            a[17].children[0].innerHTML = jenisSM(data.SMA, 14);
-        a[17].children[1].innerHTML += validasi(data.SMA, 14); // SMA / SMK / MA
-        a[18].children[1].innerHTML += validasi(data.keteranganSMA, 15); displayKeterangan1(validasi(data.keteranganSMA, 15), 18) // Keterangan SMA / SMK / MA
-        a[19].children[1].innerHTML += validasi(data.perguruanTinggi, 16); // Perguruan Tinggi
-        a[20].children[1].innerHTML += validasi(data.keteranganPerguruanTinggi, 17); displayKeterangan1(validasi(data.keteranganPerguruanTinggi, 17), 20) // Keterangan perguruan tinggi
-        a[21].children[1].innerHTML += validasi(data.kerabat, 18); // Kerabat
-        a[25].children[1].innerHTML += validasi(data.email, 19); // Alamat e-mail
-        a[26].children[1].innerHTML += validasi(data.nomorWA, 20); // Nomor WA
-        a[27].children[1].innerHTML += Akun.akun(data.instagram, 21); // Akun Instagram
-        a[28].children[1].innerHTML += Akun.akun(data.facebook, 22); // Akun Facebook (data ganda)
-        a[29].children[1].innerHTML += Akun.akun(data.twitter, 23); // Akun Twitter
-        a[30].children[1].innerHTML += Akun.akun(data.telegram, 24); // Akun Telegram
-        a[31].children[1].innerHTML += Akun.akun(data.akunLain, 25); // Akun lain (data ganda)
-        a[32].children[1].innerHTML += validasi(data.jejakDigital, 26); // Jejak digital (data ganda)
-        a[36].children[1].innerHTML += validasi(data.informasiTambahan, 27); // Informasi tambahan
-        a[37].children[1].innerHTML += validasi(data.aktivitas, 28); // Aktivitas (3 data)
+        a[12].children[1].innerHTML += validasi(data.nisn, 12); // NISN
+        a[13].children[1].innerHTML += validasi(data.SD, 13); // SD
+        a[14].children[1].innerHTML += validasi(data.keteranganSD, 14); displayKeterangan1(validasi(data.keteranganSD, 14), 14); // Keterangan SD
+        a[15].children[1].innerHTML += validasi(data.SMP, 15); // SMP
+        a[16].children[1].innerHTML += validasi(data.keteranganSMP, 16); displayKeterangan1(validasi(data.keteranganSMP, 16), 16) // Keterangan SMP
+            a[17].children[0].innerHTML = jenisSM(data.SMA, 17);
+        a[17].children[1].innerHTML += validasi(data.SMA, 17); // SMA / SMK / MA
+        a[18].children[1].innerHTML += validasi(data.keteranganSMA, 18); displayKeterangan1(validasi(data.keteranganSMA, 18), 18) // Keterangan SMA / SMK / MA
+        a[19].children[1].innerHTML += validasi(data.perguruanTinggi, 19); // Perguruan Tinggi
+        a[20].children[1].innerHTML += validasi(data.keteranganPerguruanTinggi, 20); displayKeterangan1(validasi(data.keteranganPerguruanTinggi, 20), 20) // Keterangan perguruan tinggi
+        a[21].children[1].innerHTML += validasi(data.kerabat, 21); // Kerabat
+        a[25].children[1].innerHTML += validasi(data.email, 25); // Alamat e-mail
+        a[26].children[1].innerHTML += validasi(data.nomorWA, 26); // Nomor WA
+        a[27].children[1].innerHTML += Akun.akun(data.instagram, 27); // Akun Instagram
+        a[28].children[1].innerHTML += Akun.akun(data.facebook, 28); // Akun Facebook (data ganda)
+        a[29].children[1].innerHTML += Akun.akun(data.twitter, 29); // Akun Twitter
+        a[30].children[1].innerHTML += Akun.akun(data.telegram, 30); // Akun Telegram
+        a[31].children[1].innerHTML += Akun.akun(data.akunLain, 31); // Akun lain (data ganda)
+        a[32].children[1].innerHTML += validasi(data.jejakDigital, 32); // Jejak digital (data ganda)
+        a[36].children[1].innerHTML += validasi(data.informasiTambahan, 36); // Informasi tambahan
+        a[37].children[1].innerHTML += validasi(data.aktivitas, 37); // Aktivitas (3 data)
 
         document.body.className = DAFESE(remove(document.body.className, 'hidden'));
     </script>
