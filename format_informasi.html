@@ -429,6 +429,8 @@
 
             validETusername = n => validString(n) && !DAFESE(n).includes(' ') && !DAFESE(n).slice(1).includes('@') && !loopString(DAFESE(n).slice(1), '.'),
 
+            validEmail = n => validString(n) && n.includes('@') && !DAFESE(n).includes(' ') && DAFESE(n).slice(1, n.length-1).includes('@'),
+
             displayKeterangan1 = (status, n) => {
                 if ((validString(n) && !isNaN(Number(n))) || Number.isInteger(n)) {
                     n = validString(n) ? n.toString() : n ;
@@ -495,6 +497,9 @@
                     else
                         return q;
                 }
+
+                else if (kode === 18 && validEmail(n))
+                    return n;
 
                 // Jejak digital
                 else if (kode === 25 && nG.length > 0) {
@@ -569,7 +574,7 @@
                     })
                     return '<a onclick="bukaTutup(\'halamanAktivitas\', \'halamanUtama\')" title="' + nM3.length + ' data">Daftar Aktivitas</a>' ;
                 }
-                else if (validString(n))
+                else if (validString(n) && ![3, 18, 25, 26, 27].includes(kode))
                     return remove(n, [' ', ',', '?', '-', '_', ]).length > 0 ? DAFESE(n) : q;
 
                 else
@@ -597,6 +602,7 @@
                             return temp.join(' | ');
                         }
                     }
+
                     // Facebook
                     else if (kode === 21 && nG.length > 0) {
                         if (validURL(nG[1]) || (validURL(nG[0][1]) && nG.length === 1)) {
@@ -609,6 +615,7 @@
                             return temp.join(' | ');
                         }
                     }
+
                     // Twitter
                     else if (kode === 22 && (validETusername(n) || nT.filter(e => validETusername(e)).length > 0)) {
                         if (validString(n))
@@ -621,6 +628,7 @@
                             return temp.join(' | ');
                         }
                     }
+
                     // Telegram
                     else if (kode === 23 && (validETusername(n) || nT.filter(e => validETusername(e)).length > 0)) {
                         if (validString(n))
@@ -633,6 +641,7 @@
                             return temp.join(' | ');
                         }
                     }
+                    
                     // Akun lain
                     else if (kode === 24 && (validURL(nG[1]) || (nG.length > 0 && nG.filter(e => validURL(e[1])).length > 0))) {
                         nG = nG.filter(e => validURL(e[1]));
