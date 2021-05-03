@@ -29,7 +29,10 @@
         "email": "reza.alviansyah45@gmail.com",
         "nomorWA": "0821-8332-6819",
         "instagram": "@reza.aliviansyah18", // Username Instagram
-        "facebook": [["Reza Alviansyah 1", "https://www.facebook.com/RezaAlviansyah"], ["Reza Alviansyah 2", "https://www.facebook.com/AlviansyahReza"]], // [Keterangan link, link yang dituju]
+        "facebook": [
+                ["Reza Alviansyah 1", "https://www.facebook.com/RezaAlviansyah"], // [Keterangan link, link yang dituju]
+                ["Reza Alviansyah 2", "https://www.facebook.com/AlviansyahReza"]
+            ],
         "twitter": "@reza_alviansyah69",
         "telegram": "@reza_alviansyah50",
         "akunLain": [
@@ -414,7 +417,6 @@
 
             arrayDataTunggal = n => Array.isArray(n) ? n.filter(e => validString(e)) : [] ,
             arrayDataGanda = n => Array.isArray(n) ? validString(n[0]) && validString(n[1]) ? n : n.filter(e => Array.isArray(e) && validString(e[0]) && validString(e[1])) : [] ,
-            arrayData3 = n => Array.isArray(n) ? validString(n[0]) && validString(n[1]) && validString(n[2]) ? [n] : n.filter(e => Array.isArray(e) && e.filter(E => validString(E)).length > 2) : [] ,
 
             // Double_And_FrontEnd_Space_Eraser (DAFESE)
             DAFESE = n => {
@@ -489,7 +491,7 @@
 
             // 1. Data dari JSON | 2. Kode data
             validasi = (n, kode) => {
-                let nT = arrayDataTunggal(n), nG = arrayDataGanda(n), nM3 = arrayData3(n);
+                let nT = arrayDataTunggal(n), nG = arrayDataGanda(n);
                 kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
 
                 if (clearSpace(n) === '-' || loopString(n, '-'))
@@ -563,28 +565,39 @@
                 }
                 
                 // Aktivitas
-                else if (kode === 37 && nM3.length > 0) {
-                    nM3.forEach((e, i) => {
-                        let barisBaru = D.create('tr');
-                        D.get.id('target5').appendChild(barisBaru);
-                            let kolomA = D.create('td');
-                                kolomA.className = 'tabel-nomor';
-                                kolomA.innerHTML = (i + 1) + '.';
-                            barisBaru.appendChild(kolomA);
-                            let kolomB = D.create('td');
-                                kolomB.className = 'tabel-tanggal';
-                                kolomB.innerHTML = e[0];
-                            barisBaru.appendChild(kolomB);
-                            let kolomC = D.create('td');
-                                kolomC.className = 'tabel-lokasi';
-                                kolomC.innerHTML = e[1];
-                            barisBaru.appendChild(kolomC);
-                            let kolomD = D.create('td');
-                                kolomD.className = 'tabel-keterangan';
-                                kolomD.innerHTML = e[2];
-                            barisBaru.appendChild(kolomD);
-                    })
-                    return '<a onclick="bukaTutup(\'halamanAktivitas\', \'halamanUtama\')" title="' + nM3.length + ' data">Daftar Aktivitas</a>' ;
+                else if (kode === 37) {
+                    function validasiN (m) {
+                        function validasiArrayData3 (x) {
+                            return x.filter(e => (validString(e[0]) && clearSpace(e[0]).length > 0) || (validString(e[1]) && clearSpace(e[1]).length > 0) || (validString(e[2]) && clearSpace(e[2]).length > 0)).map(e => e.map(E => validasi(E, true)));
+                        };
+                        return Array.isArray(m) ? (validString(m[0]) && clearSpace(m[0]).length > 0) || (validString(m[1]) && clearSpace(m[1]).length > 0) || (validString(m[2]) && clearSpace(m[2]).length > 0) ? validasiArrayData3([m]) : validasiArrayData3(m) : [] ;
+                    };
+                    n = validasiN(n);
+                    if (n.length > 0) {
+                        n.forEach((e, i) => {
+                            let barisBaru = D.create('tr');
+                            D.get.id('target5').appendChild(barisBaru);
+                                let kolomA = D.create('td');
+                                    kolomA.className = 'tabel-nomor';
+                                    kolomA.innerHTML = (i + 1) + '.';
+                                barisBaru.appendChild(kolomA);
+                                let kolomB = D.create('td');
+                                    kolomB.className = 'tabel-tanggal';
+                                    kolomB.innerHTML = e[0];
+                                barisBaru.appendChild(kolomB);
+                                let kolomC = D.create('td');
+                                    kolomC.className = 'tabel-lokasi';
+                                    kolomC.innerHTML = e[1];
+                                barisBaru.appendChild(kolomC);
+                                let kolomD = D.create('td');
+                                    kolomD.className = 'tabel-keterangan';
+                                    kolomD.innerHTML = e[2];
+                                barisBaru.appendChild(kolomD);
+                        })
+                        return '<a onclick="bukaTutup(\'halamanAktivitas\', \'halamanUtama\')" title="' + n.length + ' data">Daftar Aktivitas</a>' ;
+                    }
+                    else
+                        return q;
                 }
                 
                 else if (validString(n) && ![3, 25, 32, 36, 37].includes(kode))
