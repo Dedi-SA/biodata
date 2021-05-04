@@ -386,37 +386,45 @@
 
             clearSpace = n => typeof n === 'string' || Array.isArray(n) ? remove(n, ' ') : false ,
 
-            // Memeriksa string yang masuk, jika string yang masuk hanya berisi spasi, maka hasilnya false
-            validString = n => typeof n === 'string' && clearSpace(n).length > 0,
+            // Kumpulan fungsi yang mengembalikan nilai boolean
+            is = {
+                // Jika input bernilai string masuk hanya berisi spasi maka hasilnya FALSE, selain itu TRUE
+                validSTR: n => typeof n === 'string' && clearSpace(n).length > 0,
 
-            // Mengecek string yang masuk, jika string tersebut memiliki 9 atau lebih karakter dan diawali dengan http:// atau https:// maka true
-            validURL = n => validString(n) && clearSpace(n).length >= 9 && (n.toLowerCase().slice(0, 8).includes('http://') || n.toLowerCase().slice(0, 8).includes('https://') || n.toLowerCase().slice(0, 8).includes('file:///')),
+                // Jika input bernilai string dan memiliki 9 atau lebih karakter dan diawali dengan http:// atau https:// atau file:/// maka hasilnya true
+                validURL: n => is.validSTR(n) && clearSpace(n).length >= 9 && (n.toLowerCase().slice(0, 8).includes('http://') || n.toLowerCase().slice(0, 8).includes('https://') || n.toLowerCase().slice(0, 8).includes('file:///')),
 
+                /*  Jika parameter bernilai string dan hanya memiliki 1 jenis karakter yang muncul berulang kali,
+                    maka hasilnya true */
+                loopSTR: (n, char) => {
+                    if (typeof n === 'string' && ((typeof char === 'string' && n.toLowerCase().length > 1) || (typeof char !== 'string' && clearSpace(n.toLowerCase()).length > 1))) {
+                        n = typeof char === 'string' ? n.toLowerCase() : clearSpace(n.toLowerCase()) ;
+                        char = typeof char === 'string' ? char.toLowerCase() : char ;
+                        let N = new Set(n);
+                        return N.size === 1 && (typeof char === 'string' ? [...N][0] === char : true);
+                    }
+                    else
+                        return false;
+                },
+
+                // Bila nilai yang masuk bernilai string dan merupakan username yang valid (diawali @ dan diikuti string lain selain spasi)
+                validETusername: n => is.validSTR(n) && !DAFESE(n).includes(' ') && !DAFESE(n).slice(1).includes('@') && !is.loopSTR(DAFESE(n).slice(1), '.'),
+
+                // Jika string TIDAK diawali dan diakhiri dengan @ dan memiliki karakter @ selain di awal dan di akhir maka TRUE
+                validEmail: n => is.validSTR(n) && n.includes('@') && !DAFESE(n).includes(' ') && DAFESE(n).slice(1, n.length-1).includes('@')
+            },
+            
             D = {
-                create: n => validString(n) && n.length === clearSpace(n).length ? document.createElement(n) : false,
+                create: n => is.validSTR(n) && n.length === clearSpace(n).length ? document.createElement(n) : false,
                 get: {
-                    id: n => validString(n) ? document.getElementById(n) : false ,
-                    class: n => validString(n) ? document.getElementsByClassName(n) : false,
-                    tag: (n, i) => validString(n) ? ( Number.isInteger(Math.abs(i)) && Math.abs(i) !== 0 ) ? document.getElementsByTagName(n)[Math.abs(i)] : document.getElementsByTagName(n) : false
+                    id: n => is.validSTR(n) ? document.getElementById(n) : false ,
+                    class: n => is.validSTR(n) ? document.getElementsByClassName(n) : false,
+                    tag: (n, i) => is.validSTR(n) ? ( Number.isInteger(Math.abs(i)) && Math.abs(i) !== 0 ) ? document.getElementsByTagName(n)[Math.abs(i)] : document.getElementsByTagName(n) : false
                 }
             },
 
-            /* (SPASI tidak dihitung)
-               Jika parameter bernilai string dan hanya memiliki 1 jenis karakter yang muncul berulang kali,
-               maka hasilnya true */
-            loopString = (n, char) => {
-                if (typeof n === 'string' && ((typeof char === 'string' && n.toLowerCase().length > 1) || (typeof char !== 'string' && clearSpace(n.toLowerCase()).length > 1))) {
-                    n = typeof char === 'string' ? n.toLowerCase() : clearSpace(n.toLowerCase()) ;
-                    char = typeof char === 'string' ? char.toLowerCase() : char ;
-                    let N = new Set(n);
-                    return N.size === 1 && (typeof char === 'string' ? [...N][0] === char : true);
-                }
-                else
-                    return false;
-            },
-
-            arrayDataTunggal = n => Array.isArray(n) ? n.filter(e => validString(e)) : [] ,
-            arrayDataGanda = n => Array.isArray(n) ? validString(n[0]) && validString(n[1]) ? n : n.filter(e => Array.isArray(e) && validString(e[0]) && validString(e[1])) : [] ,
+            arrayDataTunggal = n => Array.isArray(n) ? n.filter(e => is.validSTR(e)) : [] ,
+            arrayDataGanda = n => Array.isArray(n) ? is.validSTR(n[0]) && is.validSTR(n[1]) ? n : n.filter(e => Array.isArray(e) && is.validSTR(e[0]) && is.validSTR(e[1])) : [] ,
 
             // Double_And_FrontEnd_Space_Eraser (DAFESE)
             DAFESE = n => {
@@ -434,18 +442,14 @@
                 else 
                     return '';
             },
-
-            validETusername = n => validString(n) && !DAFESE(n).includes(' ') && !DAFESE(n).slice(1).includes('@') && !loopString(DAFESE(n).slice(1), '.'),
-
-            validEmail = n => validString(n) && n.includes('@') && !DAFESE(n).includes(' ') && DAFESE(n).slice(1, n.length-1).includes('@'),
-
+            
             eror = (Kode, lokasi) => {
-                throw('Kesalahan penempatan data' + (Number.isInteger(Kode) ? ' : kode ' + Kode : '') + (Number.isInteger(Kode) && validString(lokasi) ? ' berada dalam ' + lokasi : ''));
+                throw('Kesalahan penempatan data' + (Number.isInteger(Kode) ? ' : kode ' + Kode : '') + (Number.isInteger(Kode) && is.validSTR(lokasi) ? ' berada dalam ' + lokasi : ''));
             },
 
             displayKeterangan1 = (status, n) => {
-                if ((validString(n) && !isNaN(Number(n))) || Number.isInteger(n)) {
-                    n = validString(n) ? n.toString() : n ;
+                if ((is.validSTR(n) && !isNaN(Number(n))) || Number.isInteger(n)) {
+                    n = is.validSTR(n) ? n.toString() : n ;
                     status === '-' || status === q ? a[n].style.display = 'none' : false;
                 }
             },
@@ -453,7 +457,7 @@
             // Untuk mendeteksi jenjang SMA sederajat
             jenisSM = (n, kode) => {
                 kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
-                if (kode === 17 && validString(n)) {
+                if (kode === 17 && is.validSTR(n)) {
                     n = n.toUpperCase();    
                     if (n.slice(0, 3) === 'SMA' || n.slice(0, 4) === 'SMA ' || n.slice(0, 5) === 'SMAN ' || n.includes('SEKOLAH MENENGAH ATAS'))
                         return 'SMA';
@@ -473,17 +477,17 @@
                     h1 = D.get.id(H1),
                     h2 = D.get.id(H2);
                 
-                h1.className = validString(h1.className) ? DAFESE(h1.className.toLowerCase()) : '' ;
-                h2.className = validString(h2.className) ? DAFESE(h2.className.toLowerCase()) : '' ;
+                h1.className = is.validSTR(h1.className) ? DAFESE(h1.className.toLowerCase()) : '' ;
+                h2.className = is.validSTR(h2.className) ? DAFESE(h2.className.toLowerCase()) : '' ;
 
-                    while (includesHidden(h1.className) || loopString(h1.className, ' ')) {
+                    while (includesHidden(h1.className) || is.loopSTR(h1.className, ' ')) {
                         if (h1.className.includes(' hidden '))
                             h1.className = h1.className.split(' hidden ').join(' ');
                         if (h1.className.slice(0, 7) === 'hidden ')
                             h1.className = h1.className.slice(7);
                         if (h1.className.slice(-7) === ' hidden')
                             h1.className = h1.className.slice(0, -7);
-                        if (clearSpace(h1.className) === 'hidden' || loopString(h1.className, ' '))
+                        if (clearSpace(h1.className) === 'hidden' || is.loopSTR(h1.className, ' '))
                             h1.className = '';
                     }
                     h2.className = DAFESE(h2.className + ' hidden');
@@ -494,7 +498,7 @@
                 let nT = arrayDataTunggal(n), nG = arrayDataGanda(n);
                 kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
 
-                if (clearSpace(n) === '-' || loopString(n, '-'))
+                if (clearSpace(n) === '-' || is.loopSTR(n, '-'))
                     return ( kode === 7 || kode === 8 ) ? q : '-' ;
                 
                 else if ([27, 28, 29, 30, 31].includes(kode)) {
@@ -502,26 +506,26 @@
                     return q;
                 }
                 // Fungsi untuk mempersingkat penulisan jenis kelamin
-                else if (kode === 3 && validString(n)) {
-                    if (n.toLowerCase() === 'l' || loopString(n, 'l') || ((n.toLowerCase().includes('laki') || n.toLowerCase().includes('pria')) && (!n.toLowerCase().includes('wanita') && !n.toLowerCase().includes('perempuan'))))
+                else if (kode === 3 && is.validSTR(n)) {
+                    if (n.toLowerCase() === 'l' || is.loopSTR(n, 'l') || ((n.toLowerCase().includes('laki') || n.toLowerCase().includes('pria')) && (!n.toLowerCase().includes('wanita') && !n.toLowerCase().includes('perempuan'))))
                         return 'Laki-laki';
-                    else if (n.toLowerCase() === 'p' || loopString(n, 'p') || ((n.toLowerCase().includes('perempuan') || n.toLowerCase().includes('wanita')) && (!n.toLowerCase().includes('laki') && !n.toLowerCase().includes('pria'))))
+                    else if (n.toLowerCase() === 'p' || is.loopSTR(n, 'p') || ((n.toLowerCase().includes('perempuan') || n.toLowerCase().includes('wanita')) && (!n.toLowerCase().includes('laki') && !n.toLowerCase().includes('pria'))))
                         return 'Perempuan';
                     else
                         return q;
                 }
 
                 // E-mail
-                else if (kode === 25 && validEmail(n))
+                else if (kode === 25 && is.validEmail(n))
                     return n;
 
                 // Jejak digital
                 else if (kode === 32 && nG.length > 0) {
-                    if (validURL(nG[1]) || (nG.length === 1 && validURL(nG[0][1])) ) {
+                    if (is.validURL(nG[1]) || (nG.length === 1 && is.validURL(nG[0][1])) ) {
                         nG = nG.length === 1 ? nG.flat() : nG ;
                         return '<a href="' + nG[1] + '" target="_blank" title="Klik untuk mengunjungi">' + nG[0] + '</a>';
                     }
-                    else if (nG.length > 1 && validURL(nG[0][1])) {
+                    else if (nG.length > 1 && is.validURL(nG[0][1])) {
                         nG.forEach((e, i) => {
                             let newTabel = D.create('tr');
                             D.get.id('target3').appendChild(newTabel);
@@ -541,8 +545,8 @@
                 }
 
                 // Informasi tambahan
-                else if (kode === 36 && (validString(n) || nT.length > 0)) {
-                    if (validString(n))
+                else if (kode === 36 && (is.validSTR(n) || nT.length > 0)) {
+                    if (is.validSTR(n))
                         return n;
                     
                     else if (nT.length === 1)
@@ -568,9 +572,9 @@
                 else if (kode === 37) {
                     function validasiN (m) {
                         function validasiArrayData3 (x) {
-                            return x.filter(e => (validString(e[0]) && clearSpace(e[0]).length > 0) || (validString(e[1]) && clearSpace(e[1]).length > 0) || (validString(e[2]) && clearSpace(e[2]).length > 0)).map(e => e.map(E => validasi(E, true)));
+                            return x.filter(e => (is.validSTR(e[0]) && clearSpace(e[0]).length > 0) || (is.validSTR(e[1]) && clearSpace(e[1]).length > 0) || (is.validSTR(e[2]) && clearSpace(e[2]).length > 0)).map(e => e.map(E => validasi(E, true)));
                         };
-                        return Array.isArray(m) ? (validString(m[0]) && clearSpace(m[0]).length > 0) || (validString(m[1]) && clearSpace(m[1]).length > 0) || (validString(m[2]) && clearSpace(m[2]).length > 0) ? validasiArrayData3([m]) : validasiArrayData3(m) : [] ;
+                        return Array.isArray(m) ? (is.validSTR(m[0]) && clearSpace(m[0]).length > 0) || (is.validSTR(m[1]) && clearSpace(m[1]).length > 0) || (is.validSTR(m[2]) && clearSpace(m[2]).length > 0) ? validasiArrayData3([m]) : validasiArrayData3(m) : [] ;
                     };
                     n = validasiN(n);
                     if (n.length > 0) {
@@ -600,7 +604,7 @@
                         return q;
                 }
                 
-                else if (validString(n) && ![3, 25, 32, 36, 37].includes(kode))
+                else if (is.validSTR(n) && ![3, 25, 32, 36, 37].includes(kode))
                     return remove(n, [' ', ',', '?', '-', '_', ]).length > 0 ? DAFESE(n) : q;
 
                 else
@@ -613,7 +617,7 @@
                     let nT = arrayDataTunggal(n), nG = arrayDataGanda(n);
                     kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
                     
-                    if (clearSpace(n) === '-' || loopString(n, '-')) {
+                    if (clearSpace(n) === '-' || is.loopSTR(n, '-')) {
                         if (![27, 28, 29, 30, 31].includes(kode)) eror(kode, 'Akun.akun() and contain \'-\' character');
                         return '-';
                     }
@@ -621,13 +625,13 @@
                         eror(kode, 'Akun.akun()');
 
                     // Instagram
-                    else if (kode === 27 && (validETusername(n) || nT.filter(e => validETusername(e)).length > 0)) {
-                        if (validString(n))
+                    else if (kode === 27 && (is.validETusername(n) || nT.filter(e => is.validETusername(e)).length > 0)) {
+                        if (is.validSTR(n))
                             return Akun.ig(remove(n, '@'));
                         
                         else {
                             let temp = [];
-                            nT = nT.filter(e => validETusername(e));
+                            nT = nT.filter(e => is.validETusername(e));
                             nT.forEach(e => temp.push(Akun.ig(e)));
                             return temp.join(' | ');
                         }
@@ -635,7 +639,7 @@
 
                     // Facebook
                     else if (kode === 28 && nG.length > 0) {
-                        if (validURL(nG[1]) || (validURL(nG[0][1]) && nG.length === 1)) {
+                        if (is.validURL(nG[1]) || (is.validURL(nG[0][1]) && nG.length === 1)) {
                             nG = nG.flat();
                             return Akun.fb(nG[0], nG[1]);
                         }
@@ -647,35 +651,35 @@
                     }
 
                     // Twitter
-                    else if (kode === 29 && (validETusername(n) || nT.filter(e => validETusername(e)).length > 0)) {
-                        if (validString(n))
+                    else if (kode === 29 && (is.validETusername(n) || nT.filter(e => is.validETusername(e)).length > 0)) {
+                        if (is.validSTR(n))
                             return Akun.tw(remove(n, '@'));
                         
                         else {
                             let temp = [];
-                            nT = nT.filter(e => validETusername(e));
+                            nT = nT.filter(e => is.validETusername(e));
                             nT.forEach(e => temp.push(Akun.tw(e)))
                             return temp.join(' | ');
                         }
                     }
 
                     // Telegram
-                    else if (kode === 30 && (validETusername(n) || nT.filter(e => validETusername(e)).length > 0)) {
-                        if (validString(n))
+                    else if (kode === 30 && (is.validETusername(n) || nT.filter(e => is.validETusername(e)).length > 0)) {
+                        if (is.validSTR(n))
                             return Akun.tele(remove(n, '@'));
                         
                         else {
                             let temp = [];
-                            nT = nT.filter(e => validETusername(e));
+                            nT = nT.filter(e => is.validETusername(e));
                             nT.forEach(e => temp.push(Akun.tele(e)));
                             return temp.join(' | ');
                         }
                     }
                     
                     // Akun lain
-                    else if (kode === 31 && (validURL(nG[1]) || (nG.length > 0 && nG.filter(e => validURL(e[1])).length > 0))) {
-                        nG = nG.filter(e => validURL(e[1]));
-                        if (validURL(nG[1]))
+                    else if (kode === 31 && (is.validURL(nG[1]) || (nG.length > 0 && nG.filter(e => is.validURL(e[1])).length > 0))) {
+                        nG = nG.filter(e => is.validURL(e[1]));
+                        if (is.validURL(nG[1]))
                             return Akun.lain(nG[0], nG[1]);
                         
                         else if (nG.length === 1)
@@ -701,26 +705,26 @@
                         return q;
                 },
                 ig: username => {
-                    if (validETusername(username) && !username.includes('-')) {
+                    if (is.validETusername(username) && !username.includes('-')) {
                         username = remove(username, '@');
                         return '<a href="http://www.instagram.com/' + username + '" target="_blank" title="Instagram | @' + username + '">@' + username + '</a>';
                     }
                 },
                 fb: (nama, link) => {
-                    if (validString(nama) && validString(link))
+                    if (is.validSTR(nama) && is.validSTR(link))
                         return '<a href="' + link + '" target="_blank" title="Facebook | ' + nama + '">' + nama + '</a>';
                     
                 },
                 tw: username => {
-                    if (validETusername(username)) {
+                    if (is.validETusername(username)) {
                         username = remove(username, '@');
                         return '<a href="http://twitter.com/' + username + '" target="_blank" title="Twitter | @' + username + '">@' + username + '</a>';
                     }
                 },
-                tele: username => validETusername(username) ? '@' + remove(username, '@') : '' ,
+                tele: username => is.validETusername(username) ? '@' + remove(username, '@') : '' ,
                 
                 // link harus berupa string dan harus diawali dengan http:// atau https://
-                lain: (namaSitus, link) => validString(namaSitus) && validURL(link) ? '<a href="' + link + '" target="_blank">' + namaSitus + '</a>' : ''
+                lain: (namaSitus, link) => is.validSTR(namaSitus) && is.validURL(link) ? '<a href="' + link + '" target="_blank">' + namaSitus + '</a>' : ''
             };
         document.head.getElementsByTagName('title')[0].innerHTML = validasi(data.namaLengkap) === '-' ? validasi(data.namaPanggilan) : validasi(data.namaLengkap) ;
         
