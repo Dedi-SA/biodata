@@ -43,7 +43,7 @@
                 ["Scribd", "https://scribd.com/"], // [Keterangan link, link yang dituju]
                 ["Blogger", "http://blogger.blogspot.com"]
             ],
-        "informasiTambahan": ["Juara Badminton tingkat SMP 2006", "Pernah menjadi Ketua OSIS di SMAN 1 Porong"],
+        "informasiTambahan": ["Juara Badminton tingkat SMP 2006", "Pernah menjadi Ketua OSIS di SMAN 1 Porong"], // [info, info, .....]
         "aktivitas": [
             ["12 Juni 2020", "Surabaya", "Makan  bersama"], // Kapan | di mana | sedang apa
             ["14 Maret 2017", "Semarang", "Rekreasi"]
@@ -617,12 +617,13 @@
                         if (![27, 28, 29, 30, 31].includes(kode)) eror(kode, 'Akun.akun() and contain \'-\' character');
                         return '-';
                     }
+
                     else if (![27, 28, 29, 30, 31].includes(kode))
                         eror(kode, 'Akun.akun()');
 
                     // Instagram
                     else if (kode === 27 && (is.validETusername(n) || nT.filter(e => is.validETusername(e)).length > 0)) {
-                        if (is.validSTR(n))
+                        if (is.validETusername(n))
                             return Akun.ig(remove(n, '@'));
                         
                         else {
@@ -648,7 +649,7 @@
 
                     // Twitter
                     else if (kode === 29 && (is.validETusername(n) || nT.filter(e => is.validETusername(e)).length > 0)) {
-                        if (is.validSTR(n))
+                        if (is.validETusername(n))
                             return Akun.tw(remove(n, '@'));
                         
                         else {
@@ -661,7 +662,7 @@
 
                     // Telegram
                     else if (kode === 30 && (is.validETusername(n) || nT.filter(e => is.validETusername(e)).length > 0)) {
-                        if (is.validSTR(n))
+                        if (is.validETusername(n))
                             return Akun.tele(remove(n, '@'));
                         
                         else {
@@ -674,14 +675,13 @@
                     
                     // Akun lain
                     else if (kode === 31 && (is.validURL(nG[1]) || (nG.length > 0 && nG.filter(e => is.validURL(e[1])).length > 0))) {
-                        nG = nG.filter(e => is.validURL(e[1]));
-                        if (is.validURL(nG[1]))
+                        if (is.validURL(nG[1]) || (is.validURL(nG[0][1]) && nG.length === 1)) {
+                            nG = nG.flat();
                             return Akun.lain(nG[0], nG[1]);
-                        
-                        else if (nG.length === 1)
-                            return Akun.lain(nG[0][0], nG[0][1]);
-                        
+                        }
+                                                
                         else {
+                            nG = nG.filter(e => is.validURL(e[1]));
                             nG.forEach((e, i) => {
                                 let barisBaru = D.create('tr');
                                 D.get.id('target2').appendChild(barisBaru);
