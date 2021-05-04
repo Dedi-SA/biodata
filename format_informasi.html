@@ -368,7 +368,7 @@
             remove = (n, char) => {
                 if (Array.isArray(n)) {
                     if (typeof char === 'string')
-                        return n.filter(e => e !== 'string');
+                        return n.filter(e => e !== char);
                     
                     else if (Array.isArray(char))
                         return n.filter(e => !char.includes(e));
