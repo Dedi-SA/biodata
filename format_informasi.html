@@ -447,13 +447,6 @@
                 throw('Kesalahan penempatan data' + (Number.isInteger(Kode) ? ' : kode ' + Kode : '') + (Number.isInteger(Kode) && is.validSTR(lokasi) ? ' berada dalam ' + lokasi : ''));
             },
 
-            displayKeterangan1 = (status, n) => {
-                if ((is.validSTR(n) && !isNaN(Number(n))) || Number.isInteger(n)) {
-                    n = is.validSTR(n) ? n.toString() : n ;
-                    status === '-' || status === q ? a[n].style.display = 'none' : false;
-                }
-            },
-
             // Untuk mendeteksi jenjang SMA sederajat
             jenisSM = (n, kode) => {
                 kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
@@ -495,12 +488,13 @@
 
             // 1. Data dari JSON | 2. Kode data
             validasi = (n, kode) => {
-                let nT = arrayDataTunggal(n), nG = arrayDataGanda(n);
+                let nT = arrayDataTunggal(n), nG = arrayDataGanda(n), indeksKeterangan = [14, 16, 18, 20];
                 kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
 
-                if (clearSpace(n) === '-' || is.loopSTR(n, '-'))
+                if (clearSpace(n) === '-' || is.loopSTR(n, '-')) {
+                    if (indeksKeterangan.includes(kode)) a[kode].style.display = 'none';
                     return ( kode === 7 || kode === 8 ) ? q : '-' ;
-                
+                }
                 else if ([27, 28, 29, 30, 31].includes(kode)) {
                     eror(kode, 'validasi()');
                     return q;
@@ -607,8 +601,10 @@
                 else if (is.validSTR(n) && ![3, 25, 32, 36, 37].includes(kode))
                     return remove(n, [' ', ',', '?', '-', '_', ]).length > 0 ? DAFESE(n) : q;
 
-                else
+                else {
+                    if (indeksKeterangan.includes(kode)) a[kode].style.display = 'none';
                     return q;
+                }
             },
 
             Akun = {
@@ -738,14 +734,14 @@
         a[8].children[1].innerHTML += validasi(data.ibu, 8) ; // Nama ibu
         a[12].children[1].innerHTML += validasi(data.nisn, 12); // NISN
         a[13].children[1].innerHTML += validasi(data.SD, 13); // SD
-        a[14].children[1].innerHTML += validasi(data.keteranganSD, 14); displayKeterangan1(validasi(data.keteranganSD, 14), 14); // Keterangan SD
+        a[14].children[1].innerHTML += validasi(data.keteranganSD, 14); // Keterangan SD
         a[15].children[1].innerHTML += validasi(data.SMP, 15); // SMP
-        a[16].children[1].innerHTML += validasi(data.keteranganSMP, 16); displayKeterangan1(validasi(data.keteranganSMP, 16), 16) // Keterangan SMP
+        a[16].children[1].innerHTML += validasi(data.keteranganSMP, 16); // Keterangan SMP
             a[17].children[0].innerHTML = jenisSM(data.SMA, 17);
         a[17].children[1].innerHTML += validasi(data.SMA, 17); // SMA / SMK / MA
-        a[18].children[1].innerHTML += validasi(data.keteranganSMA, 18); displayKeterangan1(validasi(data.keteranganSMA, 18), 18) // Keterangan SMA / SMK / MA
+        a[18].children[1].innerHTML += validasi(data.keteranganSMA, 18); // Keterangan SMA / SMK / MA
         a[19].children[1].innerHTML += validasi(data.perguruanTinggi, 19); // Perguruan Tinggi
-        a[20].children[1].innerHTML += validasi(data.keteranganPerguruanTinggi, 20); displayKeterangan1(validasi(data.keteranganPerguruanTinggi, 20), 20) // Keterangan perguruan tinggi
+        a[20].children[1].innerHTML += validasi(data.keteranganPerguruanTinggi, 20); // Keterangan perguruan tinggi
         a[21].children[1].innerHTML += validasi(data.kerabat, 21); // Kerabat
         a[25].children[1].innerHTML += validasi(data.email, 25); // Alamat e-mail
         a[26].children[1].innerHTML += validasi(data.nomorWA, 26); // Nomor WA
