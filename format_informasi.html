@@ -150,7 +150,7 @@
 <body class="">
     <div id="halamanUtama" class="">
         <table cellspacing="2" cellpadding="2" class="tabelUtama">
-            <tbody id="target1">
+            <tbody id="target_halamanUtama">
                 <tr> <!-- tr 0 -->
                     <td class="label" colspan="2">Data Pribadi</td>
                 </tr>
@@ -308,7 +308,7 @@
         <h2>Akun lain</h2>
         <div class="containerHiddenTable">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
-                <tbody id="target2">
+                <tbody id="target_akunLain">
                     <tr style="font-weight: bold;">
                         <td class="tabel-nomor">No.</td>
                         <td class="tabel-keterangan">Alamat</td>
@@ -322,7 +322,7 @@
         <h2>Jejak Digital</h2>
         <div class="containerHiddenTable">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
-                <tbody id="target3">
+                <tbody id="target_jejakDigital">
                     <tr style="font-weight: bold;">
                         <td class="tabel-nomor">No.</td>
                         <td class="tabel-keterangan">Alamat</td>
@@ -336,7 +336,7 @@
         <h2>Informasi Tambahan</h2>
         <div class="containerHiddenTable">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
-                <tbody id="target4">
+                <tbody id="target_informasiTambahan">
                     <tr style="font-weight: bold;">
                         <td class="tabel-nomor">No.</td>
                         <td class="tabel-keterangan">Keterangan</td>
@@ -350,7 +350,7 @@
         <h2>Aktivitas</h2>
         <div style="width: 78%; margin: auto;">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
-                <tbody id="target5">
+                <tbody id="target_aktivitas">
                     <tr style="font-weight: bold;">
                         <td class="tabel-nomor">No.</td>
                         <td class="tabel-tanggal">Tanggal</td>
@@ -362,7 +362,7 @@
         </div>
     </div>
     <script>
-        let a = document.getElementById('target1').children,
+        let a = document.getElementById('target_halamanUtama').children,
             q = '??',
 
             remove = (n, char) => {
@@ -522,7 +522,7 @@
                     else if (nG.length > 1 && is.validURL(nG[0][1])) {
                         nG.forEach((e, i) => {
                             let newTabel = D.create('tr');
-                            D.get.id('target3').appendChild(newTabel);
+                            D.get.id('target_jejakDigital').appendChild(newTabel);
                                 let newTabel_A = D.create('td')
                                     newTabel_A.className = 'tabel-nomor';
                                     newTabel_A.innerHTML = (i + 1) + '.';
@@ -548,7 +548,7 @@
                     else {
                         nT.forEach((e, i) => {
                             let barisBaru = D.create('tr');
-                            D.get.id('target4').appendChild(barisBaru);
+                            D.get.id('target_informasiTambahan').appendChild(barisBaru);
                                 let kolom_A = D.create('td');
                                     kolom_A.className = 'tabel-nomor';
                                     kolom_A.innerHTML = (i + 1) + '.';
@@ -566,15 +566,15 @@
                 else if (kode === 37) {
                     function validasiN (m) {
                         function validasiArrayData3 (x) {
-                            return x.filter(e => (is.validSTR(e[0]) && clearSpace(e[0]).length > 0) || (is.validSTR(e[1]) && clearSpace(e[1]).length > 0) || (is.validSTR(e[2]) && clearSpace(e[2]).length > 0)).map(e => e.map(E => validasi(E, true)));
+                            return x.filter(e => is.validSTR(e[0]) || is.validSTR(e[1]) || is.validSTR(e[2])).map(e => e.map(E => validasi(E, true)));
                         };
-                        return Array.isArray(m) ? (is.validSTR(m[0]) && clearSpace(m[0]).length > 0) || (is.validSTR(m[1]) && clearSpace(m[1]).length > 0) || (is.validSTR(m[2]) && clearSpace(m[2]).length > 0) ? validasiArrayData3([m]) : validasiArrayData3(m) : [] ;
+                        return Array.isArray(m) ? is.validSTR(m[0]) || is.validSTR(m[1]) || is.validSTR(m[2]) ? validasiArrayData3([m]) : validasiArrayData3(m) : [] ;
                     };
                     n = validasiN(n);
                     if (n.length > 0) {
                         n.forEach((e, i) => {
                             let barisBaru = D.create('tr');
-                            D.get.id('target5').appendChild(barisBaru);
+                            D.get.id('target_aktivitas').appendChild(barisBaru);
                                 let kolomA = D.create('td');
                                     kolomA.className = 'tabel-nomor';
                                     kolomA.innerHTML = (i + 1) + '.';
@@ -684,7 +684,7 @@
                             nG = nG.filter(e => is.validURL(e[1]));
                             nG.forEach((e, i) => {
                                 let barisBaru = D.create('tr');
-                                D.get.id('target2').appendChild(barisBaru);
+                                D.get.id('target_akunLain').appendChild(barisBaru);
                                     let kolomA = D.create('td');
                                         kolomA.className = 'tabel-nomor';
                                         kolomA.innerHTML = (i + 1) + '.';
