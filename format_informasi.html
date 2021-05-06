@@ -44,6 +44,12 @@
                 ["Scribd", "https://scribd.com/"], // [Keterangan link, link yang dituju]
                 ["Blogger", "http://blogger.blogspot.com"]
             ],
+        "foto": [
+                ["Santuy", "http://1.bp.blogspot.com/-7ce-sLxvmac/YJOmim6tndI/AAAAAAAAAL4/URkdiriRl9A_KItseScW-ML6ctesnXcJgCLcBGAsYHQ/s1350/santuy.jpg"],
+                ["Dunia digital", "http://1.bp.blogspot.com/-rw5A2z7zngs/YJOmi5b06FI/AAAAAAAAAL0/_bxx4FOjfkspB8n8k29zvkBaPT3bJsz3ACLcBGAsYHQ/s2792/teknologi.jpg"],
+                ["", ""],
+                ["", ""] // [Keterangan foto, link foto]
+            ],
         "informasiTambahan": ["Juara Badminton tingkat SMP 2006", "Pernah menjadi Ketua OSIS di SMAN 1 Porong"], // [info, info, .....]
         "aktivitas": [
             ["12 Juni 2020", "Surabaya", "Makan  bersama"], // Kapan | di mana | sedang apa
@@ -81,23 +87,37 @@
             color: blue;
             transition: color .6s;
         }
+        img {
+            margin: 10px auto 12px auto;
+            display: block;
+            width: 100%;
+            max-width: inherit;
+        }
         button {
             border: 2px solid black;
-            border-radius: 5px;
             background-color: blue;
             transition: background-color .7s;
             color: white;
             font-size: inherit;
             font-weight: bold;
-            width: 110px;
-            height: 40px;
             cursor: pointer;
-            margin-left:  20px;
-            position: fixed;
         }
         button:hover {
             background-color: darkblue;
             transition: background-color .7s;
+        }
+        .btn1 {
+            border-radius: 5px;
+            width: 110px;
+            height: 40px;
+            margin-left:  20px;
+            position: fixed;
+        }
+        .btn2 {
+            border-radius: 3px;
+            width: auto;
+            height: 29px;
+            margin-bottom: 10px;
         }
         .headerMargin {
             margin-top: 29px;
@@ -107,7 +127,6 @@
             margin-left: 70px;
         }
         .label {
-            /* background-color: lightblue !important; */
             padding-bottom: 10px;
             padding-left: 5px;
             font-size: 20px;
@@ -122,7 +141,7 @@
             padding: 0 0 0 25px;
             width: 250px;
         }
-        .containerHiddenTable {
+        .containerHiddenTable, .containerHiddenContent {
             width: 70%;
             margin: auto;
         }
@@ -146,11 +165,17 @@
         .hidden {
             display: none !important;
         }
+        .flat-message {
+            display: inline-block;
+        }
+        .imgContainer {
+            margin-bottom: 60px;
+        }
     </style>
 </head>
 <body class="">
     <div id="halamanUtama" class="">
-        <table cellspacing="2" cellpadding="2" class="tabelUtama">
+        <table cellspacing="2" cellpadding="2" class="tabelUtama" style="margin-bottom: 600px;">
             <tbody id="target_halamanUtama">
                 <tr> <!-- tr 0 -->
                     <td class="label" colspan="2">Data Pribadi</td>
@@ -297,19 +322,24 @@
                     <td class="label" colspan="2">Lain-lain</td>
                 </tr>
                 <tr> <!-- tr 37 -->
-                    <td class="keteranganData">Informasi Tambahan</td>
+                    <td class="keteranganData">Foto</td>
                     <td class="sub">:&ensp;</td>
                 </tr>
                 <tr> <!-- tr 38 -->
+                    <td class="keteranganData">Informasi Tambahan</td>
+                    <td class="sub">:&ensp;</td>
+                </tr>
+                <tr> <!-- tr 39 -->
                     <td class="keteranganData">Aktivitas</td>
                     <td class="sub">:&ensp;</td>
                 </tr>
             </tbody>
         </table>
-        <div style="margin-bottom: 600px;"></div>
+        <!-- <div style="margin-bottom: 600px;"></div> -->
+        <span id="undefined" class=""></span>
     </div>
     <div id="halamanKeteranganSMA" class="hidden headerMargin">
-        <button onclick="bukaTutup('halamanUtama', 'halamanKeteranganSMA')"><< Kembali</button>
+        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanKeteranganSMA')"><< Kembali</button>
         <h2>Keterangan SMA</h2>
         <div class="containerHiddenTable">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
@@ -323,7 +353,7 @@
         </div>
     </div>
     <div id="halamanAkunLain" class="hidden headerMargin">
-        <button onclick="bukaTutup('halamanUtama', 'halamanAkunLain')"><< Kembali</button>
+        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanAkunLain')"><< Kembali</button>
         <h2>Akun lain</h2>
         <div class="containerHiddenTable">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
@@ -337,7 +367,7 @@
         </div>
     </div>
     <div id="halamanJejakDigital" class="hidden headerMargin">
-        <button onclick="bukaTutup('halamanUtama', 'halamanJejakDigital')"><< Kembali</button>
+        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanJejakDigital')"><< Kembali</button>
         <h2>Jejak Digital</h2>
         <div class="containerHiddenTable">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
@@ -350,8 +380,15 @@
             </table>
         </div>
     </div>
+    <div id="halamanFoto" class="headerMargin hidden">
+        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanFoto')"><< Kembali</button>
+        <h2 style="margin-bottom: 70px;" onclick="bukaTutup('target_foto')">Foto</h2>
+        <div class="containerHiddenContent" id="target_foto">
+            
+        </div>
+    </div>
     <div id="halamanInformasiTambahan" class="hidden headerMargin">
-        <button onclick="bukaTutup('halamanUtama', 'halamanInformasiTambahan')"><< Kembali</button>
+        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanInformasiTambahan')"><< Kembali</button>
         <h2>Informasi Tambahan</h2>
         <div class="containerHiddenTable">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
@@ -365,7 +402,7 @@
         </div>
     </div>
     <div id="halamanAktivitas" class="hidden headerMargin">
-        <button onclick="bukaTutup('halamanUtama', 'halamanAktivitas')"><< Kembali</button>
+        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanAktivitas')"><< Kembali</button>
         <h2>Aktivitas</h2>
         <div style="width: 78%; margin: auto;">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
@@ -486,23 +523,45 @@
 
             bukaTutup = (H1, H2) => {
                 let includesHidden = n => n.includes(' hidden ') || n.slice(0, 7) === 'hidden ' || n.slice(-7) === ' hidden' || clearSpace(n) === 'hidden',
-                    h1 = D.get.id(H1),
-                    h2 = D.get.id(H2);
-                
-                h1.className = is.validSTR(h1.className) ? DAFESE(h1.className.toLowerCase()) : '' ;
-                h2.className = is.validSTR(h2.className) ? DAFESE(h2.className.toLowerCase()) : '' ;
+                    clearHidden = n => {
+                        while (includesHidden(n) || is.loopSTR(n, ' ')) {
+                            if (n.includes(' hidden '))
+                                n = n.split(' hidden ').join(' ');
+                            else if (n.slice(0, 7) === 'hidden ')
+                                n = n.slice(7);
+                            else if (n.slice(-7) === ' hidden')
+                                n = n.slice(0, -7);
+                            else if (clearSpace(n) === 'hidden' || is.loopSTR(n, ' '))
+                                n = '';
+                        }
+                        return DAFESE(n);
+                    };
 
-                    while (includesHidden(h1.className) || is.loopSTR(h1.className, ' ')) {
-                        if (h1.className.includes(' hidden '))
-                            h1.className = h1.className.split(' hidden ').join(' ');
-                        if (h1.className.slice(0, 7) === 'hidden ')
-                            h1.className = h1.className.slice(7);
-                        if (h1.className.slice(-7) === ' hidden')
-                            h1.className = h1.className.slice(0, -7);
-                        if (clearSpace(h1.className) === 'hidden' || is.loopSTR(h1.className, ' '))
-                            h1.className = '';
-                    }
-                    h2.className = DAFESE(h2.className + ' hidden');
+                if ((is.validSTR(H1) || (Array.isArray(H1) && H1.filter(e => is.validSTR(e)).length > 0)) && !is.validSTR(H2)) { // Jika hanya parameter pertama bernilai string
+                    H1 = Array.isArray(H1) ? H1 : [H1];
+                    H1.filter(e => is.validSTR(e)).forEach(e => {
+                        let target = D.get.id(e);
+                        if (includesHidden(target.className))
+                            target.className = clearHidden(target.className);
+                        else
+                            target.className = DAFESE(target.className + ' hidden');
+                    });
+                }
+                else if ((is.validSTR(H1) || (Array.isArray(H1) && H1.filter(e => is.validSTR(e)).length >0)) && (is.validSTR(H2) || (Array.isArray(H2) && H2.filter(e => is.validSTR(e)).length > 0))) { // Jika semua parameter bernilai string (yang dibuka, yang ditutup)
+
+                    H1 = Array.isArray(H1) ? H1 : [H1];
+                    H2 = Array.isArray(H2) ? H2 : [H2];
+                    H1.filter(e => is.validSTR(e)).forEach(e => {
+                        let h1 = D.get.id(e);
+                        h1.className = clearHidden(h1.className);
+                    });
+                    H2.filter(e => is.validSTR(e)).forEach(e => {
+                        let h2 = D.get.id(e);
+                        h2.className = DAFESE(h2.className + ' hidden');
+                    });
+                }
+
+                window.scrollTo(0, 1);
             },
 
             // 1. Data dari JSON | 2. Kode data
@@ -583,8 +642,27 @@
                         return q;
                 }
 
+                // Foto
+                else if (kode === 37 && (is.validURL(nG[1]) || nG.filter(e => is.validURL(e[1])).length > 0)) {
+                    let targ = D.get.id('target_foto');
+                    nG = is.validURL(nG[1]) ? [nG] : nG.filter(e => is.validURL(e[1])) ;
+                    nG.forEach((e, i) => {
+                        targ.innerHTML += '<div><button class="btn2" onclick="bukaTutup(\'gambar' + ( i + 1 ) + '\')">Gambar ' + ( i + 1 ) + ' : ' + e[0] + '</button></div>';
+                        let wadahGambar = D.create('div');
+                            wadahGambar.className = 'imgContainer hidden';
+                            wadahGambar.id = 'gambar' + ( i + 1 );
+                        targ.appendChild(wadahGambar);
+                            let img = D.create('img');
+                                img.setAttribute('src', e[1]);
+                                img.setAttribute('alt', e[0]);
+                            wadahGambar.appendChild(img);
+                            wadahGambar.innerHTML += '<div style="text-align: center;"><strong>Gambar ' + ( i + 1 ) + '</strong> : ' + e[0] + '</div>';
+                    });
+                    return '<a onclick="bukaTutup(\'halamanFoto\', \'halamanUtama\')" title="' + nG.length + ' foto">Galeri foto</a>';
+                }
+
                 // Informasi tambahan
-                else if (kode === 37 && (is.validSTR(n) || nT.length > 0)) {
+                else if (kode === 38 && (is.validSTR(n) || nT.length > 0)) {
                     if (is.validSTR(n))
                         return n;
                     
@@ -608,7 +686,7 @@
                 }
                 
                 // Aktivitas
-                else if (kode === 38) {
+                else if (kode === 39) {
                     function validasiN (m) {
                         function validasiArrayData3 (x) {
                             return x.filter(e => is.validSTR(e[0]) || is.validSTR(e[1]) || is.validSTR(e[2])).map(e => e.map(E => validasi(E, true)));
@@ -643,7 +721,7 @@
                         return q;
                 }
                 
-                else if (is.validSTR(n) && ![3, 19, 26, 33, 37, 38].includes(kode))
+                else if (is.validSTR(n) && ![3, 19, 26, 33, 37, 38, 39].includes(kode))
                     return remove(n, [' ', ',', '?', '-', '_', ]).length > 0 ? DAFESE(n) : q;
 
                 else {
@@ -797,8 +875,9 @@
         a[31].children[1].innerHTML += Akun.akun(data.telegram, 31); // Akun Telegram
         a[32].children[1].innerHTML += Akun.akun(data.akunLain, 32); // Akun lain (data ganda)
         a[33].children[1].innerHTML += validasi(data.jejakDigital, 33); // Jejak digital (data ganda)
-        a[37].children[1].innerHTML += validasi(data.informasiTambahan, 37); // Informasi tambahan
-        a[38].children[1].innerHTML += validasi(data.aktivitas, 38); // Aktivitas (3 data)
+        a[37].children[1].innerHTML += validasi(data.foto, 37); // Foto
+        a[38].children[1].innerHTML += validasi(data.informasiTambahan, 38); // Informasi tambahan
+        a[39].children[1].innerHTML += validasi(data.aktivitas, 39); // Aktivitas (3 data)
 
         document.body.className = DAFESE(remove(document.body.className, 'hidden'));
     </script>
