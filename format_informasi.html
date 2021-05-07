@@ -18,12 +18,12 @@
         "ayah": "Suriyo",
         "ibu": "Laili",
         "nisn": "00738277",
-        "SD": "SDN Porong, Sidoarjo",
+        "SD": "SDN Porong, Sidoarjo (1998 - 2004)",
         "keteranganSD": "",
-        "SMP": "SMPN 2 Porong",
+        "SMP": "SMPN 2 Porong (2004 - 2007)",
         "keteranganSMP": "",
-        "SMA": "SMAN 1 Porong",
-        "keteranganSMA": ["Ketua Osis 2009/2010", "abcde"],
+        "SMA": "SMAN 1 Porong (2007 - 2010)",
+        "keteranganSMA": ["Ketua Osis 2009/2010", "Juara Olimpiade Matematika tingkat provinsi"],
         "perguruanTinggi": "Institut Teknologi Sepuluh Nopember (2010 - 2014)",
         "keteranganPerguruanTinggi": "Jurusan Teknik Geomatika FTSPK",
         "kerabat": "Laili Nur Fadhilah (kakak kandung perempuan)",
@@ -31,18 +31,24 @@
         "nomorWA": "0821-8332-6819",
         "instagram": "@reza.aliviansyah18", // Username Instagram
         "facebook": [
-                ["Reza Alviansyah 1", "https://www.facebook.com/RezaAlviansyah"], // [Keterangan link, link yang dituju]
-                ["Reza Alviansyah 2", "https://www.facebook.com/AlviansyahReza"]
+                ["Reza Alviansyah 1", "https://www.facebook.com/RezaAlviansyah"],
+                ["Reza Alviansyah 2", "https://www.facebook.com/AlviansyahReza"],
+                ["", ""],
+                ["", ""] // [Keterangan link, link yang dituju]
             ],
         "twitter": "@reza_alviansyah69",
         "telegram": "@reza_alviansyah50",
         "akunLain": [
-                ["Github", "https://www.github.com/Dedi-SA"], // [Keterangan link, link yang dituju]
-                ["Absensi guru SMAN 1 Porong", "http://sman1porong.sch.id/html/guru.php?id=dbguru"]
+                ["Github", "https://www.github.com/Dedi-SA"],
+                ["Absensi guru SMAN 1 Porong", "http://sman1porong.sch.id/html/guru.php?id=dbguru"],
+                ["", ""],
+                ["", ""] // [Keterangan link, link yang dituju]
             ],
         "jejakDigital": [
-                ["Scribd", "https://scribd.com/"], // [Keterangan link, link yang dituju]
-                ["Blogger", "http://blogger.blogspot.com"]
+                ["Scribd", "https://scribd.com/"],
+                ["Blogger", "http://blogger.blogspot.com"],
+                ["", ""],
+                ["", ""] // [Keterangan link, link yang dituju]
             ],
         "foto": [
                 ["Santuy", "http://1.bp.blogspot.com/-7ce-sLxvmac/YJOmim6tndI/AAAAAAAAAL4/URkdiriRl9A_KItseScW-ML6ctesnXcJgCLcBGAsYHQ/s1350/santuy.jpg"],
@@ -52,8 +58,10 @@
             ],
         "informasiTambahan": ["Juara Badminton tingkat SMP 2006", "Pernah menjadi Ketua OSIS di SMAN 1 Porong"], // [info, info, .....]
         "aktivitas": [
-            ["12 Juni 2020", "Surabaya", "Makan  bersama"], // Kapan | di mana | sedang apa
-            ["14 Maret 2017", "Semarang", "Rekreasi"]
+            ["12 Juni 2020", "Surabaya", "Makan  bersama"],
+            ["14 Maret 2017", "Semarang", "Rekreasi"],
+            ["", "", ""],
+            ["", "", ""] // Kapan | di mana | sedang apa
         ]
     }
     </script>
@@ -171,11 +179,14 @@
         .imgContainer {
             margin-bottom: 60px;
         }
+        .space-footer {
+            margin-bottom: 600px;
+        }
     </style>
 </head>
 <body class="">
     <div id="halamanUtama" class="">
-        <table cellspacing="2" cellpadding="2" class="tabelUtama" style="margin-bottom: 600px;">
+        <table cellspacing="2" cellpadding="2" class="tabelUtama space-footer">
             <tbody id="target_halamanUtama">
                 <tr> <!-- tr 0 -->
                     <td class="label" colspan="2">Data Pribadi</td>
@@ -251,7 +262,7 @@
                     <td class="keteranganData">SMA</td>
                     <td>:&ensp;</td>
                 </tr>
-                <tr> <!-- tr 19 -->
+                <tr id="slot-keteranganSMA"> <!-- tr 19 -->
                     <td class="keteranganData"></td>
                     <td>&emsp;</td>
                 </tr>
@@ -302,11 +313,11 @@
                     <td class="keteranganData">Akun Telegram</td>
                     <td>:&ensp;</td>
                 </tr>
-                <tr> <!-- tr 32 -->
+                <tr id="slot-akunLain"> <!-- tr 32 -->
                     <td class="keteranganData">Akun Lain</td>
                     <td>:&ensp;</td>
                 </tr>
-                <tr> <!-- tr 33 -->
+                <tr id="slot-jejakDigital"> <!-- tr 33 -->
                     <td class="keteranganData">Jejak Digital</td>
                     <td class="sub">:&ensp;</td>
                 </tr>
@@ -321,15 +332,15 @@
                 <tr> <!-- tr 36 -->
                     <td class="label" colspan="2">Lain-lain</td>
                 </tr>
-                <tr> <!-- tr 37 -->
+                <tr id="slot-foto"> <!-- tr 37 -->
                     <td class="keteranganData">Foto</td>
                     <td class="sub">:&ensp;</td>
                 </tr>
-                <tr> <!-- tr 38 -->
+                <tr id="slot-informasiTambahan"> <!-- tr 38 -->
                     <td class="keteranganData">Informasi Tambahan</td>
                     <td class="sub">:&ensp;</td>
                 </tr>
-                <tr> <!-- tr 39 -->
+                <tr id="slot-aktivitas"> <!-- tr 39 -->
                     <td class="keteranganData">Aktivitas</td>
                     <td class="sub">:&ensp;</td>
                 </tr>
@@ -338,8 +349,8 @@
         <!-- <div style="margin-bottom: 600px;"></div> -->
         <span id="undefined" class=""></span>
     </div>
-    <div id="halamanKeteranganSMA" class="hidden headerMargin">
-        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanKeteranganSMA')"><< Kembali</button>
+    <div id="halamanKeteranganSMA" class="hidden headerMargin space-footer">
+        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanKeteranganSMA'); scrollCenter('slot-keteranganSMA')"><< Kembali</button>
         <h2>Keterangan SMA</h2>
         <div class="containerHiddenTable">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
@@ -352,8 +363,8 @@
             </table>
         </div>
     </div>
-    <div id="halamanAkunLain" class="hidden headerMargin">
-        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanAkunLain')"><< Kembali</button>
+    <div id="halamanAkunLain" class="hidden headerMargin space-footer">
+        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanAkunLain'); scrollCenter('slot-akunLain')"><< Kembali</button>
         <h2>Akun lain</h2>
         <div class="containerHiddenTable">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
@@ -366,8 +377,8 @@
             </table>
         </div>
     </div>
-    <div id="halamanJejakDigital" class="hidden headerMargin">
-        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanJejakDigital')"><< Kembali</button>
+    <div id="halamanJejakDigital" class="hidden headerMargin space-footer">
+        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanJejakDigital'); scrollCenter('slot-jejakDigital')"><< Kembali</button>
         <h2>Jejak Digital</h2>
         <div class="containerHiddenTable">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
@@ -380,15 +391,15 @@
             </table>
         </div>
     </div>
-    <div id="halamanFoto" class="headerMargin hidden">
-        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanFoto')"><< Kembali</button>
+    <div id="halamanFoto" class="hidden headerMargin space-footer">
+        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanFoto'); scrollCenter('slot-foto')"><< Kembali</button>
         <h2 style="margin-bottom: 70px;" onclick="bukaTutup('target_foto')">Foto</h2>
         <div class="containerHiddenContent" id="target_foto">
             
         </div>
     </div>
-    <div id="halamanInformasiTambahan" class="hidden headerMargin">
-        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanInformasiTambahan')"><< Kembali</button>
+    <div id="halamanInformasiTambahan" class="hidden headerMargin space-footer">
+        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanInformasiTambahan'); scrollCenter('slot-informasiTambahan')"><< Kembali</button>
         <h2>Informasi Tambahan</h2>
         <div class="containerHiddenTable">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
@@ -401,8 +412,8 @@
             </table>
         </div>
     </div>
-    <div id="halamanAktivitas" class="hidden headerMargin">
-        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanAktivitas')"><< Kembali</button>
+    <div id="halamanAktivitas" class="hidden headerMargin space-footer">
+        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanAktivitas'); scrollCenter('slot-aktivitas')"><< Kembali</button>
         <h2>Aktivitas</h2>
         <div style="width: 78%; margin: auto;">
             <table class="hiddenTable" cellpadding="2" cellspacing="2">
@@ -547,7 +558,7 @@
                             target.className = DAFESE(target.className + ' hidden');
                     });
                 }
-                else if ((is.validSTR(H1) || (Array.isArray(H1) && H1.filter(e => is.validSTR(e)).length >0)) && (is.validSTR(H2) || (Array.isArray(H2) && H2.filter(e => is.validSTR(e)).length > 0))) { // Jika semua parameter bernilai string (yang dibuka, yang ditutup)
+                else if ((is.validSTR(H1) || (Array.isArray(H1) && H1.filter(e => is.validSTR(e)).length > 0)) && (is.validSTR(H2) || (Array.isArray(H2) && H2.filter(e => is.validSTR(e)).length > 0))) { // Jika semua parameter bernilai string (yang dibuka, yang ditutup)
 
                     H1 = Array.isArray(H1) ? H1 : [H1];
                     H2 = Array.isArray(H2) ? H2 : [H2];
@@ -559,9 +570,19 @@
                         let h2 = D.get.id(e);
                         h2.className = DAFESE(h2.className + ' hidden');
                     });
-                }
 
-                window.scrollTo(0, 1);
+                    if (H1 !== 'halamanUtama')
+                    window.scrollTo(0, 0);
+                }
+            },
+
+            // Untuk scroll menuju elemen secara spesifik menggunakan 'id' dan menematkannya di tengah layar
+            scrollCenter = n => {
+                if (is.validSTR(n)) {
+                    let elementTarget = document.getElementById(n),
+                        top = elementTarget.getBoundingClientRect().top - (window.innerHeight / 2);
+                    window.scrollTo(0, top )
+                }
             },
 
             // 1. Data dari JSON | 2. Kode data
@@ -607,7 +628,7 @@
                                     data2.innerHTML = e;
                                 newRow.appendChild(data2);
                         });
-                        return '<a onclick="bukaTutup(\'halamanKeteranganSMA\', \'halamanUtama\')" title="' + n.length + ' data">Daftar keterangan ' + a[17].children[0].innerHTML + '</a>';
+                        return '<a onclick="bukaTutup(\'halamanKeteranganSMA\', \'halamanUtama\')" title="Keterangan SMA | ' + n.length + ' data">Daftar keterangan ' + a[17].children[0].innerHTML + '</a>';
                     }
                 }
 
