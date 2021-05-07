@@ -19,11 +19,11 @@
         "ibu": "Laili",
         "nisn": "00738277",
         "SD": "SDN Porong, Sidoarjo (1998 - 2004)",
-        "keteranganSD": "",
+        "keteranganSD": ["Ikut serta gerak jalan tingkat kecamatan", "Juara 2 lomba makan krupuk"], // info 1 ,  info 2 ,  ....
         "SMP": "SMPN 2 Porong (2004 - 2007)",
-        "keteranganSMP": "",
+        "keteranganSMP": ["Ketua OSIS 2006/2007", "Memenangkan turnamen voli tingkat kabupaten"], // info 1 ,  info 2 ,  ....
         "SMA": "SMAN 1 Porong (2007 - 2010)",
-        "keteranganSMA": ["Ketua Osis 2009/2010", "Juara Olimpiade Matematika tingkat provinsi"],
+        "keteranganSMA": ["Ketua OSIS 2009/2010", "Juara Olimpiade Matematika tingkat provinsi"], // info 1 ,  info 2 ,  ....
         "perguruanTinggi": "Institut Teknologi Sepuluh Nopember (2010 - 2014)",
         "keteranganPerguruanTinggi": "Jurusan Teknik Geomatika FTSPK",
         "kerabat": "Laili Nur Fadhilah (kakak kandung perempuan)",
@@ -246,7 +246,7 @@
                     <td class="keteranganData">SD</td>
                     <td>:&ensp;</td>
                 </tr>
-                <tr> <!-- tr 15 -->
+                <tr id="slot-keteranganSD"> <!-- tr 15 -->
                     <td class="keteranganData"></td>
                     <td>&emsp;</td>
                 </tr>
@@ -254,7 +254,7 @@
                     <td class="keteranganData">SMP</td>
                     <td>:&ensp;</td>
                 </tr>
-                <tr> <!-- tr 17 -->
+                <tr id="slot-keteranganSMP"> <!-- tr 17 -->
                     <td class="keteranganData"></td>
                     <td>&emsp;</td>
                 </tr>
@@ -346,8 +346,34 @@
                 </tr>
             </tbody>
         </table>
-        <!-- <div style="margin-bottom: 600px;"></div> -->
-        <span id="undefined" class=""></span>
+    </div>
+    <div id="halamanKeteranganSD" class="hidden headerMargin space-footer">
+        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanKeteranganSD'); scrollCenter('slot-keteranganSD')"><< Kembali</button>
+        <h2>Keterangan SD</h2>
+        <div class="containerHiddenTable">
+            <table class="hiddenTable" cellpadding="2" cellspacing="2">
+                <tbody id="target_keteranganSD">
+                    <tr style="font-weight: bold;">
+                        <td class="tabel-nomor">No.</td>
+                        <td class="tabel-keterangan">Keterangan</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="halamanKeteranganSMP" class="hidden headerMargin space-footer">
+        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanKeteranganSMP'); scrollCenter('slot-keteranganSMP')"><< Kembali</button>
+        <h2>Keterangan SMP</h2>
+        <div class="containerHiddenTable">
+            <table class="hiddenTable" cellpadding="2" cellspacing="2">
+                <tbody id="target_keteranganSMP">
+                    <tr style="font-weight: bold;">
+                        <td class="tabel-nomor">No.</td>
+                        <td class="tabel-keterangan">Keterangan</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <div id="halamanKeteranganSMA" class="hidden headerMargin space-footer">
         <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanKeteranganSMA'); scrollCenter('slot-keteranganSMA')"><< Kembali</button>
@@ -482,7 +508,7 @@
             },
             
             D = {
-                create: n => is.validSTR(n) && n.length === clearSpace(n).length ? document.createElement(n) : false,
+                create: n => is.validSTR(n) ? document.createElement(n) : false,
                 get: {
                     id: n => is.validSTR(n) ? document.getElementById(n) : false ,
                     class: n => is.validSTR(n) ? document.getElementsByClassName(n) : false,
@@ -558,7 +584,7 @@
                             target.className = DAFESE(target.className + ' hidden');
                     });
                 }
-                else if ((is.validSTR(H1) || (Array.isArray(H1) && H1.filter(e => is.validSTR(e)).length > 0)) && (is.validSTR(H2) || (Array.isArray(H2) && H2.filter(e => is.validSTR(e)).length > 0))) { // Jika semua parameter bernilai string (yang dibuka, yang ditutup)
+                else if (H1 !== H2 && (is.validSTR(H1) || (Array.isArray(H1) && H1.filter(e => is.validSTR(e)).length > 0)) && (is.validSTR(H2) || (Array.isArray(H2) && H2.filter(e => is.validSTR(e)).length > 0))) { // Jika semua parameter bernilai string (yang dibuka, yang ditutup)
 
                     H1 = Array.isArray(H1) ? H1 : [H1];
                     H2 = Array.isArray(H2) ? H2 : [H2];
@@ -608,17 +634,20 @@
                         return q;
                 }
 
-                // Keterangan SMA
-                if (kode === 19 && (is.validSTR(n) || nT.length > 0)) {
+                // Keterangan SD, SMP, SMA
+                if ([15, 17, 19].includes(kode) && (is.validSTR(n) || nT.length > 0)) {
                     if (is.validSTR(n) || nT.length === 1) {
                         n = nT.length === 1 ? nT[0] : n ;
                         return n;
                     }
                     else {
-                        D.get.id('halamanKeteranganSMA').getElementsByTagName('h2')[0].innerHTML = 'Keterangan ' + a[17].children[0].innerHTML;
+                        let tingkat = kode === 15 ? 'SD' : ( kode === 17 ? 'SMP' : a[18].children[0].innerHTML ) ;
+                        if (kode === 19)
+                            D.get.id('halamanKeteranganSMA').getElementsByTagName('h2')[0].innerHTML = 'Keterangan ' + tingkat;
+                        
                         nT.forEach((e, i) => {
                             let newRow = D.create('tr');
-                            D.get.id('target_keteranganSMA').appendChild(newRow);
+                            D.get.id('target_keterangan' + ( kode === 19 ? 'SMA' : tingkat )).appendChild(newRow);
                                 let data1 = D.create('td');
                                     data1.className = 'tabel-nomor';
                                     data1.innerHTML = (i + 1) + '.';
@@ -628,7 +657,7 @@
                                     data2.innerHTML = e;
                                 newRow.appendChild(data2);
                         });
-                        return '<a onclick="bukaTutup(\'halamanKeteranganSMA\', \'halamanUtama\')" title="Keterangan SMA | ' + n.length + ' data">Daftar keterangan ' + a[17].children[0].innerHTML + '</a>';
+                        return '<a onclick="bukaTutup(\'halamanKeterangan' + ( kode === 19 ? 'SMA' : tingkat ) + '\', \'halamanUtama\')" title="Keterangan ' + tingkat + ' | ' + n.length + ' data">Daftar keterangan ' + tingkat + '</a>';
                     }
                 }
 
@@ -673,10 +702,10 @@
                             wadahGambar.className = 'imgContainer hidden';
                             wadahGambar.id = 'gambar' + ( i + 1 );
                         targ.appendChild(wadahGambar);
-                            let img = D.create('img');
-                                img.setAttribute('src', e[1]);
-                                img.setAttribute('alt', e[0]);
-                            wadahGambar.appendChild(img);
+                            let imgs = D.create('img');
+                                imgs.setAttribute('src', e[1]);
+                                imgs.setAttribute('alt', e[0]);
+                            wadahGambar.appendChild(imgs);
                             wadahGambar.innerHTML += '<div style="text-align: center;"><strong>Gambar ' + ( i + 1 ) + '</strong> : ' + e[0] + '</div>';
                     });
                     return '<a onclick="bukaTutup(\'halamanFoto\', \'halamanUtama\')" title="' + nG.length + ' foto">Galeri foto</a>';
@@ -742,7 +771,7 @@
                         return q;
                 }
                 
-                else if (is.validSTR(n) && ![3, 19, 26, 33, 37, 38, 39].includes(kode))
+                else if (is.validSTR(n) && ![3, 15, 17, 19, 26, 33, 37, 38, 39].includes(kode))
                     return remove(n, [' ', ',', '?', '-', '_', ]).length > 0 ? DAFESE(n) : q;
 
                 else {
