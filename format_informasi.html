@@ -25,7 +25,7 @@
         "SMA": "SMAN 1 Porong (2007 - 2010)",
         "keteranganSMA": ["Ketua OSIS 2009/2010", "Juara Olimpiade Matematika tingkat provinsi"], // info 1 ,  info 2 ,  ....
         "perguruanTinggi": "Institut Teknologi Sepuluh Nopember (2010 - 2014)",
-        "keteranganPerguruanTinggi": "Jurusan Teknik Geomatika FTSPK",
+        "keteranganPerguruanTinggi": ["Jurusan Teknik Geomatika FTSPK", "Masuk melalui SBMPTN"],
         "kerabat": "Laili Nur Fadhilah (kakak kandung perempuan)",
         "email": "reza.alviansyah45@gmail.com",
         "nomorWA": "0821-8332-6819",
@@ -389,6 +389,20 @@
             </table>
         </div>
     </div>
+    <div id="halamanKeteranganPerguruanTinggi" class="hidden headerMargin space-footer">
+        <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanKeteranganPerguruanTinggi'); scrollCenter('slot-keteranganPerguruanTinggi')"><< Kembali</button>
+        <h2>Keterangan Perguruan Tinggi</h2>
+        <div class="containerHiddenTable">
+            <table class="hiddenTable" cellpadding="2" cellspacing="2">
+                <tbody id="target_keteranganPerguruanTinggi">
+                    <tr style="font-weight: bold;">
+                        <td class="tabel-nomor">No.</td>
+                        <td class="tabel-keterangan">Keterangan</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div id="halamanAkunLain" class="hidden headerMargin space-footer">
         <button class="btn1" onclick="bukaTutup('halamanUtama', 'halamanAkunLain'); scrollCenter('slot-akunLain')"><< Kembali</button>
         <h2>Akun lain</h2>
@@ -634,14 +648,14 @@
                         return q;
                 }
 
-                // Keterangan SD, SMP, SMA
-                if ([15, 17, 19].includes(kode) && (is.validSTR(n) || nT.length > 0)) {
+                // Keterangan SD, SMP, SMA, Perguruan Tinggi
+                if ([15, 17, 19, 21].includes(kode) && (is.validSTR(n) || nT.length > 0)) {
                     if (is.validSTR(n) || nT.length === 1) {
                         n = nT.length === 1 ? nT[0] : n ;
                         return n;
                     }
                     else {
-                        let tingkat = kode === 15 ? 'SD' : ( kode === 17 ? 'SMP' : a[18].children[0].innerHTML ) ;
+                        let tingkat = kode === 15 ? 'SD' : ( kode === 17 ? 'SMP' : kode === 19 ? a[18].children[0].innerHTML : 'PerguruanTinggi' ) ;
                         if (kode === 19)
                             D.get.id('halamanKeteranganSMA').getElementsByTagName('h2')[0].innerHTML = 'Keterangan ' + tingkat;
                         
@@ -771,7 +785,7 @@
                         return q;
                 }
                 
-                else if (is.validSTR(n) && ![3, 15, 17, 19, 26, 33, 37, 38, 39].includes(kode))
+                else if (is.validSTR(n) && ![3, 15, 17, 19, 21, 26, 33, 37, 38, 39].includes(kode))
                     return remove(n, [' ', ',', '?', '-', '_', ]).length > 0 ? DAFESE(n) : q;
 
                 else {
