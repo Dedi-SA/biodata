@@ -29,7 +29,7 @@
         "kerabat": "Laili Nur Fadhilah (kakak kandung perempuan)",
         "email": "reza.alviansyah45@gmail.com",
         "nomorWA": "0821-8332-6819",
-        "instagram": "@reza.aliviansyah18", // Username Instagram
+        "instagram": ["@reza.aliviansyah18", "@reza.reza_alvi"], // Username Instagram
         "facebook": [
                 ["Reza Alviansyah 1", "https://www.facebook.com/RezaAlviansyah"],
                 ["Reza Alviansyah 2", "https://www.facebook.com/AlviansyahReza"],
@@ -530,8 +530,8 @@
                 }
             },
 
-            arrayDataTunggal = n => Array.isArray(n) ? n.filter(e => is.validSTR(e)) : [] ,
-            arrayDataGanda = n => Array.isArray(n) ? is.validSTR(n[0]) && is.validSTR(n[1]) ? n : n.filter(e => Array.isArray(e) && is.validSTR(e[0]) && is.validSTR(e[1])) : [] ,
+            arrayDataTunggal = n => Array.isArray(n) ? n.filter(e => is.validSTR(e)) : is.validSTR(n) ? [n] : [] ,
+            arrayDataGanda = n => Array.isArray(n) ? is.validSTR(n[0]) && is.validSTR(n[1]) ? [n] : n.filter(e => Array.isArray(e) && is.validSTR(e[0]) && is.validSTR(e[1])) : [] ,
 
             // Double_And_FrontEnd_Space_Eraser (DAFESE)
             DAFESE = n => {
@@ -627,112 +627,124 @@
 
             // 1. Data dari JSON | 2. Kode data
             validasi = (n, kode) => {
-                let nT = arrayDataTunggal(n), nG = arrayDataGanda(n), indeksKeterangan = [15, 17, 19, 21];
+                let nT = arrayDataTunggal(n), nG = arrayDataGanda(n);
                 kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
 
                 if (clearSpace(n) === '-' || is.loopSTR(n, '-')) {
                     if (indeksKeterangan.includes(kode)) a[kode].style.display = 'none';
                     return ( kode === 8 || kode === 9 ) ? q : '-' ;
                 }
-                else if ([28, 29, 30, 31, 32].includes(kode)) {
+
+                else if (indeksAkun.includes(kode)) {
                     eror(kode, 'validasi()');
                     return q;
                 }
+
                 // Fungsi untuk mempersingkat penulisan jenis kelamin
-                else if (kode === 3 && is.validSTR(n)) {
-                    if (n.toLowerCase() === 'l' || is.loopSTR(n, 'l') || ((n.toLowerCase().includes('laki') || n.toLowerCase().includes('pria')) && (!n.toLowerCase().includes('wanita') && !n.toLowerCase().includes('perempuan'))))
-                        return 'Laki-laki';
-                    else if (n.toLowerCase() === 'p' || is.loopSTR(n, 'p') || ((n.toLowerCase().includes('perempuan') || n.toLowerCase().includes('wanita')) && (!n.toLowerCase().includes('laki') && !n.toLowerCase().includes('pria'))))
-                        return 'Perempuan';
+                else if (kode === 3) {
+                    if (is.validSTR(n)) {
+                        if (n.toLowerCase() === 'l' || is.loopSTR(n, 'l') || ((n.toLowerCase().includes('laki') || n.toLowerCase().includes('pria')) && (!n.toLowerCase().includes('wanita') && !n.toLowerCase().includes('perempuan'))))
+                            return 'Laki-laki';
+                        else if (n.toLowerCase() === 'p' || is.loopSTR(n, 'p') || ((n.toLowerCase().includes('perempuan') || n.toLowerCase().includes('wanita')) && (!n.toLowerCase().includes('laki') && !n.toLowerCase().includes('pria'))))
+                            return 'Perempuan';
+                        else
+                            return q;
+                    }
                     else
                         return q;
                 }
 
-                // Keterangan SD, SMP, SMA, Perguruan Tinggi
-                if ([15, 17, 19, 21].includes(kode) && (is.validSTR(n) || nT.length > 0)) {
-                    if (is.validSTR(n) || nT.length === 1) {
-                        n = nT.length === 1 ? nT[0] : n ;
-                        return n;
-                    }
-                    else {
-                        let tingkat = kode === 15 ? 'SD' : ( kode === 17 ? 'SMP' : kode === 19 ? a[18].children[0].innerHTML : 'PerguruanTinggi' ) ;
-                        if (kode === 19)
-                            D.get.id('halamanKeteranganSMA').getElementsByTagName('h2')[0].innerHTML = 'Keterangan ' + tingkat;
+                // Keterangan SD, SMP, SMA, Perguruan Tinggi (15, 17, 19, 21)
+                if (indeksKeterangan.includes(kode)) {
+                    if (nT.length > 0) {
+                        if (nT.length === 1)
+                            return nT[0];
                         
-                        nT.forEach((e, i) => {
-                            let newRow = D.create('tr');
-                            D.get.id('target_keterangan' + ( kode === 19 ? 'SMA' : tingkat )).appendChild(newRow);
-                                let data1 = D.create('td');
-                                    data1.className = 'tabel-nomor';
-                                    data1.innerHTML = (i + 1) + '.';
-                                newRow.appendChild(data1);
-                                let data2 = D.create('td');
-                                    data2.className = 'tabel-konten';
-                                    data2.innerHTML = e;
-                                newRow.appendChild(data2);
-                        });
-                        return '<a onclick="bukaTutup(\'halamanKeterangan' + ( kode === 19 ? 'SMA' : tingkat ) + '\', \'halamanUtama\')" title="Keterangan ' + tingkat + ' | ' + n.length + ' data">Daftar keterangan ' + tingkat + '</a>';
+                        else {
+                            let tingkat = kode === 15 ? 'SD' : ( kode === 17 ? 'SMP' : kode === 19 ? a[18].children[0].innerHTML : 'PerguruanTinggi' ) ;
+                            if (kode === 19)
+                                D.get.id('halamanKeteranganSMA').getElementsByTagName('h2')[0].innerHTML = 'Keterangan ' + tingkat;
+                            
+                            nT.forEach((e, i) => {
+                                let newRow = D.create('tr');
+                                D.get.id('target_keterangan' + ( kode === 19 ? 'SMA' : tingkat )).appendChild(newRow);
+                                    let data1 = D.create('td');
+                                        data1.className = 'tabel-nomor';
+                                        data1.innerHTML = (i + 1) + '.';
+                                    newRow.appendChild(data1);
+                                    let data2 = D.create('td');
+                                        data2.className = 'tabel-konten';
+                                        data2.innerHTML = e;
+                                    newRow.appendChild(data2);
+                            });
+                            return '<a onclick="bukaTutup(\'halamanKeterangan' + ( kode === 19 ? 'SMA' : tingkat ) + '\', \'halamanUtama\')" title="Keterangan ' + tingkat + ' | ' + n.length + ' data">Daftar keterangan ' + tingkat + '</a>';
+                        }
                     }
+                    else
+                        return q;
                 }
 
                 // E-mail
-                else if (kode === 26 && is.validEmail(n))
-                    return n;
+                else if (kode === 26)
+                    return is.validEmail(n) ? n : q ;
 
                 // Jejak digital
-                else if (kode === 33 && nG.length > 0) {
+                else if (kode === 33) {
                     nG = is.validURL(nG[1]) ? nG : nG.filter(e => is.validURL(e[1]));
-                    
-                    if (is.validURL(nG[1]) || nG.length === 1 ) {
-                        if (nG.length === 1) nG = nG.flat();
-                        return '<a href="' + nG[1] + '" target="_blank" title="Klik untuk mengunjungi">' + nG[0] + '</a>';
-                    }
-                    else if (nG.length > 1) {
-                        nG.forEach((e, i) => {
-                            let newTabel = D.create('tr');
-                            D.get.id('target_jejakDigital').appendChild(newTabel);
-                                let newTabel_A = D.create('td')
-                                    newTabel_A.className = 'tabel-nomor';
-                                    newTabel_A.innerHTML = (i + 1) + '.';
-                                newTabel.appendChild(newTabel_A);
-                                let newTabel_B = D.create('td');
-                                    newTabel_B.className = 'tabel-konten';
-                                    newTabel_B.innerHTML = '<a href="' + e[1] + '" target="_blank" title="Jejak digital ' + (i + 1) + '">' + e[0] + '</a>';
-                                newTabel.appendChild(newTabel_B);
-                        });
-                        return '<a onclick="bukaTutup(\'halamanJejakDigital\', \'halamanUtama\')" title="' + nG.length + ' data">Daftar jejak digital</a>';
+                    if (nG.length > 0) {
+                        if (is.validURL(nG[1]) || nG.length === 1 ) {
+                            if (nG.length === 1) nG = nG.flat();
+                            return '<a href="' + nG[1] + '" target="_blank" title="Klik untuk mengunjungi">' + nG[0] + '</a>';
+                        }
+                        else {
+                            nG.forEach((e, i) => {
+                                let newTabel = D.create('tr');
+                                D.get.id('target_jejakDigital').appendChild(newTabel);
+                                    let newTabel_A = D.create('td')
+                                        newTabel_A.className = 'tabel-nomor';
+                                        newTabel_A.innerHTML = (i + 1) + '.';
+                                    newTabel.appendChild(newTabel_A);
+                                    let newTabel_B = D.create('td');
+                                        newTabel_B.className = 'tabel-konten';
+                                        newTabel_B.innerHTML = '<a href="' + e[1] + '" target="_blank" title="Jejak digital ' + (i + 1) + '">' + e[0] + '</a>';
+                                    newTabel.appendChild(newTabel_B);
+                            });
+                            return '<a onclick="bukaTutup(\'halamanJejakDigital\', \'halamanUtama\')" title="' + nG.length + ' data">Daftar jejak digital</a>';
+                        }
                     }
                     else
                         return q;
                 }
 
                 // Foto
-                else if (kode === 37 && (is.validURL(nG[1]) || nG.filter(e => is.validURL(e[1])).length > 0)) {
-                    let targ = D.get.id('target_foto');
+                else if (kode === 37) {
                     nG = is.validURL(nG[1]) ? [nG] : nG.filter(e => is.validURL(e[1])) ;
-                    nG.forEach((e, i) => {
-                        targ.innerHTML += '<div><button class="btn2" onclick="bukaTutup(\'gambar' + ( i + 1 ) + '\')">Gambar ' + ( i + 1 ) + ' : ' + e[0] + '</button></div>';
-                        let wadahGambar = D.create('div');
-                            wadahGambar.className = 'imgContainer hidden';
-                            wadahGambar.id = 'gambar' + ( i + 1 );
-                        targ.appendChild(wadahGambar);
-                            let imgs = D.create('img');
-                                imgs.setAttribute('src', e[1]);
-                                imgs.setAttribute('alt', e[0]);
-                            wadahGambar.appendChild(imgs);
-                            wadahGambar.innerHTML += '<div style="text-align: center;"><strong>Gambar ' + ( i + 1 ) + '</strong> : ' + e[0] + '</div>';
-                    });
-                    return '<a onclick="bukaTutup(\'halamanFoto\', \'halamanUtama\')" title="' + nG.length + ' foto">Galeri foto</a>';
+                    if (nG.length > 0) {
+                        let targ = D.get.id('target_foto');
+                        nG.forEach((e, i) => {
+                            targ.innerHTML += '<div><button class="btn2" onclick="bukaTutup(\'gambar' + ( i + 1 ) + '\')">Gambar ' + ( i + 1 ) + ' : ' + e[0] + '</button></div>';
+                            let wadahGambar = D.create('div');
+                                wadahGambar.className = 'imgContainer hidden';
+                                wadahGambar.id = 'gambar' + ( i + 1 );
+                            targ.appendChild(wadahGambar);
+                                let imgs = D.create('img');
+                                    imgs.setAttribute('src', e[1]);
+                                    imgs.setAttribute('alt', e[0]);
+                                wadahGambar.appendChild(imgs);
+                                wadahGambar.innerHTML += '<div style="text-align: center;"><strong>Gambar ' + ( i + 1 ) + '</strong> : ' + e[0] + '</div>';
+                        });
+                        return '<a onclick="bukaTutup(\'halamanFoto\', \'halamanUtama\')" title="' + nG.length + ' foto">Galeri foto</a>';
+                    }
+                    else
+                        return q;
                 }
 
                 // Informasi tambahan
-                else if (kode === 38 && (is.validSTR(n) || nT.length > 0)) {
-                    if (is.validSTR(n))
-                        return n;
-                    
-                    else if (nT.length === 1)
+                else if (kode === 38) {
+                    if (nT.length === 1)
                         return n[0];
-                    else {
+                    
+                    else if (nT.length > 1){
                         nT.forEach((e, i) => {
                             let barisBaru = D.create('tr');
                             D.get.id('target_informasiTambahan').appendChild(barisBaru);
@@ -747,15 +759,20 @@
                         })
                         return '<a onclick="bukaTutup(\'halamanInformasiTambahan\', \'halamanUtama\')" title="' + nT.length + ' data">Daftar Informasi Tambahan</a>' ;
                     }
+                    else
+                        return q;
                 }
                 
                 // Aktivitas
                 else if (kode === 39) {
                     function validasiN (m) {
-                        function validasiArrayData3 (x) {
-                            return x.filter(e => is.validSTR(e[0]) || is.validSTR(e[1]) || is.validSTR(e[2])).map(e => e.map(E => validasi(E, true)));
+                        function stringAmong3 (b) {
+                            return Array.isArray(b) && (is.validSTR(b[0]) || is.validSTR(b[1]) || is.validSTR(b[2]));
                         };
-                        return Array.isArray(m) ? is.validSTR(m[0]) || is.validSTR(m[1]) || is.validSTR(m[2]) ? validasiArrayData3([m]) : validasiArrayData3(m) : [] ;
+                        function validasiArrayData3 (x) {
+                            return x.filter(e => stringAmong3(e)).map(e => e.map(E => validasi(E, true)));
+                        };
+                        return Array.isArray(m) ? stringAmong3(m) ? validasiArrayData3([m]) : validasiArrayData3(m) : [] ;
                     };
                     n = validasiN(n);
                     if (n.length > 0) {
@@ -785,7 +802,7 @@
                         return q;
                 }
                 
-                else if (is.validSTR(n) && ![3, 15, 17, 19, 21, 26, 33, 37, 38, 39].includes(kode))
+                else if (is.validSTR(n) && ![3].includes(kode))
                     return remove(n, [' ', ',', '?', '-', '_', ]).length > 0 ? DAFESE(n) : q;
 
                 else {
@@ -801,24 +818,23 @@
                     kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
                     
                     if (clearSpace(n) === '-' || is.loopSTR(n, '-')) {
-                        if (![28, 29, 30, 31, 32].includes(kode)) eror(kode, 'Akun.akun() and contain \'-\' character');
+                        if (!indeksAkun.includes(kode)) eror(kode, "Akun.akun() and contain '-' character");
                         return '-';
                     }
 
-                    else if (![28, 29, 30, 31, 32].includes(kode))
+                    else if (!indeksAkun.includes(kode))
                         eror(kode, 'Akun.akun()');
 
                     // Instagram
-                    else if (kode === 28 && (is.validETusername(n) || nT.filter(e => is.validETusername(e)).length > 0)) {
-                        if (is.validETusername(n))
-                            return Akun.ig(remove(n, '@'));
-                        
-                        else {
+                    else if (kode === 28) {
+                        nT = nT.filter(e => is.validETusername(e));
+                        if (nT.length > 0) {
                             let temp = [];
-                            nT = nT.filter(e => is.validETusername(e));
                             nT.forEach(e => temp.push(Akun.ig(e)));
                             return temp.join(' | ');
                         }
+                        else
+                            return q;
                     }
 
                     // Facebook
@@ -835,29 +851,27 @@
                     }
 
                     // Twitter
-                    else if (kode === 30 && (is.validETusername(n) || nT.filter(e => is.validETusername(e)).length > 0)) {
-                        if (is.validETusername(n))
-                            return Akun.tw(remove(n, '@'));
-                        
-                        else {
+                    else if (kode === 30) {
+                        nT = nT.filter(e => is.validETusername(e));
+                        if (nT.length > 0) {
                             let temp = [];
-                            nT = nT.filter(e => is.validETusername(e));
                             nT.forEach(e => temp.push(Akun.tw(e)))
                             return temp.join(' | ');
                         }
+                        else
+                            return q;
                     }
 
                     // Telegram
-                    else if (kode === 31 && (is.validETusername(n) || nT.filter(e => is.validETusername(e)).length > 0)) {
-                        if (is.validETusername(n))
-                            return Akun.tele(remove(n, '@'));
-                        
-                        else {
+                    else if (kode === 31) {
+                        nT = nT.filter(e => is.validETusername(e));
+                        if (nT.length > 0) {
                             let temp = [];
-                            nT = nT.filter(e => is.validETusername(e));
                             nT.forEach(e => temp.push(Akun.tele(e)));
                             return temp.join(' | ');
                         }
+                        else
+                            return q;
                     }
                     
                     // Akun lain
@@ -908,7 +922,9 @@
                 
                 // link harus berupa string dan harus diawali dengan http:// atau https://
                 lain: (namaSitus, link) => is.validSTR(namaSitus) && is.validURL(link) ? '<a href="' + link + '" target="_blank">' + namaSitus + '</a>' : ''
-            };
+            },
+            indeksKeterangan = [15, 17, 19, 21],
+            indeksAkun = [28, 29, 30, 31, 32];
         document.head.getElementsByTagName('title')[0].innerHTML = validasi(data.namaLengkap) === '-' ? validasi(data.namaPanggilan) : validasi(data.namaLengkap) ;
         
         a[1].children[1].innerHTML += validasi(data.namaLengkap, 1); // Nama lengkap
