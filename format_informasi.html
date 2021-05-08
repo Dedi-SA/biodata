@@ -690,12 +690,11 @@
 
                 // Jejak digital
                 else if (kode === 33) {
-                    nG = is.validURL(nG[1]) ? nG : nG.filter(e => is.validURL(e[1]));
+                    nG = nG.filter(e => is.validURL(e[1]));
                     if (nG.length > 0) {
-                        if (is.validURL(nG[1]) || nG.length === 1 ) {
-                            if (nG.length === 1) nG = nG.flat();
+                        if (nG.length === 1 )
                             return '<a href="' + nG[1] + '" target="_blank" title="Klik untuk mengunjungi">' + nG[0] + '</a>';
-                        }
+                        
                         else {
                             nG.forEach((e, i) => {
                                 let newTabel = D.create('tr');
@@ -718,7 +717,7 @@
 
                 // Foto
                 else if (kode === 37) {
-                    nG = is.validURL(nG[1]) ? [nG] : nG.filter(e => is.validURL(e[1])) ;
+                    nG = nG.filter(e => is.validURL(e[1])) ;
                     if (nG.length > 0) {
                         let targ = D.get.id('target_foto');
                         nG.forEach((e, i) => {
@@ -825,7 +824,7 @@
                     else if (!indeksAkun.includes(kode))
                         eror(kode, 'Akun.akun()');
 
-                    // Grup filter valid Et username dengan output join
+                    // Kelompok enggunaan valid Et username dengan output join
                     // Instagram, Twitter, Telegram (28, 30, 31)
                     else if ([28, 30, 31].includes(kode)) {
                         nT = nT.filter(e => is.validETusername(e));
@@ -839,41 +838,47 @@
                     }
 
                     // Facebook
-                    else if (kode === 29 && nG.length > 0) {
-                        if (is.validURL(nG[1]) || (is.validURL(nG[0][1]) && nG.length === 1)) {
-                            nG = nG.flat();
-                            return Akun.fb(nG[0], nG[1]);
+                    else if (kode === 29) {
+                        nG = nG.filter(e => is.validURL(e[1]));
+                        if (nG.length > 0) {
+                            if (nG.length === 1)
+                                return Akun.fb(nG[0], nG[1]);
+                            
+                            else {
+                                let temp = [];
+                                nG.forEach(e => temp.push(Akun.fb(e[0], e[1])));
+                                return temp.join(' | ');
+                            }
                         }
-                        else {
-                            let temp = [];
-                            nG.forEach(e => temp.push(Akun.fb(e[0], e[1])));
-                            return temp.join(' | ');
-                        }
+                        else
+                            return q;
                     }
                     
                     // Akun lain
-                    else if (kode === 32 && (is.validURL(nG[1]) || (nG.length > 0 && nG.filter(e => is.validURL(e[1])).length > 0))) {
-                        if (is.validURL(nG[1]) || (is.validURL(nG[0][1]) && nG.length === 1)) {
-                            nG = nG.flat();
-                            return Akun.lain(nG[0], nG[1]);
+                    else if (kode === 32) {
+                        nG = nG.filter(e => Array.isArray(e) && is.validURL(e[1]));
+                        if (nG.length > 0) {
+                            if (nG.length === 1)
+                                return Akun.lain(nG[0], nG[1]);
+                                                    
+                            else {
+                                nG.forEach((e, i) => {
+                                    let barisBaru = D.create('tr');
+                                    D.get.id('target_akunLain').appendChild(barisBaru);
+                                        let kolomA = D.create('td');
+                                            kolomA.className = 'tabel-nomor';
+                                            kolomA.innerHTML = (i + 1) + '.';
+                                        barisBaru.appendChild(kolomA);
+                                        let kolomB = D.create('td');
+                                            kolomB.className = 'tabel-konten';
+                                            kolomB.innerHTML = Akun.lain(e[0], e[1]);
+                                        barisBaru.appendChild(kolomB);
+                                });
+                                return '<a onclick="bukaTutup(\'halamanAkunLain\', \'halamanUtama\')" title="' + nG.length + ' akun">Daftar akun lain</a>';
+                            }
                         }
-                                                
-                        else {
-                            nG = nG.filter(e => is.validURL(e[1]));
-                            nG.forEach((e, i) => {
-                                let barisBaru = D.create('tr');
-                                D.get.id('target_akunLain').appendChild(barisBaru);
-                                    let kolomA = D.create('td');
-                                        kolomA.className = 'tabel-nomor';
-                                        kolomA.innerHTML = (i + 1) + '.';
-                                    barisBaru.appendChild(kolomA);
-                                    let kolomB = D.create('td');
-                                        kolomB.className = 'tabel-konten';
-                                        kolomB.innerHTML = Akun.lain(e[0], e[1]);
-                                    barisBaru.appendChild(kolomB);
-                            });
-                            return '<a onclick="bukaTutup(\'halamanAkunLain\', \'halamanUtama\')" title="' + nG.length + ' akun">Daftar akun lain</a>';
-                        }
+                        else
+                            return q;
                     }
                     else
                         return q;
