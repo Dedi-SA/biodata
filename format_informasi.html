@@ -531,7 +531,7 @@
             },
 
             arrayDataTunggal = n => Array.isArray(n) ? n.filter(e => is.validSTR(e)) : is.validSTR(n) ? [n] : [] ,
-            arrayDataGanda = n => Array.isArray(n) ? is.validSTR(n[0]) && is.validSTR(n[1]) ? [n] : n.filter(e => Array.isArray(e) && is.validSTR(e[0]) && is.validSTR(e[1])) : [] ,
+            arrayDataGanda = n => Array.isArray(n) ? is.validSTR(n[0]) && is.validSTR(n[1]) ? [n[0], n[1]] : n.filter(e => Array.isArray(e) && is.validSTR(e[0]) && is.validSTR(e[1])) : [] ,
 
             // Double_And_FrontEnd_Space_Eraser (DAFESE)
             DAFESE = n => {
@@ -768,7 +768,7 @@
                 else if (kode === 39) {
                     function validasiN (m) {
                         function stringAmong3 (b) {
-                            return Array.isArray(b) && (is.validSTR(b[0]) || is.validSTR(b[1]) || is.validSTR(b[2]));
+                            return Array.isArray(b) && b.some(e => is.validSTR(e));
                         };
                         function validasiArrayData3 (x) {
                             return x.filter(e => stringAmong3(e)).map(e => e.map(E => validasi(E, true)));
