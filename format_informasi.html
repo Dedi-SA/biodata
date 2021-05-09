@@ -184,7 +184,7 @@
         }
     </style>
 </head>
-<body class="">
+<body id="body" class="hidden">
     <div id="halaman-utama" class="">
         <table cellspacing="2" cellpadding="2" class="tabelUtama space-footer">
             <tbody id="target_halamanUtama">
@@ -595,7 +595,7 @@
                 H2 = H2.filter(e => !H1.includes(e));
 
                 if (H1.length > 0 && H2.length === 0) { // Jika hanya parameter pertama bernilai string
-                    H1.filter(e => is.validSTR(e)).forEach(e => {
+                    H1.forEach(e => {
                         let target = D.get.id(e);
                         if (includesHidden(target.className))
                             target.className = clearHidden(target.className);
@@ -613,12 +613,11 @@
                         h2.className = DAFESE(h2.className + ' hidden');
                     });
 
-                    if (H1 !== 'halaman-utama')
-                    window.scrollTo(0, 0);
+                    if (H1 !== 'halaman-utama') window.scrollTo(0, 0);
                 }
             },
 
-            // Untuk scroll menuju elemen secara spesifik menggunakan 'id' dan menematkannya di tengah layar
+            // Untuk scroll menuju elemen secara spesifik menggunakan 'id' secara otomatis
             scrollCenter = n => {
                 if (is.validSTR(n)) {
                     let elementTarget = document.getElementById(n),
@@ -928,7 +927,7 @@
         a[39].children[1].innerHTML += validasi(data.aktivitas, 39); // Aktivitas (3 data)
 
         function showAll () {
-            document.body.className = DAFESE(remove(document.body.className, 'hidden'));
+            bukaTutup('body');
         }
         function set_eventListener (nextFunc) {
             let eventListener = ['keteranganSD', 'keteranganSMP', 'keteranganSMA', 'keteranganPerguruanTinggi', 'akunLain', 'jejakDigital', 'foto', 'informasiTambahan', 'aktivitas'];
