@@ -693,25 +693,23 @@
                 // Jejak digital
                 else if (kode === 33) {
                     nG = nG.filter(e => is.validURL(e[1]));
-                    if (nG.length > 0) {
-                        if (nG.length === 1 )
-                            return '<a href="' + nG[1] + '" target="_blank" title="Klik untuk mengunjungi">' + nG[0] + '</a>';
-                        
-                        else {
-                            nG.forEach((e, i) => {
-                                let newTabel = D.create('tr');
-                                D.get.id('target_jejakDigital').appendChild(newTabel);
-                                    let newTabel_A = D.create('td')
-                                        newTabel_A.className = 'tabel-nomor';
-                                        newTabel_A.innerHTML = (i + 1) + '.';
-                                    newTabel.appendChild(newTabel_A);
-                                    let newTabel_B = D.create('td');
-                                        newTabel_B.className = 'tabel-konten';
-                                        newTabel_B.innerHTML = '<a href="' + e[1] + '" target="_blank" title="Jejak digital ' + (i + 1) + '">' + e[0] + '</a>';
-                                    newTabel.appendChild(newTabel_B);
-                            });
-                            return '<a id="link-jejakDigital" title="' + nG.length + ' data">Daftar jejak digital</a>';
-                        }
+                    if (nG.length === 1 )
+                        return '<a href="' + nG[1] + '" target="_blank" title="Klik untuk mengunjungi">' + nG[0] + '</a>';
+                    
+                    else if (nG.length > 1) {
+                        nG.forEach((e, i) => {
+                            let newTabel = D.create('tr');
+                            D.get.id('target_jejakDigital').appendChild(newTabel);
+                                let newTabel_A = D.create('td')
+                                    newTabel_A.className = 'tabel-nomor';
+                                    newTabel_A.innerHTML = (i + 1) + '.';
+                                newTabel.appendChild(newTabel_A);
+                                let newTabel_B = D.create('td');
+                                    newTabel_B.className = 'tabel-konten';
+                                    newTabel_B.innerHTML = '<a href="' + e[1] + '" target="_blank" title="Jejak digital ' + (i + 1) + '">' + e[0] + '</a>';
+                                newTabel.appendChild(newTabel_B);
+                        });
+                        return '<a id="link-jejakDigital" title="' + nG.length + ' data">Daftar jejak digital</a>';
                     }
                     else
                         return q;
@@ -720,32 +718,31 @@
                 // Foto
                 else if (kode === 37) {
                     nG = nG.filter(e => is.validURL(e[1])) ;
-                    if (nG.length > 0) {
-                        let targ = D.get.id('target_foto');
-                        nG.forEach((e, i) => {
-                            targ.innerHTML += '<div><button class="btn2" onclick="bukaTutup(\'gambar' + ( i + 1 ) + '\')">Gambar ' + ( i + 1 ) + ' : ' + e[0] + '</button></div>';
-                            let wadahGambar = D.create('div');
-                                wadahGambar.className = 'imgContainer hidden';
-                                wadahGambar.id = 'gambar' + ( i + 1 );
-                            targ.appendChild(wadahGambar);
-                                let imgs = D.create('img');
-                                    imgs.setAttribute('src', e[1]);
-                                    imgs.setAttribute('alt', e[0]);
-                                wadahGambar.appendChild(imgs);
-                                wadahGambar.innerHTML += '<div style="text-align: center;"><strong>Gambar ' + ( i + 1 ) + '</strong> : ' + e[0] + '</div>';
-                        });
-                        return '<a id="link-foto" title="' + nG.length + ' foto">Galeri foto</a>';
-                    }
-                    else
-                        return q;
+                    if (!nG.length > 0) return q ;
+
+                    let targ = D.get.id('target_foto');
+                    nG.forEach((e, i) => {
+                        targ.innerHTML += '<div><button class="btn2" onclick="bukaTutup(\'gambar' + ( i + 1 ) + '\')">Gambar ' + ( i + 1 ) + ' : ' + e[0] + '</button></div>';
+                        let wadahGambar = D.create('div');
+                            wadahGambar.className = 'imgContainer hidden';
+                            wadahGambar.id = 'gambar' + ( i + 1 );
+                        targ.appendChild(wadahGambar);
+                            let imgs = D.create('img');
+                                imgs.setAttribute('src', e[1]);
+                                imgs.setAttribute('alt', e[0]);
+                            wadahGambar.appendChild(imgs);
+                            wadahGambar.innerHTML += '<div style="text-align: center;"><strong>Gambar ' + ( i + 1 ) + '</strong> : ' + e[0] + '</div>';
+                    });
+                    return '<a id="link-foto" title="' + nG.length + ' foto">Galeri foto</a>';
                 }
 
                 // Informasi tambahan
                 else if (kode === 38) {
-                    if (nT.length === 1)
-                        return n[0];
+                    if (!nT.length > 0) return q ;
+
+                    else if (nT.length === 1) return n[0] ;
                     
-                    else if (nT.length > 1){
+                    else {
                         nT.forEach((e, i) => {
                             let barisBaru = D.create('tr');
                             D.get.id('target_informasiTambahan').appendChild(barisBaru);
@@ -760,15 +757,13 @@
                         })
                         return '<a id="link-informasiTambahan" title="' + nT.length + ' data">Daftar Informasi Tambahan</a>' ;
                     }
-                    else
-                        return q;
                 }
                 
                 // Aktivitas
                 else if (kode === 39) {
                     function validasiN (m) {
                         function stringAmong3 (b) {
-                            return Array.isArray(b) && b.some(e => is.validSTR(e));
+                            return [b[0], b[1], b[2]].some(e => is.validSTR(e));
                         };
                         function validasiArrayData3 (x) {
                             return x.filter(e => stringAmong3(e)).map(e => e.map(E => validasi(E, true)));
