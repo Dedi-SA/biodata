@@ -556,7 +556,7 @@
 
             // Untuk mendeteksi jenjang SMA sederajat
             jenisSM = (n, kode) => {
-                kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
+                kode = !isNaN(+kode) && Number.isInteger(Math.abs(+kode)) ? Math.abs(+kode) : kode ;
                 if (kode === 18 && is.validSTR(n)) {
                     n = n.toUpperCase();    
                     if (n.slice(0, 3) === 'SMA' || n.slice(0, 4) === 'SMA ' || n.slice(0, 5) === 'SMAN ' || n.includes('SEKOLAH MENENGAH ATAS'))
@@ -629,7 +629,7 @@
             // 1. Data dari JSON | 2. Kode data
             validasi = (n, kode) => {
                 let nT = arrayDataTunggal(n), nG = arrayDataGanda(n);
-                kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
+                kode = !isNaN(+kode) && Number.isInteger(Math.abs(+kode)) ? Math.abs(+kode) : kode ;
 
                 if (clearSpace(n) === '-' || is.loopSTR(n, '-')) {
                     if (indeksKeterangan.includes(kode)) a[kode].style.display = 'none';
@@ -810,7 +810,7 @@
                 // tipe data 'n' hanya boleh berupa string atau array
                 akun: (n, kode) => {
                     let nT = arrayDataTunggal(n), nG = arrayDataGanda(n);
-                    kode = !isNaN(Number(kode)) && Number.isInteger(Math.abs(Number(kode))) ? Math.abs(Number(kode)) : kode ;
+                    kode = !isNaN(+kode) && Number.isInteger(Math.abs(+kode)) ? Math.abs(+kode) : kode ;
                     
                     if (clearSpace(n) === '-' || is.loopSTR(n, '-')) {
                         if (!indeksAkun.includes(kode)) eror(kode, "Akun.akun() and contain '-' character");
