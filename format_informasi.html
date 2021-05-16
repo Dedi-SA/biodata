@@ -809,41 +809,46 @@
             Akun = {
                 // tipe data 'n' hanya boleh berupa string atau array
                 akun: (n, kode) => {
-                    let nT = arrayDataTunggal(n), nG = arrayDataGanda(n);
+                    let nT = arrayDataTunggal(n), nG = arrayDataGanda(n), result = '';
                     kode = !isNaN(+kode) && Number.isInteger(Math.abs(+kode)) ? Math.abs(+kode) : kode ;
                     
                     if (clearSpace(n) === '-' || is.loopSTR(n, '-')) {
                         if (!indeksAkun.includes(kode)) eror(kode, "Akun.akun() and contain '-' character");
-                        return '-';
+                        result = '-';
                     }
 
-                    else if (!indeksAkun.includes(kode))
+                    else if (!indeksAkun.includes(kode)) {
                         eror(kode, 'Akun.akun()');
+                        result = '' ;
+                    }
 
                     // Kelompok penggunaan valid Et username dengan output join
                     // Instagram, Twitter, Telegram (28, 30, 31)
                     else if ([28, 30, 31].includes(kode)) {
                         nT = nT.filter(e => is.validETusername(e));
-                        if (!nT.length > 0) return q ;
-
-                        let temp = [];
-                        nT.forEach(e => temp.push( kode === 28 ? Akun.ig(e) : kode === 30 ? Akun.tw(e) : Akun.tele(e) ));
-                        return temp.join(' | ');
+                        if (nT.length === 0)
+                            result = q ;
+                        else {
+                            let temp = [];
+                            nT.forEach(e => temp.push( kode === 28 ? Akun.ig(e) : kode === 30 ? Akun.tw(e) : Akun.tele(e) ));
+                            result = temp.join(' | ');
+                        }
                     }
 
                     // Kelompok penggunaan Array data ganda
                     // Facebook, Akun lain (29, 32)
                     else if ([29, 32].includes(kode)) {
                         nG = nG.filter(e => is.validURL(e[1]));
-                        if (!nG.length > 0) return q ;
+                        if (nG.length === 0)
+                            result = q ;
 
-                        if (nG.length === 1)
-                            return kode === 29 ? Akun.fb(nG[0], nG[1]) : Akun.lain(nG[0], nG[1]) ;
+                        else if (nG.length === 1)
+                            result = kode === 29 ? Akun.fb(nG[0], nG[1]) : Akun.lain(nG[0], nG[1]) ;
 
                         else if (kode === 29) {
                             let temp = [];
                             nG.forEach(e => temp.push(Akun.fb(e[0], e[1])));
-                            return temp.join(' | ');
+                            result = temp.join(' | ');
                         }
                         else {
                             nG.forEach((e, i) => {
@@ -858,11 +863,13 @@
                                         kolomB.innerHTML = Akun.lain(e[0], e[1]);
                                     barisBaru.appendChild(kolomB);
                             });
-                            return '<a id="link-akunLain" title="' + nG.length + ' akun">Daftar akun lain</a>';
+                            result = '<a id="link-akunLain" title="' + nG.length + ' akun">Daftar akun lain</a>';
                         }
                     }
                     else
-                        return q;
+                        result = q;
+                    
+                    return result;
                 },
                 ig: username => {
                     if (is.validETusername(username) && !username.includes('-')) {
