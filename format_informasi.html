@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        let tt = new Date(), sec = tt.getTime();
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -193,39 +196,39 @@
                 </tr>
                 <tr> <!-- tr 1 -->
                     <td class="keteranganData">Nama Lengkap</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-namaLengkap"></span></td>
                 </tr>
                 <tr> <!-- tr 2 -->
                     <td class="keteranganData">Nama Panggilan</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-namaPanggilan"></span></td>
                 </tr>
                 <tr> <!-- tr 3 -->
                     <td class="keteranganData">Jenis kelamin</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-jenisKelamin"></span></td>
                 </tr>
                 <tr> <!-- tr 4 -->
                     <td class="keteranganData">Tempat, Tanggal Lahir</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-ttl"></span></td>
                 </tr>
                 <tr> <!-- tr 5 -->
                     <td class="keteranganData">Alamat</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-alamat"></span></td>
                 </tr>
                 <tr> <!-- tr 6 -->
                     <td class="keteranganData">Hobi</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-hobi"></span></td>
                 </tr>
                 <tr> <!-- tr 7 -->
                     <td class="keteranganData">Nomor Induk Kependudukan</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-nik"></span></td>
                 </tr>
                 <tr> <!-- tr 8 -->
                     <td class="keteranganData">Nama Ayah</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-ayah"></span></td>
                 </tr>
                 <tr> <!-- tr 9 -->
                     <td class="keteranganData">Nama Ibu</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-ibu"></span></td>
                 </tr>
                 
                 <tr> <!-- spasi | tr 10 -->
@@ -240,43 +243,43 @@
                 </tr>
                 <tr> <!-- tr 13 -->
                     <td class="keteranganData">NISN</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-nisn"></span></td>
                 </tr>
                 <tr> <!-- tr 14 -->
                     <td class="keteranganData">SD</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-SD"></span></td>
                 </tr>
                 <tr id="slot-keteranganSD"> <!-- tr 15 -->
                     <td class="keteranganData"></td>
-                    <td>&emsp;</td>
+                    <td>&emsp;<span id="data-keteranganSD"></span></td>
                 </tr>
                 <tr> <!-- tr 16 -->
                     <td class="keteranganData">SMP</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-SMP"></span></td>
                 </tr>
                 <tr id="slot-keteranganSMP"> <!-- tr 17 -->
                     <td class="keteranganData"></td>
-                    <td>&emsp;</td>
+                    <td>&emsp;<span id="data-keteranganSMP"></span></td>
                 </tr>
                 <tr> <!-- tr 18 -->
                     <td class="keteranganData">SMA</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-SMA"></span></td>
                 </tr>
                 <tr id="slot-keteranganSMA"> <!-- tr 19 -->
                     <td class="keteranganData"></td>
-                    <td>&emsp;</td>
+                    <td>&emsp;<span id="data-keteranganSMA"></span></td>
                 </tr>
                 <tr> <!-- tr 20 -->
                     <td class="keteranganData">Perguruan Tinggi</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-perguruanTinggi"></span></td>
                 </tr>
                 <tr id="slot-keteranganPerguruanTinggi"> <!-- tr 21 -->
                     <td class="keteranganData"></td>
-                    <td>&emsp;</td>
+                    <td>&emsp;<span id="data-keteranganPerguruanTinggi"></span></td>
                 </tr>
                 <tr> <!-- tr 22 -->
                     <td class="keteranganData">Kerabat</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-kerabat"></span></td>
                 </tr>
                 
                 <tr> <!-- spasi | tr 23 -->
@@ -291,35 +294,35 @@
                 </tr>
                 <tr> <!-- tr 26 -->
                     <td class="keteranganData">Alamat e-mail</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-email"></span></td>
                 </tr>
                 <tr> <!-- tr 27 -->
                     <td class="keteranganData">Nomor WA</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-nomorWA"></span></td>
                 </tr>
                 <tr> <!-- tr 28 -->
                     <td class="keteranganData">Akun Instagram</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-instagram"></span></td>
                 </tr>
                 <tr> <!-- tr 29 -->
                     <td class="keteranganData">Akun Facebook</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-facebook"></span></td>
                 </tr>
                 <tr> <!-- tr 30 -->
                     <td class="keteranganData">Akun Twitter</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-twitter"></span></td>
                 </tr>
                 <tr> <!-- tr 31 -->
                     <td class="keteranganData">Akun Telegram</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-telegram"></span></td>
                 </tr>
                 <tr id="slot-akunLain"> <!-- tr 32 -->
                     <td class="keteranganData">Akun Lain</td>
-                    <td>:&ensp;</td>
+                    <td>:&ensp;<span id="data-akunLain"></span></td>
                 </tr>
                 <tr id="slot-jejakDigital"> <!-- tr 33 -->
                     <td class="keteranganData">Jejak Digital</td>
-                    <td class="sub">:&ensp;</td>
+                    <td>:&ensp;<span id="data-jejakDigital"></span></td>
                 </tr>
                 
                 <tr> <!-- spasi | tr 34 -->
@@ -334,15 +337,15 @@
                 </tr>
                 <tr id="slot-foto"> <!-- tr 37 -->
                     <td class="keteranganData">Foto</td>
-                    <td class="sub">:&ensp;</td>
+                    <td>:&ensp;<span id="data-foto"></span></td>
                 </tr>
                 <tr id="slot-informasiTambahan"> <!-- tr 38 -->
                     <td class="keteranganData">Informasi Tambahan</td>
-                    <td class="sub">:&ensp;</td>
+                    <td>:&ensp;<span id="data-informasiTambahan"></span></td>
                 </tr>
                 <tr id="slot-aktivitas"> <!-- tr 39 -->
                     <td class="keteranganData">Aktivitas</td>
-                    <td class="sub">:&ensp;</td>
+                    <td>:&ensp;<span id="data-aktivitas"></span></td>
                 </tr>
             </tbody>
         </table>
@@ -896,43 +899,99 @@
             indeksKeterangan = [15, 17, 19, 21],
             indeksAkun = [28, 29, 30, 31, 32];
 
-        function set_validasi(callback) {
-            document.head.getElementsByTagName('title')[0].innerHTML = validasi(data.namaLengkap) === '-' ? validasi(data.namaPanggilan) : validasi(data.namaLengkap) ;
+        // Fungsi untuk mengolah data dan di-input-kan ke dalam Array ''dt
+        function deklarasiData(callback) {
+
+            // Untuk mengecek apakah Array 'dt' memiliki 31 elemen string, jika ya maka true
+            function isReady() {
+                return Array.isArray(dt) && dt.filter(e => typeof e === 'string').length === 31;
+            };
             
-            a[1].children[1].innerHTML += validasi(data.namaLengkap, 1); // Nama lengkap
-            a[2].children[1].innerHTML += validasi(data.namaPanggilan, 2); // Nama panggilan
-            a[3].children[1].innerHTML += validasi(data.jenisKelamin, 3) ; // Jenis kelamin
-            a[4].children[1].innerHTML += validasi(data.ttl, 4); // Tempat, tanggal lahir
-            a[5].children[1].innerHTML += validasi(data.alamat, 5); // Alamat
-            a[6].children[1].innerHTML += validasi(data.hobi, 6); // Nomor Induk Kependudukan
-            a[7].children[1].innerHTML += validasi(data.nik, 7); // Nomor Induk Kependudukan
-            a[8].children[1].innerHTML += validasi(data.ayah, 8) ; // Nama ayah
-            a[9].children[1].innerHTML += validasi(data.ibu, 9) ; // Nama ibu
-            a[13].children[1].innerHTML += validasi(data.nisn, 13); // NISN
-            a[14].children[1].innerHTML += validasi(data.SD, 14); // SD
-            a[15].children[1].innerHTML += validasi(data.keteranganSD, 15); // Keterangan SD
-            a[16].children[1].innerHTML += validasi(data.SMP, 16); // SMP
-            a[17].children[1].innerHTML += validasi(data.keteranganSMP, 17); // Keterangan SMP
-                a[18].children[0].innerHTML = jenisSM(data.SMA, 18);
-            a[18].children[1].innerHTML += validasi(data.SMA, 18); // SMA / SMK / MA
-            a[19].children[1].innerHTML += validasi(data.keteranganSMA, 19); // Keterangan SMA / SMK / MA
-            a[20].children[1].innerHTML += validasi(data.perguruanTinggi, 20); // Perguruan Tinggi
-            a[21].children[1].innerHTML += validasi(data.keteranganPerguruanTinggi, 21); // Keterangan perguruan tinggi
-            a[22].children[1].innerHTML += validasi(data.kerabat, 22); // Kerabat
-            a[26].children[1].innerHTML += validasi(data.email, 26); // Alamat e-mail
-            a[27].children[1].innerHTML += validasi(data.nomorWA, 27); // Nomor WA
-            a[28].children[1].innerHTML += Akun.akun(data.instagram, 28); // Akun Instagram
-            a[29].children[1].innerHTML += Akun.akun(data.facebook, 29); // Akun Facebook (data ganda)
-            a[30].children[1].innerHTML += Akun.akun(data.twitter, 30); // Akun Twitter
-            a[31].children[1].innerHTML += Akun.akun(data.telegram, 31); // Akun Telegram
-            a[32].children[1].innerHTML += Akun.akun(data.akunLain, 32); // Akun lain (data ganda)
-            a[33].children[1].innerHTML += validasi(data.jejakDigital, 33); // Jejak digital (data ganda)
-            a[37].children[1].innerHTML += validasi(data.foto, 37); // Foto
-            a[38].children[1].innerHTML += validasi(data.informasiTambahan, 38); // Informasi tambahan
-            a[39].children[1].innerHTML += validasi(data.aktivitas, 39); // Aktivitas (3 data)
-            callback(showAll);
+            let dt = [];
+            dt[0] = validasi(data.namaLengkap, 1); // Nama lengkap
+            dt[1] = validasi(data.namaPanggilan, 2); // Nama panggilan
+            dt[2] = validasi(data.jenisKelamin, 3) ; // Jenis kelamin
+            dt[3] = validasi(data.ttl, 4); // Tempat, tanggal lahir
+            dt[4] = validasi(data.alamat, 5); // Alamat
+            dt[5] = validasi(data.hobi, 6); // Hobi
+            dt[6] = validasi(data.nik, 7); // Nomor Induk Kependudukan
+            dt[7] = validasi(data.ayah, 8) ; // Nama ayah
+            dt[8] = validasi(data.ibu, 9) ; // Nama ibu
+            dt[9] = validasi(data.nisn, 13); // NISN
+            dt[10] = validasi(data.SD, 14); // SD
+            dt[11] = validasi(data.keteranganSD, 15); // Keterangan SD
+            dt[12] = validasi(data.SMP, 16); // SMP
+            dt[13] = validasi(data.keteranganSMP, 17); // Keterangan SMP
+            dt[14] = validasi(data.SMA, 18); // SMA / SMK / MA
+            dt[15] = validasi(data.keteranganSMA, 19); // Keterangan SMA / SMK / MA
+            dt[16] = validasi(data.perguruanTinggi, 20); // Perguruan Tinggi
+            dt[17] = validasi(data.keteranganPerguruanTinggi, 21); // Keterangan perguruan tinggi
+            dt[18] = validasi(data.kerabat, 22); // Kerabat
+            dt[19] = validasi(data.email, 26); // Alamat e-mail
+            dt[20] = validasi(data.nomorWA, 27); // Nomor WA
+            dt[21] = Akun.akun(data.instagram, 28); // Akun Instagram
+            dt[22] = Akun.akun(data.facebook, 29); // Akun Facebook (data ganda)
+            dt[23] = Akun.akun(data.twitter, 30); // Akun Twitter
+            dt[24] = Akun.akun(data.telegram, 31); // Akun Telegram
+            dt[25] = Akun.akun(data.akunLain, 32); // Akun lain (data ganda)
+            dt[26] = validasi(data.jejakDigital, 33); // Jejak digital (data ganda)
+            dt[27] = validasi(data.foto, 37); // Foto
+            dt[28] = validasi(data.informasiTambahan, 38); // Informasi tambahan
+            dt[29] = validasi(data.aktivitas, 39); // Aktivitas (3 data)
+
+            // dt[30] akan diisi jika dt[15] BUKAN undefined
+            let interv_deklarasiDT30 = setInterval(() => {
+                console.log('interval DT30');
+                if (dt[15] !== undefined) {
+                    clearInterval(interv_deklarasiDT30);
+                    dt[30] = jenisSM(dt[15]); // Jenis sekolah menengah
+                }
+            }, 100);
+
+            let tampilkan = setInterval(() => {
+                console.log('input');
+                document.head.getElementsByTagName('title')[0].innerHTML = dt[0] === '-' ? dt[1] : dt[0] ;
+                D.get.id('data-namaLengkap').innerHTML               = dt[0]; // Nama lengkap
+                D.get.id('data-namaPanggilan').innerHTML             = dt[1]; // Nama panggilan
+                D.get.id('data-jenisKelamin').innerHTML              = dt[2] ; // Jenis kelamin
+                D.get.id('data-ttl').innerHTML                       = dt[3]; // Tempat, tanggal lahir
+                D.get.id('data-alamat').innerHTML                    = dt[4]; // Alamat
+                D.get.id('data-hobi').innerHTML                      = dt[5]; // Hobi
+                D.get.id('data-nik').innerHTML                       = dt[6]; // Nomor Induk Kependudukan
+                D.get.id('data-ayah').innerHTML                      = dt[7]; // Nama ayah
+                D.get.id('data-ibu').innerHTML                       = dt[8]; // Nama ibu
+                D.get.id('data-nisn').innerHTML                      = dt[9]; // NISN
+                D.get.id('data-SD').innerHTML                        = dt[10]; // SD
+                D.get.id('data-keteranganSD').innerHTML              = dt[11]; // Keterangan SD
+                D.get.id('data-SMP').innerHTML                       = dt[12]; // SMP
+                D.get.id('data-keteranganSMP').innerHTML             = dt[13]; // Keterangan SMP
+                    a[18].children[0].innerHTML                      = dt[30]; // Jenis Sekolah Menengah
+                D.get.id('data-SMA').innerHTML                       = dt[14]; // SMA / SMK / MA
+                D.get.id('data-keteranganSMA').innerHTML             = dt[15]; // Keterangan SMA / SMK / MA
+                D.get.id('data-perguruanTinggi').innerHTML           = dt[16]; // Perguruan Tinggi
+                D.get.id('data-keteranganPerguruanTinggi').innerHTML = dt[17]; // Keterangan perguruan tinggi
+                D.get.id('data-kerabat').innerHTML                   = dt[18]; // Kerabat
+                D.get.id('data-email').innerHTML                     = dt[19]; // Alamat e-mail
+                D.get.id('data-nomorWA').innerHTML                   = dt[20]; // Nomor WA
+                D.get.id('data-instagram').innerHTML                 = dt[21]; // Akun Instagram
+                D.get.id('data-facebook').innerHTML                  = dt[22]; // Akun Facebook (data ganda)
+                D.get.id('data-twitter').innerHTML                   = dt[23]; // Akun Twitter
+                D.get.id('data-telegram').innerHTML                  = dt[24]; // Akun Telegram
+                D.get.id('data-akunLain').innerHTML                  = dt[25]; // Akun lain (data ganda)
+                D.get.id('data-jejakDigital').innerHTML              = dt[26]; // Jejak digital (data ganda)
+                D.get.id('data-foto').innerHTML                      = dt[27]; // Foto
+                D.get.id('data-informasiTambahan').innerHTML         = dt[28]; // Informasi tambahan
+                D.get.id('data-aktivitas').innerHTML                 = dt[29]; // Aktivitas (3 data)
+
+                if (isReady(dt)) {
+                    clearInterval(tampilkan);
+                    callback(showAll);
+                }
+            }, 150);
+            // callback(showAll)
         }
-        function set_eventListener (callback) {
+        function deklarasi_eventListener (callback) {
+            // Konfigurasi evenListener untuk button
             let eventListener = ['keteranganSD', 'keteranganSMP', 'keteranganSMA', 'keteranganPerguruanTinggi', 'akunLain', 'jejakDigital', 'foto', 'informasiTambahan', 'aktivitas'];
             eventListener.forEach(e => {
                 document.getElementById('btn-' + e).addEventListener('click', function() {
@@ -943,13 +1002,14 @@
                     bukaTutup('halaman-' + e, 'halaman-utama');
                 });
             });
-            callback();
+
+            setTimeout(() => {callback()}, 100);
         }
-        function showAll () {
+        function showAll() {
             bukaTutup('body');
         }
 
-        set_validasi(set_eventListener);
+        deklarasiData(deklarasi_eventListener);
     </script>
 </body>
 </html>
