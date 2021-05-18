@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
-        let tt = new Date(), sec = tt.getTime();
-    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -472,6 +469,7 @@
         </div>
     </div>
     <script>
+        document.head.getElementsByTagName('title')[0].innerText = 'Memproses data ....';
         let a = document.getElementById('target_halamanUtama').children,
             q = '??',
 
@@ -897,15 +895,10 @@
                 lain: (namaSitus, link) => is.validSTR(namaSitus) && is.validURL(link) ? '<a href="' + link + '" target="_blank">' + namaSitus + '</a>' : ''
             },
             indeksKeterangan = [15, 17, 19, 21],
-            indeksAkun = [28, 29, 30, 31, 32];
+            indeksAkun = [28, 29, 30, 31, 32],
 
-        // Fungsi untuk mengolah data dan di-input-kan ke dalam Array ''dt
-        function deklarasiData(callback) {
-
-            // Untuk mengecek apakah Array 'dt' memiliki 31 elemen string, jika ya maka true
-            function isReady() {
-                return Array.isArray(dt) && dt.filter(e => typeof e === 'string').length === 31;
-            };
+            // Fungsi untuk mengolah data dan di-input-kan ke dalam Array ''dt
+            deklarasiData = callback => {
             
             let dt = [];
             dt[0] = validasi(data.namaLengkap, 1); // Nama lengkap
@@ -941,73 +934,101 @@
 
             // dt[30] akan diisi jika dt[15] BUKAN undefined
             let interv_deklarasiDT30 = setInterval(() => {
-                console.log('interval DT30');
                 if (dt[15] !== undefined) {
                     clearInterval(interv_deklarasiDT30);
                     dt[30] = jenisSM(dt[15]); // Jenis sekolah menengah
                 }
-            }, 100);
+            }, 100),
 
-            let tampilkan = setInterval(() => {
-                console.log('input');
-                document.head.getElementsByTagName('title')[0].innerHTML = dt[0] === '-' ? dt[1] : dt[0] ;
-                D.get.id('data-namaLengkap').innerHTML               = dt[0]; // Nama lengkap
-                D.get.id('data-namaPanggilan').innerHTML             = dt[1]; // Nama panggilan
-                D.get.id('data-jenisKelamin').innerHTML              = dt[2] ; // Jenis kelamin
-                D.get.id('data-ttl').innerHTML                       = dt[3]; // Tempat, tanggal lahir
-                D.get.id('data-alamat').innerHTML                    = dt[4]; // Alamat
-                D.get.id('data-hobi').innerHTML                      = dt[5]; // Hobi
-                D.get.id('data-nik').innerHTML                       = dt[6]; // Nomor Induk Kependudukan
-                D.get.id('data-ayah').innerHTML                      = dt[7]; // Nama ayah
-                D.get.id('data-ibu').innerHTML                       = dt[8]; // Nama ibu
-                D.get.id('data-nisn').innerHTML                      = dt[9]; // NISN
-                D.get.id('data-SD').innerHTML                        = dt[10]; // SD
-                D.get.id('data-keteranganSD').innerHTML              = dt[11]; // Keterangan SD
-                D.get.id('data-SMP').innerHTML                       = dt[12]; // SMP
-                D.get.id('data-keteranganSMP').innerHTML             = dt[13]; // Keterangan SMP
-                    a[18].children[0].innerHTML                      = dt[30]; // Jenis Sekolah Menengah
-                D.get.id('data-SMA').innerHTML                       = dt[14]; // SMA / SMK / MA
-                D.get.id('data-keteranganSMA').innerHTML             = dt[15]; // Keterangan SMA / SMK / MA
-                D.get.id('data-perguruanTinggi').innerHTML           = dt[16]; // Perguruan Tinggi
-                D.get.id('data-keteranganPerguruanTinggi').innerHTML = dt[17]; // Keterangan perguruan tinggi
-                D.get.id('data-kerabat').innerHTML                   = dt[18]; // Kerabat
-                D.get.id('data-email').innerHTML                     = dt[19]; // Alamat e-mail
-                D.get.id('data-nomorWA').innerHTML                   = dt[20]; // Nomor WA
-                D.get.id('data-instagram').innerHTML                 = dt[21]; // Akun Instagram
-                D.get.id('data-facebook').innerHTML                  = dt[22]; // Akun Facebook (data ganda)
-                D.get.id('data-twitter').innerHTML                   = dt[23]; // Akun Twitter
-                D.get.id('data-telegram').innerHTML                  = dt[24]; // Akun Telegram
-                D.get.id('data-akunLain').innerHTML                  = dt[25]; // Akun lain (data ganda)
-                D.get.id('data-jejakDigital').innerHTML              = dt[26]; // Jejak digital (data ganda)
-                D.get.id('data-foto').innerHTML                      = dt[27]; // Foto
-                D.get.id('data-informasiTambahan').innerHTML         = dt[28]; // Informasi tambahan
-                D.get.id('data-aktivitas').innerHTML                 = dt[29]; // Aktivitas (3 data)
+            // Untuk mengecek apakah Array 'dt' memiliki 31 elemen string, jika ya maka true
+            isReady = () => {
+                return Array.isArray(dt) && dt.filter(e => typeof e === 'string').length === 31;
+            },
 
-                if (isReady(dt)) {
+            /*
+                Jika isReady() == true, maka 
+            */
+            tampilkan = setInterval(() => {
+                if (isReady()) { // Jika data pada Array 'dt' sudah lengkap sesuai ketentuan isReady(), maka data akan ditampilkan
                     clearInterval(tampilkan);
+
+                    document.head.getElementsByTagName('title')[0].innerHTML = dt[0] === '-' ? dt[1] : dt[0] ; // Menampilkan nama pada tag title
+
+                    D.get.id('data-namaLengkap').innerHTML               = dt[0] ; // Nama lengkap
+                    D.get.id('data-namaPanggilan').innerHTML             = dt[1] ; // Nama panggilan
+                    D.get.id('data-jenisKelamin').innerHTML              = dt[2] ; // Jenis kelamin
+                    D.get.id('data-ttl').innerHTML                       = dt[3] ; // Tempat, tanggal lahir
+                    D.get.id('data-alamat').innerHTML                    = dt[4] ; // Alamat
+                    D.get.id('data-hobi').innerHTML                      = dt[5] ; // Hobi
+                    D.get.id('data-nik').innerHTML                       = dt[6] ; // Nomor Induk Kependudukan
+                    D.get.id('data-ayah').innerHTML                      = dt[7] ; // Nama ayah
+                    D.get.id('data-ibu').innerHTML                       = dt[8] ; // Nama ibu
+                    D.get.id('data-nisn').innerHTML                      = dt[9] ; // NISN
+                    D.get.id('data-SD').innerHTML                        = dt[10]; // SD
+                    D.get.id('data-keteranganSD').innerHTML              = dt[11]; // Keterangan SD
+                    D.get.id('data-SMP').innerHTML                       = dt[12]; // SMP
+                    D.get.id('data-keteranganSMP').innerHTML             = dt[13]; // Keterangan SMP
+                        a[18].children[0].innerHTML                      = dt[30]; // Jenis Sekolah Menengah
+                    D.get.id('data-SMA').innerHTML                       = dt[14]; // SMA / SMK / MA
+                    D.get.id('data-keteranganSMA').innerHTML             = dt[15]; // Keterangan SMA / SMK / MA
+                    D.get.id('data-perguruanTinggi').innerHTML           = dt[16]; // Perguruan Tinggi
+                    D.get.id('data-keteranganPerguruanTinggi').innerHTML = dt[17]; // Keterangan perguruan tinggi
+                    D.get.id('data-kerabat').innerHTML                   = dt[18]; // Kerabat
+                    D.get.id('data-email').innerHTML                     = dt[19]; // Alamat e-mail
+                    D.get.id('data-nomorWA').innerHTML                   = dt[20]; // Nomor WA
+                    D.get.id('data-instagram').innerHTML                 = dt[21]; // Akun Instagram
+                    D.get.id('data-facebook').innerHTML                  = dt[22]; // Akun Facebook (data ganda)
+                    D.get.id('data-twitter').innerHTML                   = dt[23]; // Akun Twitter
+                    D.get.id('data-telegram').innerHTML                  = dt[24]; // Akun Telegram
+                    D.get.id('data-akunLain').innerHTML                  = dt[25]; // Akun lain (data ganda)
+                    D.get.id('data-jejakDigital').innerHTML              = dt[26]; // Jejak digital (data ganda)
+                    D.get.id('data-foto').innerHTML                      = dt[27]; // Foto
+                    D.get.id('data-informasiTambahan').innerHTML         = dt[28]; // Informasi tambahan
+                    D.get.id('data-aktivitas').innerHTML                 = dt[29]; // Aktivitas (3 data)
+
                     callback(showAll);
                 }
-            }, 150);
-            // callback(showAll)
-        }
-        function deklarasi_eventListener (callback) {
-            // Konfigurasi evenListener untuk button
-            let eventListener = ['keteranganSD', 'keteranganSMP', 'keteranganSMA', 'keteranganPerguruanTinggi', 'akunLain', 'jejakDigital', 'foto', 'informasiTambahan', 'aktivitas'];
-            eventListener.forEach(e => {
-                document.getElementById('btn-' + e).addEventListener('click', function() {
-                    bukaTutup('halaman-utama', 'halaman-' + e);
-                    scrollCenter('slot-' + e);
-                });
-                document.getElementById('link-' + e).addEventListener('click', function() {
-                    bukaTutup('halaman-' + e, 'halaman-utama');
-                });
-            });
+            }, 50);
+        },
 
-            setTimeout(() => {callback()}, 100);
-        }
-        function showAll() {
+        deklarasi_eventListener = callback => {
+            // Konfigurasi evenListener untuk link dan button
+            let eventListener = ['keteranganSD', 'keteranganSMP', 'keteranganSMA', 'keteranganPerguruanTinggi', 'akunLain', 'jejakDigital', 'foto', 'informasiTambahan', 'aktivitas'],
+                isReady = n => {
+                    let exist = 0, element_HTML;
+                    eventListener.forEach(e => {
+                        element_HTML = document.getElementById('btn-' + e);
+                        document.body.contains(element_HTML) ? exist++ : exist += 0 ;
+                    });
+                    eventListener.forEach(e => {
+                        element_HTML = document.getElementById('link-' + e);
+                        document.body.contains(element_HTML) ? exist++ : exist += 0 ;
+                    });
+                    return exist === eventListener.length * 2 ;
+                },
+                
+                // Jika elemen yang dijadikan target belum tersedia, maka akan dilakukan pengecekan tiap 0.15 detik terus-menerus
+                interv_listernerDeclaration = setInterval(() => {
+                    if (isReady()) {
+                        clearInterval(interv_listernerDeclaration);
+                        eventListener.forEach(e => {
+                            document.getElementById('btn-' + e).addEventListener('click', () => {
+                                bukaTutup('halaman-utama', 'halaman-' + e);
+                                scrollCenter('slot-' + e);
+                            });
+                            document.getElementById('link-' + e).addEventListener('click', () => {
+                                bukaTutup('halaman-' + e, 'halaman-utama');
+                            });
+                        });
+                    }
+                }, 150);
+
+                setTimeout(() => {callback()}, 100);
+        },
+        
+        showAll = () => {
             bukaTutup('body');
-        }
+        };
 
         deklarasiData(deklarasi_eventListener);
     </script>
