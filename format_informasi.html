@@ -32,7 +32,9 @@
         "instagram": ["@reza.aliviansyah18", "@reza.reza_alvi"], // Username Instagram
         "facebook": [
                 ["Reza Alviansyah 1", "https://www.facebook.com/RezaAlviansyah"],
-                ["Reza Alviansyah 2", "https://www.facebook.com/AlviansyahReza"],
+                // ["Reza Alviansyah 2", "https://www.facebook.com/AlviansyahReza"],
+                // ["Reza Alviansyah 3", "https://www.facebook.com/AlvianyahReza"],
+                // ["Reza Alviansyah 4", "https://www.facebook.com/AlvianyahRza"],
                 ["", ""],
                 ["", ""] // [Keterangan link, link yang dituju]
             ],
@@ -694,7 +696,7 @@
                 else if (kode === 33) {
                     nG = nG.filter(e => is.validURL(e[1]));
                     if (nG.length === 1 )
-                        return '<a href="' + nG[1] + '" target="_blank" title="Klik untuk mengunjungi">' + nG[0] + '</a>';
+                        return '<a href="' + nG[0][1] + '" target="_blank" title="Klik untuk mengunjungi">' + nG[0][0] + '</a>';
                     
                     else if (nG.length > 1) {
                         nG.forEach((e, i) => {
@@ -815,12 +817,12 @@
                     
                     if (clearSpace(n) === '-' || is.loopSTR(n, '-')) {
                         if (!indeksAkun.includes(kode)) eror(kode, "Akun.akun() and contain '-' character");
-                        result = '-';
+                        return '-';
                     }
 
                     else if (!indeksAkun.includes(kode)) {
                         eror(kode, 'Akun.akun()');
-                        result = '' ;
+                        return '' ;
                     }
 
                     // Kelompok penggunaan valid Et username dengan output join
@@ -828,11 +830,11 @@
                     else if ([28, 30, 31].includes(kode)) {
                         nT = nT.filter(e => is.validETusername(e));
                         if (nT.length === 0)
-                            result = q ;
+                            return q ;
                         else {
                             let temp = [];
                             nT.forEach(e => temp.push( kode === 28 ? Akun.ig(e) : kode === 30 ? Akun.tw(e) : Akun.tele(e) ));
-                            result = temp.join(' | ');
+                            return temp.join(' | ');
                         }
                     }
 
@@ -841,15 +843,15 @@
                     else if ([29, 32].includes(kode)) {
                         nG = nG.filter(e => is.validURL(e[1]));
                         if (nG.length === 0)
-                            result = q ;
+                            return q;
 
                         else if (nG.length === 1)
-                            result = kode === 29 ? Akun.fb(nG[0], nG[1]) : Akun.lain(nG[0], nG[1]) ;
+                            return kode === 29 ? Akun.fb(nG[0][0], nG[0][1]) : Akun.lain(nG[0][0], nG[0][1]) ;
 
                         else if (kode === 29) {
                             let temp = [];
                             nG.forEach(e => temp.push(Akun.fb(e[0], e[1])));
-                            result = temp.join(' | ');
+                            return temp.join(' | ');
                         }
                         else {
                             nG.forEach((e, i) => {
@@ -864,13 +866,11 @@
                                         kolomB.innerHTML = Akun.lain(e[0], e[1]);
                                     barisBaru.appendChild(kolomB);
                             });
-                            result = '<a id="link-akunLain" title="' + nG.length + ' akun">Daftar akun lain</a>';
+                            return '<a id="link-akunLain" title="' + nG.length + ' akun">Daftar akun lain</a>';
                         }
                     }
                     else
-                        result = q;
-                    
-                    return result;
+                        return q ;
                 },
                 ig: username => {
                     if (is.validETusername(username) && !username.includes('-')) {
@@ -923,7 +923,11 @@
             dt[19] = validasi(data.email, 26); // Alamat e-mail
             dt[20] = validasi(data.nomorWA, 27); // Nomor WA
             dt[21] = Akun.akun(data.instagram, 28); // Akun Instagram
+            console.log(typeof dt[21]);
+            console.log(dt[21]);
             dt[22] = Akun.akun(data.facebook, 29); // Akun Facebook (data ganda)
+            console.log(typeof dt[22]);
+            console.log(dt[22]);
             dt[23] = Akun.akun(data.twitter, 30); // Akun Twitter
             dt[24] = Akun.akun(data.telegram, 31); // Akun Telegram
             dt[25] = Akun.akun(data.akunLain, 32); // Akun lain (data ganda)
