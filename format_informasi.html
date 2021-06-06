@@ -991,32 +991,32 @@
 
         deklarasi_eventListener = callback => {
             // Konfigurasi evenListener untuk link dan button
-            let eventListener = ['keteranganSD', 'keteranganSMP', 'keteranganSMA', 'keteranganPerguruanTinggi', 'akunLain', 'jejakDigital', 'foto', 'informasiTambahan', 'aktivitas'],
+            let eventListeners = ['keteranganSD', 'keteranganSMP', 'keteranganSMA', 'keteranganPerguruanTinggi', 'akunLain', 'jejakDigital', 'foto', 'informasiTambahan', 'aktivitas'],
                 isReady = n => {
                     let exist = 0, element_HTML;
-                    eventListener.forEach(e => {
+                    eventListeners.forEach(e => {
                         element_HTML = document.getElementById('btn-' + e);
-                        document.body.contains(element_HTML) ? exist++ : exist += 0 ;
+                        document.body.contains(element_HTML) ? exist++ : false ;
                     });
-                    eventListener.forEach(e => {
-                        element_HTML = document.getElementById('link-' + e);
-                        document.body.contains(element_HTML) ? exist++ : exist += 0 ;
-                    });
-                    return exist === eventListener.length * 2 ;
+                    return exist === eventListeners.length;
                 },
                 
                 // Jika elemen yang dijadikan target belum tersedia, maka akan dilakukan pengecekan tiap 0.15 detik terus-menerus
                 interv_listernerDeclaration = setInterval(() => {
                     if (isReady()) {
-                        clearInterval(interv_listernerDeclaration);
-                        eventListener.forEach(e => {
+                        clearInterval(interv_listernerDeclaration); // Untuk menghentikan setInterval
+                        let links;
+                        eventListeners.forEach(e => {
                             document.getElementById('btn-' + e).addEventListener('click', () => {
                                 bukaTutup('halaman-utama', 'halaman-' + e);
                                 scrollCenter('slot-' + e);
                             });
-                            document.getElementById('link-' + e).addEventListener('click', () => {
-                                bukaTutup('halaman-' + e, 'halaman-utama');
-                            });
+                            links = document.getElementById('link-' + e);
+                            if (document.body.contains(links)) {
+                                document.getElementById('link-' + e).addEventListener('click', () => {
+                                    bukaTutup('halaman-' + e, 'halaman-utama');
+                                });
+                            }
                         });
                     }
                 }, 150);
