@@ -664,8 +664,6 @@
                         
                         else {
                             let tingkat = kode === 15 ? 'SD' : ( kode === 17 ? 'SMP' : kode === 19 ? a[18].children[0].innerHTML : 'PerguruanTinggi' ) ;
-                            if (kode === 19)
-                                D.get.id('halaman-keteranganSMA').getElementsByTagName('h2')[0].innerHTML = 'Keterangan ' + tingkat;
                             
                             nT.forEach((e, i) => {
                                 let newRow = D.create('tr');
