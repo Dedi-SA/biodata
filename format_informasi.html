@@ -499,8 +499,14 @@
                 // Jika input bernilai string masuk hanya berisi spasi maka hasilnya FALSE, selain itu TRUE
                 validSTR: n => typeof n === 'string' && clearSpace(n).length > 0,
 
-                // Jika input bernilai string dan memiliki 9 atau lebih karakter dan diawali dengan http:// atau https:// atau file:/// maka hasilnya true
-                validURL: n => is.validSTR(n) && clearSpace(n).length >= 9 && (n.toLowerCase().slice(0, 8).includes('http://') || n.toLowerCase().slice(0, 8).includes('https://') || n.toLowerCase().slice(0, 8).includes('file:///')),
+                /* Fungsi validURL di bawah ini akan mengembalikan true jika salah satu dari kondisi berikut terpenuhi.
+                    ~ (Bernilai string) dan (tidak memiliki spasi) dan (memiliki 9 atau lebih karakter) dan (diawali dengan http:// atau https:// atau file:///)
+                    ~ (Bernilai string) dan (tidak memiliki spasi) dan (memiliki 5 atau lebih karakter) dan (diawali dengan ./)
+                */
+                validURL: n => {
+                    n = DAFESE(n);
+                    return is.validSTR(n) && !n.includes(' ') && ((n.length >= 9 && (n.toLowerCase().slice(0, 8).includes('http://') || n.toLowerCase().slice(0, 8).includes('https://') || n.toLowerCase().slice(0, 8).includes('file:///'))) || (n.slice(0, 2) === './' && n.length >= 5))
+                },
 
                 /*  Jika parameter bernilai string dan hanya memiliki 1 jenis karakter yang muncul berulang kali,
                     maka hasilnya true */
