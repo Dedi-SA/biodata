@@ -818,7 +818,7 @@
                     
                     if (clearSpace(n) === '-' || is.loopSTR(n, '-')) {
                         if (!indeksAkun.includes(kode)) eror(kode, "Akun.akun() and contain '-' character");
-                        return '-';
+							return '-';
                     }
 
                     else if (!indeksAkun.includes(kode)) {
@@ -827,14 +827,14 @@
                     }
 
                     // Kelompok penggunaan valid Et username dengan output join
-                    // Instagram, Twitter, Telegram (28, 30, 31)
-                    else if ([28, 30, 31].includes(kode)) {
+                    // Instagram, Twitter (28, 30)
+                    else if ([28, 30].includes(kode)) {
                         nT = nT.filter(e => is.validETusername(e));
                         if (nT.length === 0)
                             return q ;
                         else {
                             let temp = [];
-                            nT.forEach(e => temp.push( kode === 28 ? Akun.ig(e) : kode === 30 ? Akun.tw(e) : Akun.tele(e) ));
+                            nT.forEach(e => temp.push( kode === 28 ? Akun.ig(e) : Akun.tw(e) ));
                             return temp.join(' | ');
                         }
                     }
@@ -890,13 +890,12 @@
                         return '<a href="http://twitter.com/' + username + '" target="_blank" title="Twitter | @' + username + '">@' + username + '</a>';
                     }
                 },
-                tele: username => is.validETusername(username) ? '@' + remove(username, '@') : '' ,
                 
                 // link harus berupa string dan harus diawali dengan http:// atau https://
                 lain: (namaSitus, link) => is.validSTR(namaSitus) && is.validURL(link) ? '<a href="' + link + '" target="_blank">' + namaSitus + '</a>' : ''
             },
-            indeksKeterangan = [15, 17, 19, 21],
-            indeksAkun = [28, 29, 30, 31, 32],
+            indeksKeterangan = [15, 17, 19, 21], // Daftar ID data yang ber-output Data Ganda (menggunakan array multi-dimensi)
+            indeksAkun = [28, 29, 30, 32], // Daftar akun media sosial yang memiliki output berbeda-beda
 
             // Fungsi untuk mengolah data dan di-input-kan ke dalam Array ''dt
             deklarasiData = callback => {
@@ -926,7 +925,7 @@
             dt[21] = Akun.akun(data.instagram, 28); // Akun Instagram
             dt[22] = Akun.akun(data.facebook, 29); // Akun Facebook (data ganda)
             dt[23] = Akun.akun(data.twitter, 30); // Akun Twitter
-            dt[24] = Akun.akun(data.telegram, 31); // Akun Telegram
+            dt[24] = validasi(data.telegram, 31); // Akun Telegram
             dt[25] = Akun.akun(data.akunLain, 32); // Akun lain (data ganda)
             dt[26] = validasi(data.jejakDigital, 33); // Jejak digital (data ganda)
             dt[27] = validasi(data.foto, 37); // Foto
@@ -946,9 +945,6 @@
                 return Array.isArray(dt) && dt.filter(e => typeof e === 'string').length === 31;
             },
 
-            /*
-                Jika isReady() == true, maka 
-            */
             tampilkan = setInterval(() => {
                 if (isReady()) { // Jika data pada Array 'dt' sudah lengkap sesuai ketentuan isReady(), maka data akan ditampilkan
                     clearInterval(tampilkan);
