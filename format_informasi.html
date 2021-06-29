@@ -743,7 +743,7 @@
                 else if (kode === 38) {
                     if (!nT.length > 0) return q ;
 
-                    else if (nT.length === 1) return n[0] ;
+                    else if (nT.length === 1 && nT[0].length <= 80) return n[0] ;
                     
                     else {
                         nT.forEach((e, i) => {
