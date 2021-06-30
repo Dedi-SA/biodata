@@ -540,21 +540,31 @@
             arrayDataTunggal = n => Array.isArray(n) ? n.filter(e => is.validSTR(e)) : is.validSTR(n) ? [n] : [] ,
             arrayDataGanda = n => Array.isArray(n) ? is.validSTR(n[0]) && is.validSTR(n[1]) ? [n[0], n[1]] : n.filter(e => Array.isArray(e) && is.validSTR(e[0]) && is.validSTR(e[1])) : [] ,
 
-            // Double_And_FrontEnd_Space_Eraser (DAFESE)
+
+            /* Double_And_FrontEnd_Space_Eraser (DAFESE)
+
+               Berfungsi untuk merapikan string dengan langkah-langkah berikut :
+			    1. Menghapus semua spasi yang ada di posisi paling depan dan paling belakang
+				2. Mengganti semua spasi yang ditulis ganda ('  ') atau lebih, menjadi satu spasi (' ')
+				
+				Contoh : ('  Be  lajar    Ja  va Script  ') menjadi ('Be lajar Ja va Script')
+			*/
             DAFESE = n => {
                 if (typeof n === 'string') {
                     do {
                         if (n.includes('  ')) n = n.split('  ').join(' '); // Mengganti double-space '  ' menjadi single-space ' ' di dalam string
                         
-                        else if (n.slice(0, 1) === ' ') n = n.slice(1); // Menghapus single-space ' ' yang ada di posisi paling depan
+                        else if (n.startsWith(' ')) n = n.slice(1); // Menghapus single-space ' ' yang ada di posisi paling depan
                         
-                        else if (n.slice(-1) === ' ') n = n.slice(0, -1); // Menghapus single-space ' ' yang ada di posisi paling belakang
+                        else if (n.endsWith(' ')) n = n.slice(0, -1); // Menghapus single-space ' ' yang ada di posisi paling belakang
                         
-                    } while (n.includes('  ') || n.slice(0, 1) === ' ' || n.slice(-1) === ' ')
+                    } while (n.includes('  ') || n.startsWith(' ') || n.endsWith(' '))
                     return n;
                 }
-                else 
-                    return '';
+                else {
+                    console.log('Fungsi DAFESE menerima data non-string');
+                    return n;
+                }
             },
             
             eror = (Kode, lokasi) => {
@@ -743,7 +753,7 @@
                 else if (kode === 38) {
                     if (!nT.length > 0) return q ;
 
-                    else if (nT.length === 1 && nT[0].length <= 80) return n[0] ;
+                    else if (nT.length === 1 && nT[0].length <= 80) return nT[0] ;
                     
                     else {
                         nT.forEach((e, i) => {
@@ -818,7 +828,7 @@
                     
                     if (clearSpace(n) === '-' || is.loopSTR(n, '-')) {
                         if (!indeksAkun.includes(kode)) eror(kode, "Akun.akun() and contain '-' character");
-							return '-';
+                            return '-';
                     }
 
                     else if (!indeksAkun.includes(kode)) {
