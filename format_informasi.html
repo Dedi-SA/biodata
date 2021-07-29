@@ -54,11 +54,11 @@
                 ["", ""],
                 ["", ""] // [Keterangan link, link yang dituju]
             ],
-        "foto": [
+        "gambar": [
                 ["Santuy", "http://1.bp.blogspot.com/-7ce-sLxvmac/YJOmim6tndI/AAAAAAAAAL4/URkdiriRl9A_KItseScW-ML6ctesnXcJgCLcBGAsYHQ/s1350/santuy.jpg"],
                 ["Dunia digital", "http://1.bp.blogspot.com/-rw5A2z7zngs/YJOmi5b06FI/AAAAAAAAAL0/_bxx4FOjfkspB8n8k29zvkBaPT3bJsz3ACLcBGAsYHQ/s2792/teknologi.jpg"],
                 ["", ""],
-                ["", ""] // [Keterangan foto, link foto]
+                ["", ""] // [Keterangan gambar, link gambar]
             ],
         "informasiTambahan": ["Juara Badminton tingkat SMP 2006", "Pernah menjadi Ketua OSIS di SMAN 1 Porong"], // [info, info, .....]
         "aktivitas": [
@@ -336,9 +336,9 @@
                 <tr> <!-- tr 36 -->
                     <td class="label" colspan="2">Lain-lain</td>
                 </tr>
-                <tr id="slot-foto"> <!-- tr 37 -->
-                    <td class="keteranganData">Foto</td>
-                    <td>:&ensp;<span id="data-foto"></span></td>
+                <tr id="slot-gambar"> <!-- tr 37 -->
+                    <td class="keteranganData">Gambar</td>
+                    <td>:&ensp;<span id="data-gambar"></span></td>
                 </tr>
                 <tr id="slot-informasiTambahan"> <!-- tr 38 -->
                     <td class="keteranganData">Informasi Tambahan</td>
@@ -435,10 +435,10 @@
             </table>
         </div>
     </div>
-    <div id="halaman-foto" class="hidden headerMargin space-footer">
-        <button class="btn1" id="btn-foto"><< Kembali</button>
-        <h2 style="margin-bottom: 70px;" onclick="bukaTutup('target_foto')">Foto</h2>
-        <div class="containerHiddenContent" id="target_foto">
+    <div id="halaman-gambar" class="hidden headerMargin space-footer">
+        <button class="btn1" id="btn-gambar"><< Kembali</button>
+        <h2>Gambar</h2>
+        <div class="containerHiddenContent" id="target_gambar">
             
         </div>
     </div>
@@ -733,11 +733,11 @@
                         return q;
                 }
 
-                // Foto
+                // Gambar
                 else if (kode === 37) {
                     if (!nG.length > 0) return q ;
 
-                    let targ = D.get.id('target_foto');
+                    let targ = D.get.id('target_gambar');
                     nG.forEach((e, i) => {
                         targ.innerHTML += '<div><button class="btn2" onclick="bukaTutup(\'gambar' + ( i + 1 ) + '\')">Gambar ' + ( i + 1 ) + ' : ' + e[0] + '</button></div>';
                         let wadahGambar = D.create('div');
@@ -750,7 +750,7 @@
                             wadahGambar.appendChild(imgs);
                             wadahGambar.innerHTML += '<div style="text-align: center;"><strong>Gambar ' + ( i + 1 ) + '</strong> : ' + e[0] + '</div>';
                     });
-                    return '<a id="link-foto" title="' + nG.length + ' foto">Galeri foto</a>';
+                    return '<a id="link-gambar" title="' + nG.length + ' gambar">Galeri</a>';
                 }
 
                 // Informasi tambahan
@@ -942,7 +942,7 @@
                 dt[24] = validasi(data.telegram, 31); // Akun Telegram
                 dt[25] = Akun.akun(data.akunLain, 32); // Akun lain (data ganda)
                 dt[26] = validasi(data.jejakDigital, 33); // Jejak digital (data ganda)
-                dt[27] = validasi(data.foto, 37); // Foto
+                dt[27] = validasi(data.gambar, 37); // Gambar
                 dt[28] = validasi(data.informasiTambahan, 38); // Informasi tambahan
                 dt[29] = validasi(data.aktivitas, 39); // Aktivitas (3 data)
 
@@ -993,7 +993,7 @@
                         D.get.id('data-telegram').innerHTML                  = dt[24]; // Akun Telegram
                         D.get.id('data-akunLain').innerHTML                  = dt[25]; // Akun lain (data ganda)
                         D.get.id('data-jejakDigital').innerHTML              = dt[26]; // Jejak digital (data ganda)
-                        D.get.id('data-foto').innerHTML                      = dt[27]; // Foto
+                        D.get.id('data-gambar').innerHTML                      = dt[27]; // Gambar
                         D.get.id('data-informasiTambahan').innerHTML         = dt[28]; // Informasi tambahan
                         D.get.id('data-aktivitas').innerHTML                 = dt[29]; // Aktivitas (3 data)
 
@@ -1006,7 +1006,7 @@
             // Fungsi 2 - Membuat eventListener untuk link dan button
             deklarasi_eventListener = callback => {
                 // Konfigurasi evenListener untuk link dan button
-                let eventListeners = ['keteranganSD', 'keteranganSMP', 'keteranganSMA', 'keteranganPerguruanTinggi', 'akunLain', 'jejakDigital', 'foto', 'informasiTambahan', 'aktivitas'],
+                let eventListeners = ['keteranganSD', 'keteranganSMP', 'keteranganSMA', 'keteranganPerguruanTinggi', 'akunLain', 'jejakDigital', 'gambar', 'informasiTambahan', 'aktivitas'],
                     isReady = () => {
                         let exist = 0, element_HTML;
                         eventListeners.forEach(e => {
