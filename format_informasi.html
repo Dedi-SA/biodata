@@ -19,17 +19,17 @@
         "ibu": "Laili",
         "nisn": "00738277",
         "SD": "SDN Porong, Sidoarjo (1998 - 2004)",
-        // "keteranganSD": ["Ikut serta gerak jalan tingkat kecamatan", "Juara 2 lomba makan krupuk"], // info 1 ,  info 2 ,  ....
-        "keteranganSD": ["", ""],
+        "keteranganSD": ["Ikut serta gerak jalan tingkat kecamatan", "Juara 2 lomba makan krupuk"], // info 1 ,  info 2 ,  ....
+        // "keteranganSD": ["", ""],
         "SMP": "SMPN 2 Porong (2004 - 2007)",
-        // "keteranganSMP": ["Ketua OSIS 2006/2007", "Memenangkan turnamen voli tingkat kabupaten"], // info 1 ,  info 2 ,  ....
-        "keteranganSMP": ["", ""],
+        "keteranganSMP": ["Ketua OSIS 2006/2007", "Memenangkan turnamen voli tingkat kabupaten"], // info 1 ,  info 2 ,  ....
+        // "keteranganSMP": ["", ""],
         "SMA": "SMAN 1 Porong (2007 - 2010)",
-        // "keteranganSMA": ["Ketua OSIS 2009/2010", "Juara Olimpiade Matematika tingkat provinsi"], // info 1 ,  info 2 ,  ....
-        "keteranganSMA": ["", ""],
+        "keteranganSMA": ["Ketua OSIS 2009/2010", "Juara Olimpiade Matematika tingkat provinsi"], // info 1 ,  info 2 ,  ....
+        // "keteranganSMA": ["", ""],
         "perguruanTinggi": "Institut Teknologi Sepuluh Nopember (2010 - 2014)",
-        // "keteranganPerguruanTinggi": ["Jurusan Teknik Geomatika FTSPK", "Masuk melalui SBMPTN"],
-        "keteranganPerguruanTinggi": ["", ""],
+        "keteranganPerguruanTinggi": ["Jurusan Teknik Geomatika FTSPK", "Masuk melalui SBMPTN"],
+        // "keteranganPerguruanTinggi": ["", ""],
         "kerabat": "Laili Nur Fadhilah (kakak kandung perempuan)",
         "email": "reza.alviansyah45@gmail.com",
         "nomorWA": "0821-8332-6819",
@@ -304,7 +304,7 @@
                     <td class="keteranganData">Akun Instagram</td>
                     <td>:&ensp;<span id="data-instagram"></span></td>
                 </tr>
-                <tr> <!-- tr 29 -->
+                <tr id="slot-facebook"> <!-- tr 29 -->
                     <td class="keteranganData">Akun Facebook</td>
                     <td>:&ensp;<span id="data-facebook"></span></td>
                 </tr>
@@ -401,6 +401,20 @@
                     <tr style="font-weight: bold;">
                         <td class="tabel-nomor">No.</td>
                         <td class="tabel-keterangan">Keterangan</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="halaman-facebook" class="hidden headerMargin space-footer">
+        <button class="btn1" id="btn-facebook"><< Kembali</button>
+        <h2>Facebook</h2>
+        <div class="containerHiddenTable">
+            <table class="hiddenTable" cellpadding="2" cellspacing="2">
+                <tbody id="target_facebook">
+                    <tr style="font-weight: bold;">
+                        <td class="tabel-nomor">No.</td>
+                        <td class="tabel-keterangan">Akun Facebook</td>
                     </tr>
                 </tbody>
             </table>
@@ -511,7 +525,7 @@
                     return is.validSTR(n) && !n.includes(' ') && ((n.length >= 9 && (n.toLowerCase().slice(0, 8).includes('http://') || n.toLowerCase().slice(0, 8).includes('https://') || n.toLowerCase().slice(0, 8).includes('file:///'))) || (n.slice(0, 2) === './' && n.length >= 5))
                 },
 
-                /*  Jika parameter bernilai string dan hanya memiliki 1 jenis karakter yang muncul berulang kali,
+                /*  Jika parameter bernilai string dan hanya memiliki string spesifik yang muncul berulang kali,
                     maka hasilnya true */
                 loopSTR: (n, char) => {
                     if (typeof n === 'string' && ((typeof char === 'string' && n.toLowerCase().length > 1) || (typeof char !== 'string' && clearSpace(n.toLowerCase()).length > 1))) {
@@ -525,10 +539,16 @@
                 },
 
                 // Bila nilai yang masuk bernilai string dan merupakan username yang valid (diawali @ dan diikuti string lain selain spasi)
-                validETusername: n => is.validSTR(n) && !DAFESE(n).includes(' ') && !DAFESE(n).slice(1).includes('@') && !is.loopSTR(DAFESE(n).slice(1), '.'),
+                validETusername: n => {
+                    n = DAFESE(n);
+                    return is.validSTR(n) && !n.includes(' ') && !n.slice(1).includes('@') && !is.loopSTR(n.slice(1), '.');
+                },
 
                 // Jika string TIDAK diawali dan diakhiri dengan @ dan memiliki karakter @ selain di awal dan di akhir maka TRUE
-                validEmail: n => is.validSTR(n) && n.includes('@') && !DAFESE(n).includes(' ') && DAFESE(n).slice(1, n.length-1).includes('@')
+                validEmail: n => {
+                    n = DAFESE(n);
+                    return is.validSTR(n) && n.includes('@') && !n.includes(' ') && n.slice(1, n.length-1).includes('@');
+                }
             },
             
             D = {
@@ -561,13 +581,18 @@
                         
                         else if (n.endsWith(' ')) n = n.slice(0, -1); // Menghapus single-space ' ' yang ada di posisi paling belakang
                         
-                    } while (n.includes('  ') || n.startsWith(' ') || n.endsWith(' '))
+                    } while (n.includes('  ') || n.startsWith(' ') || n.endsWith(' '));
                     return n;
                 }
                 else {
-                    console.log('Fungsi DAFESE menerima data non-string');
+                    console.log('Kesalahan : DAFESE tidak menerima data yang bukan string');
                     return n;
                 }
+            },
+
+            maxSTR = (str, limit) => {
+                if (is.validSTR(str) && typeof limit === 'number' && !isNaN(limit) && limit >= 10)
+                    return str.length >= limit ? str.slice(0, limit - 7) + '....' : str ;
             },
             
             eror = (Kode, lokasi) => {
@@ -709,6 +734,7 @@
 
                 // Jejak digital
                 else if (kode === 33) {
+                    const stringLimit = 80; // Batas maksimal sebagai syarat untuk memangkas string yang terlalu panjang
                     nG = nG.filter(e => is.validURL(e[1]));
                     if (nG.length === 1 )
                         return '<a href="' + nG[0][1] + '" target="_blank" title="Klik untuk mengunjungi">' + nG[0][0] + '</a>';
@@ -717,13 +743,13 @@
                         nG.forEach((e, i) => {
                             let newTabel = D.create('tr');
                             D.get.id('target_jejakDigital').appendChild(newTabel);
-                                let newTabel_A = D.create('td')
+                                let newTabel_A = D.create('td');
                                     newTabel_A.className = 'tabel-nomor';
                                     newTabel_A.innerHTML = (i + 1) + '.';
                                 newTabel.appendChild(newTabel_A);
                                 let newTabel_B = D.create('td');
                                     newTabel_B.className = 'tabel-konten';
-                                    newTabel_B.innerHTML = '<a href="' + e[1] + '" target="_blank" title="Jejak digital ' + (i + 1) + '">' + e[0] + '</a>';
+                                    newTabel_B.innerHTML = '<a href="' + e[1] + '" target="_blank"' + (e[0].length >= stringLimit ? e[0] : '') + '>' + maxSTR(e[0], stringLimit) + '</a>';
                                 newTabel.appendChild(newTabel_B);
                         });
                         return '<a id="link-jejakDigital" title="' + nG.length + ' data">Daftar jejak digital</a>';
@@ -852,35 +878,32 @@
                         }
                     }
 
-                    // Kelompok penggunaan Array data ganda
+                    // Kelompok akun pengguna Array data ganda
                     // Facebook, Akun lain (29, 32)
                     else if ([29, 32].includes(kode)) {
+                        const stringLimit = 55;
                         nG = nG.filter(e => is.validURL(e[1]));
                         if (nG.length === 0)
                             return q;
-
+                        
                         else if (nG.length === 1)
                             return kode === 29 ? Akun.fb(nG[0][0], nG[0][1]) : Akun.lain(nG[0][0], nG[0][1]) ;
-
-                        else if (kode === 29) {
-                            let temp = [];
-                            nG.forEach(e => temp.push(Akun.fb(e[0], e[1])));
-                            return temp.join(' | ');
-                        }
+                        
                         else {
+                            const x = kode === 29 ? 'facebook' : 'akunLain' ;
                             nG.forEach((e, i) => {
                                 let barisBaru = D.create('tr');
-                                D.get.id('target_akunLain').appendChild(barisBaru);
-                                    let kolomA = D.create('td');
-                                        kolomA.className = 'tabel-nomor';
-                                        kolomA.innerHTML = (i + 1) + '.';
-                                    barisBaru.appendChild(kolomA);
-                                    let kolomB = D.create('td');
-                                        kolomB.className = 'tabel-konten';
-                                        kolomB.innerHTML = Akun.lain(e[0], e[1]);
-                                    barisBaru.appendChild(kolomB);
+                                D.get.id('target_' + x).appendChild(barisBaru);
+                                    let kolomNomor = D.create('td');
+                                        kolomNomor.className = 'tabel-nomor';
+                                        kolomNomor.innerHTML = (i + 1) + '.';
+                                    barisBaru.appendChild(kolomNomor);
+                                    let kolomKonten = D.create('td');
+                                        kolomKonten.className = 'tabel-konten';
+                                        kolomKonten.innerHTML = '<a href="' + e[1] + ' target="_blank"' + (e[0].length >= stringLimit ? ' title="' + e[0] + '"' : '') + '>' + maxSTR(e[0], stringLimit) + '</a>';
+                                    barisBaru.appendChild(kolomKonten);
                             });
-                            return '<a id="link-akunLain" title="' + nG.length + ' akun">Daftar akun lain</a>';
+                            return '<a id="link-' + x + '" title="' + nG.length + ' akun">Daftar akun ' + (kode === 29 ? 'Facebook' : 'lain') + '</a>';
                         }
                     }
                     else
@@ -895,7 +918,6 @@
                 fb: (nama, link) => {
                     if (is.validSTR(nama) && is.validSTR(link))
                         return '<a href="' + link + '" target="_blank" title="Facebook | ' + nama + '">' + nama + '</a>';
-                    
                 },
                 tw: username => {
                     if (is.validETusername(username)) {
@@ -910,7 +932,7 @@
             indeksKeterangan = [15, 17, 19, 21], // Daftar ID data yang ber-output Data Ganda (menggunakan array multi-dimensi)
             indeksAkun = [28, 29, 30, 32], // Daftar akun media sosial yang memiliki output berbeda-beda
 
-            // Fungsi 1 - Mengolah data dan di-input-kan ke dalam Array ''dt
+            // Fungsi 1 - Mengolah data dan di-input-kan ke dalam Array 'dt'
             deklarasiData = callback => {
             
                 let dt = [];
@@ -992,7 +1014,7 @@
                         D.get.id('data-telegram').innerHTML                  = dt[24]; // Akun Telegram
                         D.get.id('data-akunLain').innerHTML                  = dt[25]; // Akun lain (data ganda)
                         D.get.id('data-jejakDigital').innerHTML              = dt[26]; // Jejak digital (data ganda)
-                        D.get.id('data-gambar').innerHTML                      = dt[27]; // Gambar
+                        D.get.id('data-gambar').innerHTML                    = dt[27]; // Gambar
                         D.get.id('data-informasiTambahan').innerHTML         = dt[28]; // Informasi tambahan
                         D.get.id('data-aktivitas').innerHTML                 = dt[29]; // Aktivitas (3 data)
 
@@ -1005,7 +1027,7 @@
             // Fungsi 2 - Membuat eventListener untuk link dan button
             deklarasi_eventListener = callback => {
                 // Konfigurasi evenListener untuk link dan button
-                let eventListeners = ['keteranganSD', 'keteranganSMP', 'keteranganSMA', 'keteranganPerguruanTinggi', 'akunLain', 'jejakDigital', 'gambar', 'informasiTambahan', 'aktivitas'],
+                let eventListeners = ['keteranganSD', 'keteranganSMP', 'keteranganSMA', 'keteranganPerguruanTinggi', 'facebook', 'akunLain', 'jejakDigital', 'gambar', 'informasiTambahan', 'aktivitas'],
                     isReady = () => {
                         let exist = 0, element_HTML;
                         eventListeners.forEach(e => {
