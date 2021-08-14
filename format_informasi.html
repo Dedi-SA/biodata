@@ -829,7 +829,7 @@
                     nG.forEach((e, i) => {
                         targ.innerHTML += '<div><button class="btn2" onclick="bukaTutup(\'gambar' + ( i + 1 ) + '\')">Gambar ' + ( i + 1 ) + ' : ' + e[0] + '</button></div>';
                         let wadahGambar = D.create('div');
-                            wadahGambar.className = 'imgContainer hidden';
+                            wadahGambar.className = 'imgContainer' + ( i === 0 ? '' : ' hidden' );
                             wadahGambar.id = 'gambar' + ( i + 1 );
                         targ.appendChild(wadahGambar);
                             let imgs = D.create('img');
