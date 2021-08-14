@@ -33,23 +33,23 @@
         "kerabat": "Laili Nur Fadhilah (kakak kandung perempuan)",
         "email": "reza.alviansyah45@gmail.com",
         "nomorWA": "0821-8332-6819",
-        "instagram": ["@reza.aliviansyah18", "@reza.reza_alvi.2222222222222222222222222222222222222222222222222222222222222222222"], // Username Instagram
+        "instagram": ["@reza.aliviansyah18", "@reza.reza_alvi"], // Username Instagram
         "facebook": [
-                ["Reza Alviansyah 1 ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", "https://www.facebook.com/RezaAlviansyah"],
+                ["Reza Alviansyah 1", "https://www.facebook.com/RezaAlviansyah"],
                 ["Reza Alviansyah 2s", "https://www.facebook.com/AlviansyahReza"],
                 ["", ""],
                 ["", ""] // [Keterangan link, link yang dituju]
             ],
-        "twitter": "@reza_alviansyah69_ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
+        "twitter": "@reza_alviansyah69_",
         "telegram": "@reza_alviansyah50",
         "akunLain": [
-                ["Github ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", "https://www.github.com/Dedi-SA"],
+                ["Github", "https://www.github.com/Dedi-SA"],
                 ["Absensi guru SMAN 1 Porong", "http://sman1porong.sch.id/html/guru.php?id=dbguru"],
                 ["", ""],
                 ["", ""] // [Keterangan link, link yang dituju]
             ],
         "jejakDigital": [
-                ["Scribd ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", "https://scribd.com/"],
+                ["Scribd", "https://scribd.com/"],
                 ["Blogger", "http://blogger.blogspot.com"],
                 ["", ""],
                 ["", ""] // [Keterangan link, link yang dituju]
@@ -60,7 +60,8 @@
                 ["", ""],
                 ["", ""] // [Keterangan gambar, link gambar]
             ],
-        "informasiTambahan": ["Juara Badminton tingkat SMP 2006", "Pernah menjadi Ketua OSIS di SMAN 1 Porong"], // [info, info, .....]
+        //"informasiTambahan": ["Juara Badminton tingkat SMP 2006", "Pernah menjadi Ketua OSIS di SMAN 1 Porong"], // [info, info, .....]
+        "informasiTambahan": ["Juara Badminton tingkat SMP 2006 ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", ""], // [info, info, .....]
         "aktivitas": [
             ["12 Juni 2020", "Surabaya", "Makan  bersama"],
             ["14 Maret 2017", "Semarang", "Rekreasi"],
@@ -573,7 +574,7 @@
                 validETusername: n => {
                     n = DAFESE(n);
                     const trueParameter = x => !x.includes(' ') && !x.includes('@') && !x.includes('-') && !is.loopSTR(x, '.') && !is.loopSTR(x, '_');
-                    if (is.validSTR(n) && n.replace('@', '').length >= 2) {
+                    if (is.validSTR(n) && n.replaceAll('@', '').length >= 2) {
                         if (n.startsWith('@'))
                             return trueParameter(n.slice(1));
                         else
@@ -606,11 +607,11 @@
             /* Double_And_FrontEnd_Space_Eraser (DAFESE)
 
                Berfungsi untuk merapikan string dengan langkah-langkah berikut :
-			    1. Menghapus semua spasi yang ada di posisi paling depan dan paling belakang
-				2. Mengganti semua spasi yang ditulis ganda ('  ') atau lebih, menjadi satu spasi (' ')
-				
-				Contoh : ('  Be  lajar    Ja  va Script  ') menjadi ('Be lajar Ja va Script')
-			*/
+                1. Menghapus semua spasi yang ada di posisi paling depan dan paling belakang
+                2. Mengganti semua spasi yang ditulis ganda ('  ') atau lebih, menjadi satu spasi (' ')
+
+                Contoh : ('  Be  lajar    Ja  va Script  ') menjadi ('Be lajar Ja va Script')
+            */
             DAFESE = n => { // (string) => string
                 if (typeof n === 'string') {
                     do {
@@ -631,7 +632,7 @@
 
             // Berfungsi untuk mencari nomor urut children mengunakan atribut ID (Case Sensitive)
             slotNumber = slotName => { // (string) => number
-                slotName = typeof slotName === 'string' ? DAFESE(slotName).replace('slot-', '') : slotName ;
+                slotName = typeof slotName === 'string' ? DAFESE(slotName).replaceAll('slot-', '') : slotName ;
                 if (is.validSTR(slotName) && !slotName.includes(' ')) {
                     
                     for (let k = 0; k < a.length; k++) {
@@ -820,10 +821,10 @@
 
                 // Gambar
                 else if (kode === slotNumber('gambar')) {
+                    let targ = D.get.id('target_gambar');
+
                     if (!nG.length > 0)
                         return q ;
-
-                    let targ = D.get.id('target_gambar');
 
                     nG.forEach((e, i) => {
                         targ.innerHTML += '<div><button class="btn2" onclick="bukaTutup(\'gambar' + ( i + 1 ) + '\')">Gambar ' + ( i + 1 ) + ' : ' + e[0] + '</button></div>';
@@ -842,9 +843,10 @@
 
                 // Informasi tambahan
                 else if (kode === slotNumber('informasiTambahan')) {
+                    const stringLimit = 60;
                     if (!nT.length > 0) return q ;
 
-                    else if (nT.length === 1 && nT[0].length <= 80) return nT[0] ;
+                    else if (nT.length === 1 && nT[0].length <= stringLimit) return nT[0] ;
                     
                     else {
                         nT.forEach((e, i) => {
@@ -931,7 +933,7 @@
                     // Instagram_id , Twitter_id
                     else if ([slotNumber('instagram'), slotNumber('twitter')].includes(kode)) {
                         const stringLimit = 55, sn_ig = slotNumber('instagram');
-                        nT = nT.filter(e => is.validETusername(e)).map(e => e.replace('@', ''));
+                        nT = nT.filter(e => is.validETusername(e)).map(e => e.replaceAll('@', ''));
 
                         if (nT.length === 0)
                             return q ;
@@ -1008,7 +1010,7 @@
                 },
                 ig: (username, limit) => {
                     if (is.validETusername(username) && limit >= 10) {
-                        username = username.replace('@', '');
+                        username = username.replaceAll('@', '');
                         return '<a href="http://www.instagram.com/' + username + '" target="_blank" title="Instagram | @' + username + '">@' + maxSTR(username, limit) + '</a>';
                     }
                 },
@@ -1018,7 +1020,7 @@
                 },
                 tw: (username, limit) => {
                     if (is.validETusername(username) && limit >= 10) {
-                        username = username.replace('@', '');
+                        username = username.replaceAll('@', '');
                         return '<a href="http://twitter.com/' + username + '" target="_blank" title="Twitter | @' + username + '">@' + username + '</a>';
                     }
                 },
@@ -1189,12 +1191,6 @@
             // Memanggil Fungsi 1
             deklarasiData(deklarasi_eventListener);
 
-            /*
-                ISSUE(s)
-
-                -
-
-            */
     </script>
 </body>
 </html>
