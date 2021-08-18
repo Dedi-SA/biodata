@@ -634,7 +634,6 @@
             slotNumber = slotName => { // (string) => number
                 slotName = typeof slotName === 'string' ? DAFESE(slotName).replaceAll('slot-', '') : slotName ;
                 if (is.validSTR(slotName) && !slotName.includes(' ')) {
-                    
                     for (let k = 0; k < a.length; k++) {
                         if (a[k].id === 'slot-' + slotName)
                             return k;
@@ -1073,16 +1072,14 @@
                         clearInterval(interv_deklarasiDT30);
                         dt[30] = jenisSM(dt[15]); // Jenis sekolah menengah
                     }
-                }, 100),
+                }, 20),
 
                 // Untuk mengecek apakah Array 'dt' memiliki 31 elemen string, jika ya maka true
                 isReady = () => {
                     return Array.isArray(dt) && dt.filter(e => typeof e === 'string').length === 31;
                 },
 
-                tampilkan_param = 0,
                 tampilkan = setInterval(() => {
-                    tampilkan_param++;
                     if (isReady()) { // Jika data pada Array 'dt' sudah lengkap sesuai ketentuan isReady(), maka data akan di-inputkan
                         clearInterval(tampilkan);
 
@@ -1123,10 +1120,7 @@
                         // Memanggil fungsi 2
                         callback(hideShow_slotKeterangan);
                     }
-                    else if (tampilkan_param == 10) {
-                        clearInterval(tampilkan);
-                    }
-                }, 50);
+                }, 150);
             }, // Akhir fungsi 1
 
             // Fungsi 2 - Membuat eventListener untuk link dan button
