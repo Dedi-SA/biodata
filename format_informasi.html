@@ -20,16 +20,12 @@
         "nisn": "00738277",
         "SD": "SDN Porong, Sidoarjo (1998 - 2004)",
         "keteranganSD": ["Ikut serta gerak jalan tingkat kecamatan", "Juara 2 lomba makan krupuk"], // info 1 ,  info 2 ,  ....
-        // "keteranganSD": ["", ""],
         "SMP": "SMPN 2 Porong (2004 - 2007)",
         "keteranganSMP": ["Ketua OSIS 2006/2007", "Memenangkan turnamen voli tingkat kabupaten"], // info 1 ,  info 2 ,  ....
-        // "keteranganSMP": ["", ""],
         "SMA": "SMAN 1 Porong (2007 - 2010)",
         "keteranganSMA": ["Ketua OSIS 2009/2010", "Juara Olimpiade Matematika tingkat provinsi"], // info 1 ,  info 2 ,  ....
-        // "keteranganSMA": ["", ""],
         "perguruanTinggi": "Institut Teknologi Sepuluh Nopember (2010 - 2014)",
         "keteranganPerguruanTinggi": ["Jurusan Teknik Geomatika FTSPK", "Masuk melalui SBMPTN"],
-        // "keteranganPerguruanTinggi": ["", ""],
         "kerabat": "Laili Nur Fadhilah (kakak kandung perempuan)",
         "email": "reza.alviansyah45@gmail.com",
         "nomorWA": "0821-8332-6819",
@@ -40,6 +36,7 @@
                 ["", ""],
                 ["", ""] // [Keterangan link, link yang dituju]
             ],
+        "twitter": "",
         "twitter": "@reza_alviansyah69_",
         "telegram": "@reza_alviansyah50",
         "akunLain": [
@@ -60,8 +57,7 @@
                 ["", ""],
                 ["", ""] // [Keterangan gambar, link gambar]
             ],
-        //"informasiTambahan": ["Juara Badminton tingkat SMP 2006", "Pernah menjadi Ketua OSIS di SMAN 1 Porong"], // [info, info, .....]
-        "informasiTambahan": ["Juara Badminton tingkat SMP 2006 ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", ""], // [info, info, .....]
+        "informasiTambahan": ["Juara Badminton tingkat SMP 2006", "Pernah menjadi Ketua OSIS di SMAN 1 Porong"], // [info, info, .....]
         "aktivitas": [
             ["12 Juni 2020", "Surabaya", "Makan  bersama"],
             ["14 Maret 2017", "Semarang", "Rekreasi"],
@@ -316,7 +312,7 @@
                     <td class="keteranganData">Akun Twitter</td>
                     <td>:&ensp;<span id="data-twitter"></span></td>
                 </tr>
-                <tr> <!-- tr 31 -->
+                <tr id="slot-telegram"> <!-- tr 31 -->
                     <td class="keteranganData">Akun Telegram</td>
                     <td>:&ensp;<span id="data-telegram"></span></td>
                 </tr>
@@ -731,15 +727,11 @@
 
             // 1. Data dari JSON | 2. Kode data
             validasi = (n, kode) => { // (string, number) => string
-                let nT = arrayDataTunggal(n), nG = arrayDataGanda(n);
+                let nT = arrayDataTunggal(n), nG = arrayDataGanda(n), isQ = Kode => [slotNumber('jenisKelamin'), slotNumber('ayah'), slotNumber('ibu')].includes(Kode) ;
                 kode = !isNaN(+kode) && Number.isInteger(Math.abs(+kode)) ? Math.abs(+kode) : kode ;
 
-                if (clearSpace(n) === '-' || is.loopSTR(n, '-')) {
-                    if (indeksKeterangan.includes(kode))
-                        a[kode].style.display = 'none';
-                    
-                    return [slotNumber('jenisKelamin'), slotNumber('ayah'), slotNumber('ibu')].includes(kode) ? q : '-' ;
-                }
+                if (clearSpace(n) === '-' || is.loopSTR(n, '-') || clearSpace(n) === '?' || is.loopSTR(n, '?'))
+                    return isQ(kode) ? q : '-' ;
 
                 else if (indeksAkun.includes(kode)) {
                     eror(kode, 'validasi()');
@@ -762,6 +754,8 @@
 
                 // Keterangan SD, SMP, SMA, Perguruan Tinggi
                 if (indeksKeterangan.includes(kode)) {
+                    const X = 'keterangan',
+                          x  = kode === slotNumber(X + 'SD') ? 'SD' : kode === slotNumber(X + 'SMP') ? 'SMP' : kode === slotNumber(X + 'SMA') ? 'SMA' : 'PerguruanTinggi' ;
                     if (nT.length > 0) {
                         if (nT.length === 1)
                             return nT[0];
@@ -784,13 +778,15 @@
                             return '<a id="link-keterangan' + ( kode === 19 ? 'SMA' : tingkat ) + '" title="Keterangan ' + tingkat + ' | ' + nT.length + ' data">Daftar keterangan ' + tingkat + '</a>';
                         }
                     }
-                    else
-                        return q;
+                    else {
+                        bukaTutup('slot-keterangan' + x);
+                        return '-';
+                    }
                 }
 
                 // E-mail
                 else if (kode === slotNumber('email'))
-                    return is.validEmail(n) ? n : q ;
+                    return is.validEmail(n) ? n : '-' ;
 
                 // Jejak digital
                 else if (kode === slotNumber('jejakDigital')) {
@@ -815,7 +811,7 @@
                         return '<a id="link-jejakDigital" title="' + nG.length + ' data">Daftar jejak digital</a>';
                     }
                     else
-                        return q;
+                        return '-';
                 }
 
                 // Gambar
@@ -823,7 +819,7 @@
                     let targ = D.get.id('target_gambar');
 
                     if (!nG.length > 0)
-                        return q ;
+                        return '-' ;
 
                     nG.forEach((e, i) => {
                         targ.innerHTML += '<div><button class="btn2" onclick="bukaTutup(\'gambar' + ( i + 1 ) + '\')">Gambar ' + ( i + 1 ) + ' : ' + e[0] + '</button></div>';
@@ -843,7 +839,7 @@
                 // Informasi tambahan
                 else if (kode === slotNumber('informasiTambahan')) {
                     const stringLimit = 60;
-                    if (!nT.length > 0) return q ;
+                    if (!nT.length > 0) return '-' ;
 
                     else if (nT.length === 1 && nT[0].length <= stringLimit) return nT[0] ;
                     
@@ -900,15 +896,16 @@
                         return '<a id="link-aktivitas" title="' + n.length + ' data">Daftar Aktivitas</a>' ;
                     }
                     else
-                        return q;
+                        return '-';
                 }
                 
-                else if (is.validSTR(n))
-                    return remove(n, [' ', '`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '[', ']', '{', '}', '\\', '|', ';', ':', "'", '"', ',', '.', '<', '>', '?', '/']).length > 0 ? DAFESE(n) : q;
+                else if (is.validSTR(n)) {
+                    let n2 = remove(n, [' ', '`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '[', ']', '{', '}', '\\', '|', ';', ':', "'", '"', ',', '.', '<', '>', '?', '/']);
+                    return n2.length > 0 ? DAFESE(n) : isQ(kode) ? q : '-' ;
+                }
 
                 else {
-                    if (indeksKeterangan.includes(kode)) a[kode].style.display = 'none';
-                    return q;
+                    return isQ(kode) ? q : '-';
                 }
             },
 
@@ -931,11 +928,13 @@
                     // Kelompok penggunaan valid Et username dengan output join
                     // Instagram_id , Twitter_id
                     else if ([slotNumber('instagram'), slotNumber('twitter')].includes(kode)) {
-                        const stringLimit = 55, sn_ig = slotNumber('instagram');
+                        const stringLimit = 55, sn_ig = slotNumber('instagram'), x = kode === sn_ig ? 'instagram' : 'twitter' ;
                         nT = nT.filter(e => is.validETusername(e)).map(e => e.replaceAll('@', ''));
 
-                        if (nT.length === 0)
-                            return q ;
+                        if (nT.length === 0) {
+                            bukaTutup('slot-' + x);
+                            return '-' ;
+                        }
                         
                         else {
                             const IG_TW = n => {
@@ -952,7 +951,6 @@
                                     }
                                 }
                                 else {
-                                    const x = kode === sn_ig ? 'instagram' : 'twitter' ;
                                     nT.forEach((e, i) => {
                                         let barisBaru = D.create('tr');
                                         D.get.id('target_' + x).appendChild(barisBaru);
@@ -979,14 +977,15 @@
                         nG = nG.filter(e => is.validURL(e[1]));
 
                         const FB_AL = n => {
+                            const x = kode === sn_fb ? 'facebook' : 'akunLain' ;
+
                             if (nG.length === 1 && n) {
                                 if (nG[0][0].length >= stringLimit)
                                     return FB_AL(false);
                                 else
                                     return kode === sn_fb ? Akun.fb(nG[0][0], nG[0][1], stringLimit) : Akun.lain(nG[0][0], nG[0][1], stringLimit);
                             }
-                            else {
-                                const x = kode === sn_fb ? 'facebook' : 'akunLain' ;
+                            else if (nG.length > 1) {
                                 nG.forEach((e, i) => {
                                     let barisBaru = D.create('tr');
                                     D.get.id('target_' + x).appendChild(barisBaru);
@@ -1000,6 +999,10 @@
                                         barisBaru.appendChild(kolomKonten);
                                 });
                                 return '<a id="link-' + x + '" title="' + nG.length + ' akun">Daftar akun ' + (kode === sn_fb ? 'Facebook' : 'lain') + '</a>';
+                            }
+                            else {
+                                bukaTutup('slot-' + x);
+                                return '-';
                             }
                         };
                         return FB_AL(true);
@@ -1029,7 +1032,7 @@
                     return is.validSTR(namaSitus) && is.validURL(link) && limit >= 10 ? '<a href="' + link + '" target="_blank"' + ( namaSitus.length >= limit ? ' title="' + namaSitus + '"' : '' ) + '>' + maxSTR(namaSitus, limit) + '</a>' : '' 
                 }
             },
-            indeksKeterangan = [15, 17, 19, 21], // Daftar ID data yang ber-output Data Ganda (menggunakan array multi-dimensi)
+            indeksKeterangan = [slotNumber('keteranganSD'), slotNumber('keteranganSMP'), slotNumber('keteranganSMA'), slotNumber('keteranganPerguruanTinggi')], // Daftar ID data yang ber-output Data Ganda (menggunakan array multi-dimensi)
             indeksAkun = [28, 29, 30, 32], // Daftar akun media sosial yang memiliki output berbeda-beda
 
             // Fungsi 1 - Mengolah data dan di-input-kan ke dalam Array 'dt'
