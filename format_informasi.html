@@ -46,7 +46,7 @@
                 ["", ""] // [Keterangan link, link yang dituju]
             ],
         "jejakDigital": [
-                ["Scribd", "https://scribd.com/"],
+                ["Scribd \"abcde\"", "https://scribd.com/"],
                 ["Blogger", "http://blogger.blogspot.com"],
                 ["", ""],
                 ["", ""] // [Keterangan link, link yang dituju]
@@ -805,7 +805,7 @@
                                 newTabel.appendChild(newTabel_A);
                                 let newTabel_B = D.create('td');
                                     newTabel_B.className = 'tabel-konten';
-                                    newTabel_B.innerHTML = '<a href="' + e[1] + '" target="_blank" title="' + e[0] + '">' + maxSTR(e[0], stringLimit) + '</a>';
+                                    newTabel_B.innerHTML = '<a href="' + e[1] + '" target="_blank" title="' + e[0].replaceAll('"', "'") + '">' + maxSTR(e[0], stringLimit) + '</a>';
                                 newTabel.appendChild(newTabel_B);
                         });
                         return '<a id="link-jejakDigital" title="' + nG.length + ' data">Daftar jejak digital</a>';
