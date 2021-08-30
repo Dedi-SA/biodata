@@ -14,7 +14,7 @@
         "ttl": "Surabaya, 16 Maret 1992",
         "alamat": "Jl. Masjid, Dusun Kesambi, Kesambi, Porong, Kabupaten Sidoarjo, Jawa Timur",
         "hobi": "Sepakbola",
-        "nik": "4409051603920002",
+        "nik": "3502041603920002",
         "ayah": "Suriyo",
         "ibu": "Laili",
         "nisn": "00738277",
@@ -24,6 +24,7 @@
         "keteranganSMP": ["Ketua OSIS 2006/2007", "Memenangkan turnamen voli tingkat kabupaten"], // info 1 ,  info 2 ,  ....
         "SMA": "SMAN 1 Porong (2007 - 2010)",
         "keteranganSMA": ["Ketua OSIS 2009/2010", "Juara Olimpiade Matematika tingkat provinsi"], // info 1 ,  info 2 ,  ....
+        "keteranganSMA": ["", ""], // info 1 ,  info 2 ,  ....
         "perguruanTinggi": "Institut Teknologi Sepuluh Nopember (2010 - 2014)",
         "keteranganPerguruanTinggi": ["Jurusan Teknik Geomatika FTSPK", "Masuk melalui SBMPTN"],
         "kerabat": "Laili Nur Fadhilah (kakak kandung perempuan)",
@@ -51,6 +52,14 @@
                 ["", ""],
                 ["", ""] // [Keterangan link, link yang dituju]
             ],
+        "dokumen": [
+            "Daftar kelulusan SMAN 1 Porong.docx",
+            ["Surat keterangan mengikuti lomba \"Matematika\"", "https://www.sman1porong.sch.id/asset/public/2009/Surat-keterangan-mengikuti-lomba.pdf"],
+            ["", ""],
+            "",
+            "", // Nama dokumen
+            ["", ""] // [Nama dokumen, link yang dituju]
+        ],
         "gambar": [
                 ["Santuy", "http://1.bp.blogspot.com/-7ce-sLxvmac/YJOmim6tndI/AAAAAAAAAL4/URkdiriRl9A_KItseScW-ML6ctesnXcJgCLcBGAsYHQ/s1350/santuy.jpg"],
                 ["Dunia digital", "http://1.bp.blogspot.com/-rw5A2z7zngs/YJOmi5b06FI/AAAAAAAAAL0/_bxx4FOjfkspB8n8k29zvkBaPT3bJsz3ACLcBGAsYHQ/s2792/teknologi.jpg"],
@@ -191,159 +200,163 @@
     <div id="halaman-utama" class="">
         <table cellspacing="2" cellpadding="2" class="tabelUtama space-footer">
             <tbody id="target_halamanUtama">
-                <tr> <!-- tr 0 -->
+                <tr>
                     <td class="label" colspan="2">Data Pribadi</td>
                 </tr>
-                <tr id="slot-namaLengkap"> <!-- tr 1 -->
+                <tr id="slot-namaLengkap">
                     <td class="keteranganData">Nama Lengkap</td>
                     <td>:&ensp;<span id="data-namaLengkap"></span></td>
                 </tr>
-                <tr id="slot-namaPanggilan"> <!-- tr 2 -->
+                <tr id="slot-namaPanggilan">
                     <td class="keteranganData">Nama Panggilan</td>
                     <td>:&ensp;<span id="data-namaPanggilan"></span></td>
                 </tr>
-                <tr id="slot-jenisKelamin"> <!-- tr 3 -->
+                <tr id="slot-jenisKelamin">
                     <td class="keteranganData">Jenis kelamin</td>
                     <td>:&ensp;<span id="data-jenisKelamin"></span></td>
                 </tr>
-                <tr id="slot-ttl"> <!-- tr 4 -->
+                <tr id="slot-ttl">
                     <td class="keteranganData">Tempat, Tanggal Lahir</td>
                     <td>:&ensp;<span id="data-ttl"></span></td>
                 </tr>
-                <tr id="slot-alamat"> <!-- tr 5 -->
+                <tr id="slot-alamat">
                     <td class="keteranganData">Alamat</td>
                     <td>:&ensp;<span id="data-alamat"></span></td>
                 </tr>
-                <tr id="slot-hobi"> <!-- tr 6 -->
+                <tr id="slot-hobi">
                     <td class="keteranganData">Hobi</td>
                     <td>:&ensp;<span id="data-hobi"></span></td>
                 </tr>
-                <tr id="slot-nik"> <!-- tr 7 -->
+                <tr id="slot-nik">
                     <td class="keteranganData">Nomor Induk Kependudukan</td>
                     <td>:&ensp;<span id="data-nik"></span></td>
                 </tr>
-                <tr id="slot-namaAyah"> <!-- tr 8 -->
+                <tr id="slot-namaAyah">
                     <td class="keteranganData">Nama Ayah</td>
                     <td>:&ensp;<span id="data-ayah"></span></td>
                 </tr>
-                <tr id="slot-namaIbu"> <!-- tr 9 -->
+                <tr id="slot-namaIbu">
                     <td class="keteranganData">Nama Ibu</td>
                     <td>:&ensp;<span id="data-ibu"></span></td>
                 </tr>
-                
-                <tr> <!-- spasi | tr 10 -->
-                    <td class="spasi" colspan="2"></td>
-                </tr>
-                <tr> <!-- spasi | tr 11 -->
-                    <td class="spasi" colspan="2"></td>
-                </tr>
-
-                <tr> <!-- tr 12 -->
-                    <td class="label" colspan="2">Pendidikan</td>
-                </tr>
-                <tr id="slot-nisn"> <!-- tr 13 -->
-                    <td class="keteranganData">NISN</td>
-                    <td>:&ensp;<span id="data-nisn"></span></td>
-                </tr>
-                <tr id="slot-sd"> <!-- tr 14 -->
-                    <td class="keteranganData">SD</td>
-                    <td>:&ensp;<span id="data-SD"></span></td>
-                </tr>
-                <tr id="slot-keteranganSD"> <!-- tr 15 -->
-                    <td class="keteranganData"></td>
-                    <td>&emsp;<span id="data-keteranganSD"></span></td>
-                </tr>
-                <tr id="slot-smp"> <!-- tr 16 -->
-                    <td class="keteranganData">SMP</td>
-                    <td>:&ensp;<span id="data-SMP"></span></td>
-                </tr>
-                <tr id="slot-keteranganSMP"> <!-- tr 17 -->
-                    <td class="keteranganData"></td>
-                    <td>&emsp;<span id="data-keteranganSMP"></span></td>
-                </tr>
-                <tr id="slot-sma"> <!-- tr 18 -->
-                    <td class="keteranganData">SMA</td>
-                    <td>:&ensp;<span id="data-SMA"></span></td>
-                </tr>
-                <tr id="slot-keteranganSMA"> <!-- tr 19 -->
-                    <td class="keteranganData"></td>
-                    <td>&emsp;<span id="data-keteranganSMA"></span></td>
-                </tr>
-                <tr id="slot-perguruanTinggi"> <!-- tr 20 -->
-                    <td class="keteranganData">Perguruan Tinggi</td>
-                    <td>:&ensp;<span id="data-perguruanTinggi"></span></td>
-                </tr>
-                <tr id="slot-keteranganPerguruanTinggi"> <!-- tr 21 -->
-                    <td class="keteranganData"></td>
-                    <td>&emsp;<span id="data-keteranganPerguruanTinggi"></span></td>
-                </tr>
-                <tr id="slot-kerabat"> <!-- tr 22 -->
+                <tr id="slot-kerabat">
                     <td class="keteranganData">Kerabat</td>
                     <td>:&ensp;<span id="data-kerabat"></span></td>
                 </tr>
                 
-                <tr> <!-- spasi | tr 23 -->
+                <tr> <!-- spasi -->
                     <td class="spasi" colspan="2"></td>
                 </tr>
-                <tr> <!-- spasi | tr 24 -->
+                <tr> <!-- spasi -->
                     <td class="spasi" colspan="2"></td>
                 </tr>
 
-                <tr> <!-- tr 25 -->
+                <tr>
+                    <td class="label" colspan="2">Pendidikan</td>
+                </tr>
+                <tr id="slot-nisn">
+                    <td class="keteranganData">NISN</td>
+                    <td>:&ensp;<span id="data-nisn"></span></td>
+                </tr>
+                <tr id="slot-sd">
+                    <td class="keteranganData">SD</td>
+                    <td>:&ensp;<span id="data-SD"></span></td>
+                </tr>
+                <tr id="slot-keteranganSD">
+                    <td class="keteranganData"></td>
+                    <td>&emsp;<span id="data-keteranganSD"></span></td>
+                </tr>
+                <tr id="slot-smp">
+                    <td class="keteranganData">SMP</td>
+                    <td>:&ensp;<span id="data-SMP"></span></td>
+                </tr>
+                <tr id="slot-keteranganSMP">
+                    <td class="keteranganData"></td>
+                    <td>&emsp;<span id="data-keteranganSMP"></span></td>
+                </tr>
+                <tr id="slot-sma">
+                    <td class="keteranganData">SMA</td>
+                    <td>:&ensp;<span id="data-SMA"></span></td>
+                </tr>
+                <tr id="slot-keteranganSMA">
+                    <td class="keteranganData"></td>
+                    <td>&emsp;<span id="data-keteranganSMA"></span></td>
+                </tr>
+                <tr id="slot-perguruanTinggi">
+                    <td class="keteranganData">Perguruan Tinggi</td>
+                    <td>:&ensp;<span id="data-perguruanTinggi"></span></td>
+                </tr>
+                <tr id="slot-keteranganPerguruanTinggi">
+                    <td class="keteranganData"></td>
+                    <td>&emsp;<span id="data-keteranganPerguruanTinggi"></span></td>
+                </tr>
+                
+                <tr> <!-- spasi -->
+                    <td class="spasi" colspan="2"></td>
+                </tr>
+                <tr> <!-- spasi -->
+                    <td class="spasi" colspan="2"></td>
+                </tr>
+
+                <tr>
                     <td class="label" colspan="2">Dunia Maya</td>
                 </tr>
-                <tr id="slot-email"> <!-- tr 26 -->
+                <tr id="slot-email">
                     <td class="keteranganData">Alamat e-mail</td>
                     <td>:&ensp;<span id="data-email"></span></td>
                 </tr>
-                <tr id="slot-nomorWA"> <!-- tr 27 -->
+                <tr id="slot-nomorWA">
                     <td class="keteranganData">Nomor WA</td>
                     <td>:&ensp;<span id="data-nomorWA"></span></td>
                 </tr>
-                <tr id="slot-instagram"> <!-- tr 28 -->
+                <tr id="slot-instagram">
                     <td class="keteranganData">Akun Instagram</td>
                     <td>:&ensp;<span id="data-instagram"></span></td>
                 </tr>
-                <tr id="slot-facebook"> <!-- tr 29 -->
+                <tr id="slot-facebook">
                     <td class="keteranganData">Akun Facebook</td>
                     <td>:&ensp;<span id="data-facebook"></span></td>
                 </tr>
-                <tr id="slot-twitter"> <!-- tr 30 -->
+                <tr id="slot-twitter">
                     <td class="keteranganData">Akun Twitter</td>
                     <td>:&ensp;<span id="data-twitter"></span></td>
                 </tr>
-                <tr id="slot-telegram"> <!-- tr 31 -->
+                <tr id="slot-telegram">
                     <td class="keteranganData">Akun Telegram</td>
                     <td>:&ensp;<span id="data-telegram"></span></td>
                 </tr>
-                <tr id="slot-akunLain"> <!-- tr 32 -->
+                <tr id="slot-akunLain">
                     <td class="keteranganData">Akun Lain</td>
                     <td>:&ensp;<span id="data-akunLain"></span></td>
                 </tr>
-                <tr id="slot-jejakDigital"> <!-- tr 33 -->
+                <tr id="slot-jejakDigital">
                     <td class="keteranganData">Jejak Digital</td>
                     <td>:&ensp;<span id="data-jejakDigital"></span></td>
                 </tr>
                 
-                <tr> <!-- spasi | tr 34 -->
+                <tr> <!-- spasi -->
                     <td class="spasi" colspan="2"></td>
                 </tr>
-                <tr> <!-- spasi | tr 35 -->
+                <tr> <!-- spasi -->
                     <td class="spasi" colspan="2"></td>
                 </tr>
 
-                <tr> <!-- tr 36 -->
+                <tr>
                     <td class="label" colspan="2">Lain-lain</td>
                 </tr>
-                <tr id="slot-gambar"> <!-- tr 37 -->
+                <tr id="slot-dokumen">
+                    <td class="keteranganData">Dokumen</td>
+                    <td>:&ensp;<span id="data-dokumen"></span></td>
+                </tr>
+                <tr id="slot-gambar">
                     <td class="keteranganData">Gambar</td>
                     <td>:&ensp;<span id="data-gambar"></span></td>
                 </tr>
-                <tr id="slot-informasiTambahan"> <!-- tr 38 -->
+                <tr id="slot-informasiTambahan">
                     <td class="keteranganData">Informasi Tambahan</td>
                     <td>:&ensp;<span id="data-informasiTambahan"></span></td>
                 </tr>
-                <tr id="slot-aktivitas"> <!-- tr 39 -->
+                <tr id="slot-aktivitas">
                     <td class="keteranganData">Aktivitas</td>
                     <td>:&ensp;<span id="data-aktivitas"></span></td>
                 </tr>
@@ -476,6 +489,20 @@
             </table>
         </div>
     </div>
+    <div id="halaman-dokumen" class="hidden headerMargin space-footer">
+        <button class="btn1" id="btn-dokumen"><< Kembali</button>
+        <h2>Dokumen</h2>
+        <div class="containerHiddenTable">
+            <table class="hiddenTable" cellpadding="2" cellspacing="2">
+                <tbody id="target_dokumen">
+                    <tr style="font-weight: bold;">
+                        <td class="tabel-nomor">No.</td>
+                        <td class="tabel-keterangan">Nama file</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div id="halaman-gambar" class="hidden headerMargin space-footer">
         <button class="btn1" id="btn-gambar"><< Kembali</button>
         <h2>Gambar</h2>
@@ -516,7 +543,6 @@
     <script>
         document.head.getElementsByTagName('title')[0].innerText = 'Memproses data ....';
         let a = document.getElementById('target_halamanUtama').children,
-            q = '??',
 
             remove = (n, char) => {
                 if (Array.isArray(n)) {
@@ -568,13 +594,10 @@
 
                 // Bila nilai yang masuk bernilai string dan merupakan username yang valid (diawali @ dan diikuti string lain selain spasi)
                 validETusername: n => {
-                    n = DAFESE(n);
-                    const trueParameter = x => !x.includes(' ') && !x.includes('@') && !x.includes('-') && !is.loopSTR(x, '.') && !is.loopSTR(x, '_');
-                    if (is.validSTR(n) && n.replaceAll('@', '').length >= 2) {
-                        if (n.startsWith('@'))
-                            return trueParameter(n.slice(1));
-                        else
-                            return trueParameter(n);
+                    if (typeof n === 'string') {
+                        n = DAFESE(n);
+                        n = n.startsWith('@') ? n.slice(1) : n ;
+                        return n.length >= 2 && n.length <= 50 && !n.includes(' ') && !n.includes('@') && !n.includes('-') && !is.loopSTR(n, '.') && !is.loopSTR(n, '_');
                     }
                     else
                         return false;
@@ -597,7 +620,21 @@
             },
 
             arrayDataTunggal = n => Array.isArray(n) ? n.filter(e => is.validSTR(e)).map(e => DAFESE(e)) : is.validSTR(n) ? [DAFESE(n)] : [] ,
-            arrayDataGanda = n => Array.isArray(n) ? is.validSTR(n[0]) && is.validSTR(n[1]) ? [DAFESE(n[0]), DAFESE(n[1])] : n.filter(e => Array.isArray(e) && is.validSTR(e[0]) && is.validSTR(e[1])).map(e => [DAFESE(e[0]), DAFESE(e[1]), ...e.slice(2)]) : [] ,
+            arrayDataganda = n => {
+                if (Array.isArray(n)) {
+                    return n.map(e => {
+                        if (is.validSTR(e)) {
+                            return [DAFESE(e), ''];
+                        }
+                        else if (Array.isArray(e) && is.validSTR(e[0])) {
+                            return [DAFESE(e[0]), (is.validURL(e[1]) ? DAFESE(e[1]) : '')];
+                        }
+                    }).filter(e => Array.isArray(e) && is.validSTR(e[0]));
+                }
+                else
+                    return (is.validSTR(n) ? [[DAFESE(n)], ''] : ['', '']).filter(e => Array.isArray(e) && is.validSTR(e[0]));
+            },
+            arrayDataGanda = n => Array.isArray(n) ? (is.validSTR(n[0]) && is.validSTR(n[1])) ? [DAFESE(n[0]), DAFESE(n[1])] : n.filter(e => Array.isArray(e) && is.validSTR(e[0]) && is.validSTR(e[1])).map(e => [DAFESE(e[0]), DAFESE(e[1]), ...e.slice(2)]) : [] ,
 
 
             /* Double_And_FrontEnd_Space_Eraser (DAFESE)
@@ -611,7 +648,7 @@
             DAFESE = n => { // (string) => string
                 if (typeof n === 'string') {
                     do {
-                        if (n.includes('  ')) n = n.split('  ').join(' '); // Mengganti double-space '  ' menjadi single-space ' ' di dalam string
+                        if (n.includes('  ')) n = n.replaceAll('  ', ' '); // Mengganti double-space '  ' menjadi single-space ' ' di dalam string
                         
                         else if (n.startsWith(' ')) n = n.slice(1); // Menghapus single-space ' ' yang ada di posisi paling depan
                         
@@ -642,9 +679,13 @@
                     console.log("Kesalahan. Fungsi 'slotNumber' telah menerima variabel bernilai non-string");
             },
 
-            maxSTR = (str, limit) => { // (string, number) => string
-                if (is.validSTR(str) && typeof limit === 'number' && !isNaN(limit) && limit >= 10)
-                    return str.length >= limit ? str.slice(0, limit - 7) + '....' : str ;
+            maxSTR = (str, limit, penambahanTitik) => { // (string, number) => string
+                if (is.validSTR(str) && typeof limit === 'number' && !isNaN(limit) && limit >= 10) {
+                    if (typeof penambahanTitik === 'boolean' && penambahanTitik)
+                        return str.length >= limit ? str.slice(0, limit - 7) + '....' : str ;
+                    else
+                        return str.length >= limit ? str.slice(0, limit) : str ;
+                }
             },
             
             eror = (Kode, lokasi) => { // (number, string) => never
@@ -654,8 +695,8 @@
             // Untuk mendeteksi jenjang SMA sederajat
             jenisSM = (n, kode) => { // (string, number / number in string) => string
                 kode = !isNaN(+kode) && Number.isInteger(Math.abs(+kode)) ? Math.abs(+kode) : kode ;
-                if (kode === 18 && is.validSTR(n)) {
-                    n = n.toUpperCase();    
+                if (kode === slotNumber('sma') && is.validSTR(n)) {
+                    n = DAFESE(n).toUpperCase();
                     if (n.slice(0, 3) === 'SMA' || n.slice(0, 4) === 'SMA ' || n.slice(0, 5) === 'SMAN ' || n.includes('SEKOLAH MENENGAH ATAS'))
                         return 'SMA';
                     else if (n.slice(0, 3) === 'SMK' || n.slice(0, 4) === 'SMK ' || n.slice(0, 5) === 'SMKN ' || n.includes('SEKOLAH MENENGAH KEJURUAN'))
@@ -727,15 +768,15 @@
 
             // 1. Data dari JSON | 2. Kode data
             validasi = (n, kode) => { // (string, number) => string
-                let nT = arrayDataTunggal(n), nG = arrayDataGanda(n), isQ = Kode => [slotNumber('jenisKelamin'), slotNumber('ayah'), slotNumber('ibu')].includes(Kode) ;
+                let isQ = Kode => [slotNumber('jenisKelamin'), slotNumber('ayah'), slotNumber('ibu')].includes(Kode) ;
                 kode = !isNaN(+kode) && Number.isInteger(Math.abs(+kode)) ? Math.abs(+kode) : kode ;
 
                 if (clearSpace(n) === '-' || is.loopSTR(n, '-') || clearSpace(n) === '?' || is.loopSTR(n, '?'))
-                    return isQ(kode) ? q : '-' ;
+                    return isQ(kode) ? '??' : '-' ;
 
                 else if (indeksAkun.includes(kode)) {
                     eror(kode, 'validasi()');
-                    return q;
+                    return '??';
                 }
 
                 // Fungsi untuk mempersingkat penulisan jenis kelamin
@@ -746,26 +787,30 @@
                         else if (n.toLowerCase() === 'p' || is.loopSTR(n, 'p') || ((n.toLowerCase().includes('perempuan') || n.toLowerCase().includes('wanita')) && (!n.toLowerCase().includes('laki') && !n.toLowerCase().includes('pria'))))
                             return 'Perempuan';
                         else
-                            return q;
+                            return '??';
                     }
                     else
-                        return q;
+                        return '??';
                 }
 
                 // Keterangan SD, SMP, SMA, Perguruan Tinggi
                 if (indeksKeterangan.includes(kode)) {
-                    const X = 'keterangan',
-                          x  = kode === slotNumber(X + 'SD') ? 'SD' : kode === slotNumber(X + 'SMP') ? 'SMP' : kode === slotNumber(X + 'SMA') ? 'SMA' : 'PerguruanTinggi' ;
+                    const jenjangPendidikan = kode === slotNumber('keteranganSD') ? 'SD' : kode === slotNumber('keteranganSMP') ? 'SMP' : kode === slotNumber('keteranganSMA') ? 'SMA' : 'PerguruanTinggi' ;
+                    let nT = arrayDataTunggal(n);
                     if (nT.length > 0) {
                         if (nT.length === 1)
                             return nT[0];
                         
                         else {
-                            let tingkat = kode === 15 ? 'SD' : ( kode === 17 ? 'SMP' : kode === 19 ? a[18].children[0].innerHTML : 'PerguruanTinggi' ) ;
-                            
                             nT.forEach((e, i) => {
+                                let jenisSMA;
+                                if (kode === slotNumber('sma')) {
+                                    jenisSMA = jenisSM(e, kode);
+                                    a[slotNumber('sma')].children[0].innerHTML = jenisSMA;
+                                }
+
                                 let newRow = D.create('tr');
-                                D.get.id('target_keterangan' + ( kode === 19 ? 'SMA' : tingkat )).appendChild(newRow);
+                                D.get.id('target_keterangan' + jenjangPendidikan).appendChild(newRow);
                                     let data1 = D.create('td');
                                         data1.className = 'tabel-nomor';
                                         data1.innerHTML = (i + 1) + '.';
@@ -775,11 +820,11 @@
                                         data2.innerHTML = e;
                                     newRow.appendChild(data2);
                             });
-                            return '<a id="link-keterangan' + ( kode === 19 ? 'SMA' : tingkat ) + '" title="Keterangan ' + tingkat + ' | ' + nT.length + ' data">Daftar keterangan ' + tingkat + '</a>';
+                            return '<a id="link-keterangan' + jenjangPendidikan + '" title="Keterangan ' + (kode === slotNumber('sma') ? jenisSMA : jenjangPendidikan) + ' | ' + nT.length + ' data">Daftar keterangan ' + (kode === slotNumber('sma') ? jenisSMA : jenjangPendidikan) + '</a>';
                         }
                     }
                     else {
-                        bukaTutup('slot-keterangan' + x);
+                        bukaTutup('slot-keterangan' + jenjangPendidikan);
                         return '-';
                     }
                 }
@@ -788,27 +833,32 @@
                 else if (kode === slotNumber('email'))
                     return is.validEmail(n) ? n : '-' ;
 
-                // Jejak digital
-                else if (kode === slotNumber('jejakDigital')) {
+                // Jejak digital & Dokumen
+                else if (kode === slotNumber('jejakDigital') || kode === slotNumber('dokumen')) {
                     const stringLimit = 60; // Batas maksimal sebagai syarat untuk memangkas string yang terlalu panjang
-                    nG = nG.filter(e => is.validURL(e[1]));
-                    if (nG.length === 1 && nG[0][0].length < stringLimit)
-                        return '<a href="' + nG[0][1] + '" target="_blank" title="Jejak Digital | ">' + maxSTR(nG[0][0], stringLimit) + '</a>';
+                          jenisData = kode === slotNumber('dokumen') ? 'dokumen' : 'jejakDigital' ;
+                    let nG = kode === slotNumber('jejakDigital') ? arrayDataGanda(n).filter(e => is.validURL(e[1])) : arrayDataganda(n);
+                    if (nG.length === 1 && nG[0][0].length <= stringLimit)
+                        return '<a href="' + nG[0][1] + '" target="_blank" title="' + jenisData + ' | ">' + maxSTR(nG[0][0], stringLimit, true) + '</a>';
                     
                     else if ((nG.length === 1 && nG[0][0].length >= stringLimit) || nG.length > 1) {
                         nG.forEach((e, i) => {
                             let newTabel = D.create('tr');
-                            D.get.id('target_jejakDigital').appendChild(newTabel);
+                            D.get.id('target_' + jenisData).appendChild(newTabel);
                                 let newTabel_A = D.create('td');
                                     newTabel_A.className = 'tabel-nomor';
                                     newTabel_A.innerHTML = (i + 1) + '.';
                                 newTabel.appendChild(newTabel_A);
                                 let newTabel_B = D.create('td');
                                     newTabel_B.className = 'tabel-konten';
-                                    newTabel_B.innerHTML = '<a href="' + e[1] + '" target="_blank" title="' + e[0].replaceAll('"', "'") + '">' + maxSTR(e[0], stringLimit) + '</a>';
+                                    if (is.validURL(e[1]))
+                                        newTabel_B.innerHTML = '<a href="' + e[1] + '" target="_blank" title="' + e[0].replaceAll('"', "'") + '">' + maxSTR(e[0], stringLimit, true) + '</a>';
+                                    else
+                                        newTabel_B.innerHTML = '<span title="' + e[0].replaceAll('"', "'") + '">' + maxSTR(e[0], stringLimit, true) + '</span>';
                                 newTabel.appendChild(newTabel_B);
                         });
-                        return '<a id="link-jejakDigital" title="' + nG.length + ' data">Daftar jejak digital</a>';
+                        let jenis_data = kode === slotNumber('dokumen') ? 'dokumen' : 'jejak digital';
+                        return '<a id="link-' + jenisData + '" title="' + nG.length + ' ' + jenis_data + '">Daftar ' + jenis_data + '</a>';
                     }
                     else
                         return '-';
@@ -816,30 +866,35 @@
 
                 // Gambar
                 else if (kode === slotNumber('gambar')) {
-                    let targ = D.get.id('target_gambar');
+                    const stringLimit = 90;
+                    let nG = arrayDataGanda(n).filter(e => is.validURL(e[1]));
 
-                    if (!nG.length > 0)
+                    if (nG.length <= 0) {
                         return '-' ;
-
-                    nG.forEach((e, i) => {
-                        targ.innerHTML += '<div><button class="btn2" onclick="bukaTutup(\'gambar' + ( i + 1 ) + '\')">Gambar ' + ( i + 1 ) + ' : ' + e[0] + '</button></div>';
-                        let wadahGambar = D.create('div');
-                            wadahGambar.className = 'imgContainer' + ( i === 0 ? '' : ' hidden' );
-                            wadahGambar.id = 'gambar' + ( i + 1 );
-                        targ.appendChild(wadahGambar);
-                            let imgs = D.create('img');
-                                imgs.setAttribute('src', e[1]);
-                                imgs.setAttribute('alt', e[0]);
-                            wadahGambar.appendChild(imgs);
-                            wadahGambar.innerHTML += '<div style="text-align: center;"><strong>Gambar ' + ( i + 1 ) + '</strong> : ' + e[0] + '</div>';
-                    });
-                    return '<a id="link-gambar" title="' + nG.length + ' gambar">Galeri</a>';
+                    }
+                    else {
+                        nG.forEach((e, i) => {
+                            D.get.id('target_gambar').innerHTML += '<div><button class="btn2" onclick="bukaTutup(\'gambar' + ( i + 1 ) + '\')"' + (e[0].length > stringLimit ? ' title="' + e[0] + '"' : '') + '>Gambar ' + ( i + 1 ) + ' : ' + maxSTR(e[0], stringLimit, true) + '</button></div>';
+                            let wadahGambar = D.create('div');
+                                wadahGambar.className = 'imgContainer' + ( i === 0 ? '' : ' hidden' );
+                                wadahGambar.id = 'gambar' + ( i + 1 );
+                            D.get.id('target_gambar').appendChild(wadahGambar);
+                                let imgs = D.create('img');
+                                    imgs.setAttribute('src', e[1]);
+                                    imgs.setAttribute('alt', e[0]);
+                                    imgs.setAttribute('title', e[0]);
+                                wadahGambar.appendChild(imgs);
+                                wadahGambar.innerHTML += '<div style="text-align: center;"><strong>Gambar ' + ( i + 1 ) + '</strong> : ' + maxSTR(e[0], stringLimit, false) + '</div>';
+                        });
+                        return '<a id="link-gambar" title="' + nG.length + ' gambar">Galeri</a>';
+                    }
                 }
 
                 // Informasi tambahan
                 else if (kode === slotNumber('informasiTambahan')) {
                     const stringLimit = 60;
-                    if (!nT.length > 0) return '-' ;
+                    let nT = arrayDataTunggal(n);
+                    if (nT.length <= 0) return '-' ;
 
                     else if (nT.length === 1 && nT[0].length <= stringLimit) return nT[0] ;
                     
@@ -901,18 +956,17 @@
                 
                 else if (is.validSTR(n)) {
                     let n2 = remove(n, [' ', '`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '[', ']', '{', '}', '\\', '|', ';', ':', "'", '"', ',', '.', '<', '>', '?', '/']);
-                    return n2.length > 0 ? DAFESE(n) : isQ(kode) ? q : '-' ;
+                    return n2.length > 0 ? DAFESE(n) : isQ(kode) ? '??' : '-' ;
                 }
 
                 else {
-                    return isQ(kode) ? q : '-';
+                    return isQ(kode) ? '??' : '-';
                 }
             },
 
             Akun = {
                 // tipe data 'n' hanya boleh berupa string atau array
                 akun: (n, kode) => {
-                    let nT = arrayDataTunggal(n), nG = arrayDataGanda(n), result = '';
                     kode = !isNaN(+kode) && Number.isInteger(Math.abs(+kode)) ? Math.abs(+kode) : kode ;
                     
                     if (clearSpace(n) === '-' || is.loopSTR(n, '-')) {
@@ -927,12 +981,12 @@
 
                     // Kelompok penggunaan valid Et username dengan output join
                     // Instagram_id , Twitter_id
-                    else if ([slotNumber('instagram'), slotNumber('twitter')].includes(kode)) {
-                        const stringLimit = 55, sn_ig = slotNumber('instagram'), x = kode === sn_ig ? 'instagram' : 'twitter' ;
-                        nT = nT.filter(e => is.validETusername(e)).map(e => e.replaceAll('@', ''));
+                    else if (kode === slotNumber('instagram') || kode === slotNumber('twitter')) {
+                        const stringLimit = 50, slotNumber_ig = slotNumber('instagram'), namaMedsos = kode === slotNumber_ig ? 'instagram' : 'twitter' ;
+                        let nT = arrayDataTunggal(n).filter(e => is.validETusername(e)).map(e => DAFESE(e)).map(e => e.startsWith('@') ? e.slice(1) : e);
 
                         if (nT.length === 0) {
-                            bukaTutup('slot-' + x);
+                            bukaTutup('slot-' + namaMedsos);
                             return '-' ;
                         }
                         
@@ -945,7 +999,7 @@
                                     else {
                                         let temp = [];
                                         nT.forEach(e => {
-                                            temp.push( kode === sn_ig ? Akun.ig(e, 50) : Akun.tw(e, 50) )
+                                            temp.push( kode === slotNumber_ig ? Akun.ig(e, 50) : Akun.tw(e, 50) )
                                         });
                                         return temp.join(' | ');
                                     }
@@ -953,17 +1007,17 @@
                                 else {
                                     nT.forEach((e, i) => {
                                         let barisBaru = D.create('tr');
-                                        D.get.id('target_' + x).appendChild(barisBaru);
+                                        D.get.id('target_' + namaMedsos).appendChild(barisBaru);
                                             let kolomNomor = D.create('td');
                                                 kolomNomor.className = 'tabel-nomor';
                                                 kolomNomor.innerHTML = (i + 1) + '.';
                                             barisBaru.appendChild(kolomNomor);
                                             let kolomKonten = D.create('td');
                                                 kolomKonten.className = 'tabel-konten';
-                                                kolomKonten.innerHTML = '<a href="https://www.' + x + '.com/' + e + '" target="_blank" title="' + '@' + e + '">' + maxSTR('@' + e, stringLimit) + '</a>';
+                                                kolomKonten.innerHTML = '<a href="https://www.' + namaMedsos + '.com/' + e + '" target="_blank" title="@' + e + '">@' + e + '</a>';
                                             barisBaru.appendChild(kolomKonten);
                                     });
-                                    return '<a id="link-' + x + '" title="' + nT.length + ' akun">Daftar akun ' + (kode === sn_ig ? 'Instagram' : 'Twitter') + '</a>';
+                                    return '<a id="link-' + namaMedsos + '" title="' + nT.length + ' akun">Daftar akun ' + (kode === slotNumber_ig ? 'Instagram' : 'Twitter') + '</a>';
                                 }
                             };
                             return IG_TW(true);
@@ -973,63 +1027,57 @@
                     // Kelompok akun pengguna Array data ganda
                     // Facebook, Akun lain (29, 32)
                     else if ([slotNumber('facebook'), slotNumber('akunLain')].includes(kode)) {
-                        const stringLimit = 55, sn_fb = slotNumber('facebook');
-                        nG = nG.filter(e => is.validURL(e[1]));
+                        const stringLimit = 55, slotNumber_fb = slotNumber('facebook');
+                        let nG = arrayDataGanda(n).filter(e => is.validURL(e[1])).map(e => [maxSTR(e[0], stringLimit, true), e[1]]);
 
                         const FB_AL = n => {
-                            const x = kode === sn_fb ? 'facebook' : 'akunLain' ;
+                            const namaMedsos = kode === slotNumber_fb ? 'facebook' : 'akunLain' ;
 
                             if (nG.length === 1 && n) {
                                 if (nG[0][0].length >= stringLimit)
                                     return FB_AL(false);
                                 else
-                                    return kode === sn_fb ? Akun.fb(nG[0][0], nG[0][1], stringLimit) : Akun.lain(nG[0][0], nG[0][1], stringLimit);
+                                    return kode === slotNumber_fb ? Akun.fb(nG[0][0], nG[0][1], stringLimit) : Akun.lain(nG[0][0], nG[0][1], stringLimit);
                             }
                             else if (nG.length > 1) {
                                 nG.forEach((e, i) => {
                                     let barisBaru = D.create('tr');
-                                    D.get.id('target_' + x).appendChild(barisBaru);
+                                    D.get.id('target_' + namaMedsos).appendChild(barisBaru);
                                         let kolomNomor = D.create('td');
                                             kolomNomor.className = 'tabel-nomor';
                                             kolomNomor.innerHTML = (i + 1) + '.';
                                         barisBaru.appendChild(kolomNomor);
                                         let kolomKonten = D.create('td');
                                             kolomKonten.className = 'tabel-konten';
-                                            kolomKonten.innerHTML = '<a href="' + e[1] + '" target="_blank" title="' + e[0] + '">' + maxSTR(e[0], stringLimit) + '</a>'
+                                            kolomKonten.innerHTML = '<a href="' + e[1] + '" target="_blank" title="' + e[0] + '">' + e[0] + '</a>';
                                         barisBaru.appendChild(kolomKonten);
                                 });
-                                return '<a id="link-' + x + '" title="' + nG.length + ' akun">Daftar akun ' + (kode === sn_fb ? 'Facebook' : 'lain') + '</a>';
+                                return '<a id="link-' + namaMedsos + '" title="' + nG.length + ' akun">Daftar akun ' + (kode === slotNumber_fb ? 'Facebook' : 'lain') + '</a>';
                             }
                             else {
-                                bukaTutup('slot-' + x);
+                                bukaTutup('slot-' + namaMedsos);
                                 return '-';
                             }
                         };
                         return FB_AL(true);
                     }
                     else
-                        return q ;
+                        return '??' ;
                 },
                 ig: (username, limit) => {
-                    if (is.validETusername(username) && limit >= 10) {
-                        username = username.replaceAll('@', '');
-                        return '<a href="http://www.instagram.com/' + username + '" target="_blank" title="Instagram | @' + username + '">@' + maxSTR(username, limit) + '</a>';
-                    }
+                    return '<a href="http://www.instagram.com/' + username + '" target="_blank" title="Instagram | @' + username + '">@' + username + '</a>';
                 },
                 fb: (nama, link, limit) => {
                     if (is.validSTR(nama) && is.validSTR(link) && limit >= 10)
-                        return '<a href="' + link + '" target="_blank" title="Facebook | ' + nama + '">' + maxSTR(nama, limit) + '</a>';
+                        return '<a href="' + link + '" target="_blank" title="Facebook | ' + nama + '">' + nama + '</a>';
                 },
                 tw: (username, limit) => {
-                    if (is.validETusername(username) && limit >= 10) {
-                        username = username.replaceAll('@', '');
-                        return '<a href="http://twitter.com/' + username + '" target="_blank" title="Twitter | @' + username + '">@' + username + '</a>';
-                    }
+                    return '<a href="http://twitter.com/' + username + '" target="_blank" title="Twitter | @' + username + '">@' + username + '</a>';
                 },
                 
                 // link harus berupa string dan harus diawali dengan http:// atau https://
                 lain: (namaSitus, link, limit) => {
-                    return is.validSTR(namaSitus) && is.validURL(link) && limit >= 10 ? '<a href="' + link + '" target="_blank"' + ( namaSitus.length >= limit ? ' title="' + namaSitus + '"' : '' ) + '>' + maxSTR(namaSitus, limit) + '</a>' : '' 
+                    return is.validSTR(namaSitus) && is.validURL(link) && limit >= 10 ? '<a href="' + link + '" target="_blank"' + ( namaSitus.length >= limit ? ' title="' + namaSitus + '"' : '' ) + '>' + maxSTR(namaSitus, limit, true) + '</a>' : '' 
                 }
             },
             indeksKeterangan = [slotNumber('keteranganSD'), slotNumber('keteranganSMP'), slotNumber('keteranganSMA'), slotNumber('keteranganPerguruanTinggi')], // Daftar ID data yang ber-output Data Ganda (menggunakan array multi-dimensi)
@@ -1047,38 +1095,32 @@
                 dt[6] = validasi(data.nik, slotNumber('nik')); // Nomor Induk Kependudukan
                 dt[7] = validasi(data.ayah, slotNumber('ayah')) ; // Nama ayah
                 dt[8] = validasi(data.ibu, slotNumber('ibu')) ; // Nama ibu
-                dt[9] = validasi(data.nisn, slotNumber('nisn')); // NISN
-                dt[10] = validasi(data.SD, slotNumber('sd')); // SD
-                dt[11] = validasi(data.keteranganSD, slotNumber('keteranganSD')); // Keterangan SD
-                dt[12] = validasi(data.SMP, slotNumber('smp')); // SMP
-                dt[13] = validasi(data.keteranganSMP, slotNumber('keteranganSMP')); // Keterangan SMP
-                dt[14] = validasi(data.SMA, slotNumber('sma')); // SMA / SMK / MA
-                dt[15] = validasi(data.keteranganSMA, slotNumber('keteranganSMA')); // Keterangan SMA / SMK / MA
-                dt[16] = validasi(data.perguruanTinggi, slotNumber('perguruanTinggi')); // Perguruan Tinggi
-                dt[17] = validasi(data.keteranganPerguruanTinggi, slotNumber('keteranganPerguruanTinggi')); // Keterangan perguruan tinggi
-                dt[18] = validasi(data.kerabat, slotNumber('kerabat')); // Kerabat
+                dt[9] = validasi(data.kerabat, slotNumber('kerabat')); // Kerabat
+                dt[10] = validasi(data.nisn, slotNumber('nisn')); // NISN
+                dt[11] = validasi(data.SD, slotNumber('sd')); // SD
+                dt[12] = validasi(data.keteranganSD, slotNumber('keteranganSD')); // Keterangan SD
+                dt[13] = validasi(data.SMP, slotNumber('smp')); // SMP
+                dt[14] = validasi(data.keteranganSMP, slotNumber('keteranganSMP')); // Keterangan SMP
+                dt[15] = validasi(data.SMA, slotNumber('sma')); // SMA / SMK / MA
+                dt[16] = validasi(data.keteranganSMA, slotNumber('keteranganSMA')); // Keterangan SMA / SMK / MA
+                dt[17] = validasi(data.perguruanTinggi, slotNumber('perguruanTinggi')); // Perguruan Tinggi
+                dt[18] = validasi(data.keteranganPerguruanTinggi, slotNumber('keteranganPerguruanTinggi')); // Keterangan perguruan tinggi
                 dt[19] = validasi(data.email, slotNumber('email')); // Alamat e-mail
                 dt[20] = validasi(data.nomorWA, slotNumber('nomorWA')); // Nomor WA
                 dt[21] = Akun.akun(data.instagram, slotNumber('instagram')); // Akun Instagram
                 dt[22] = Akun.akun(data.facebook, slotNumber('facebook')); // Akun Facebook (data ganda)
-                dt[23] = Akun.akun(data.twitter, 30); // Akun Twitter
+                dt[23] = Akun.akun(data.twitter, slotNumber('twitter')); // Akun Twitter
                 dt[24] = validasi(data.telegram, slotNumber('telegram')); // Akun Telegram
                 dt[25] = Akun.akun(data.akunLain, slotNumber('akunLain')); // Akun lain (data ganda)
                 dt[26] = validasi(data.jejakDigital, slotNumber('jejakDigital')); // Jejak digital (data ganda)
-                dt[27] = validasi(data.gambar, slotNumber('gambar')); // Gambar
-                dt[28] = validasi(data.informasiTambahan, slotNumber('informasiTambahan')); // Informasi tambahan
-                dt[29] = validasi(data.aktivitas, slotNumber('aktivitas')); // Aktivitas (3 data)
+                dt[27] = validasi(data.dokumen, slotNumber('dokumen')); // Dokumen
+                dt[28] = validasi(data.gambar, slotNumber('gambar')); // Gambar
+                dt[29] = validasi(data.informasiTambahan, slotNumber('informasiTambahan')); // Informasi tambahan
+                dt[30] = validasi(data.aktivitas, slotNumber('aktivitas')); // Aktivitas (3 data)
                 
-                // dt[30] akan diisi jika dt[15] BUKAN undefined
-                let interv_deklarasiDT30 = setInterval(() => {
-                    if (dt[15] !== undefined) {
-                        clearInterval(interv_deklarasiDT30);
-                        dt[30] = jenisSM(dt[15]); // Jenis sekolah menengah
-                    }
-                }, 20),
 
                 // Untuk mengecek apakah Array 'dt' memiliki 31 elemen string, jika ya maka true
-                isReady = () => {
+                let isReady = () => {
                     return Array.isArray(dt) && dt.filter(e => typeof e === 'string').length === 31;
                 },
 
@@ -1097,17 +1139,16 @@
                         D.get.id('data-nik').innerHTML                       = dt[6] ; // Nomor Induk Kependudukan
                         D.get.id('data-ayah').innerHTML                      = dt[7] ; // Nama ayah
                         D.get.id('data-ibu').innerHTML                       = dt[8] ; // Nama ibu
-                        D.get.id('data-nisn').innerHTML                      = dt[9] ; // NISN
-                        D.get.id('data-SD').innerHTML                        = dt[10]; // SD
-                        D.get.id('data-keteranganSD').innerHTML              = dt[11]; // Keterangan SD
-                        D.get.id('data-SMP').innerHTML                       = dt[12]; // SMP
-                        D.get.id('data-keteranganSMP').innerHTML             = dt[13]; // Keterangan SMP
-                            a[18].children[0].innerHTML                      = dt[30]; // Jenis Sekolah Menengah
-                        D.get.id('data-SMA').innerHTML                       = dt[14]; // SMA / SMK / MA
-                        D.get.id('data-keteranganSMA').innerHTML             = dt[15]; // Keterangan SMA / SMK / MA
-                        D.get.id('data-perguruanTinggi').innerHTML           = dt[16]; // Perguruan Tinggi
-                        D.get.id('data-keteranganPerguruanTinggi').innerHTML = dt[17]; // Keterangan perguruan tinggi
-                        D.get.id('data-kerabat').innerHTML                   = dt[18]; // Kerabat
+                        D.get.id('data-kerabat').innerHTML                   = dt[9]; // Kerabat
+                        D.get.id('data-nisn').innerHTML                      = dt[10] ; // NISN
+                        D.get.id('data-SD').innerHTML                        = dt[11]; // SD
+                        D.get.id('data-keteranganSD').innerHTML              = dt[12]; // Keterangan SD
+                        D.get.id('data-SMP').innerHTML                       = dt[13]; // SMP
+                        D.get.id('data-keteranganSMP').innerHTML             = dt[14]; // Keterangan SMP
+                        D.get.id('data-SMA').innerHTML                       = dt[15]; // SMA / SMK / MA
+                        D.get.id('data-keteranganSMA').innerHTML             = dt[16]; // Keterangan SMA / SMK / MA
+                        D.get.id('data-perguruanTinggi').innerHTML           = dt[17]; // Perguruan Tinggi
+                        D.get.id('data-keteranganPerguruanTinggi').innerHTML = dt[18]; // Keterangan perguruan tinggi
                         D.get.id('data-email').innerHTML                     = dt[19]; // Alamat e-mail
                         D.get.id('data-nomorWA').innerHTML                   = dt[20]; // Nomor WA
                         D.get.id('data-instagram').innerHTML                 = dt[21]; // Akun Instagram
@@ -1116,12 +1157,13 @@
                         D.get.id('data-telegram').innerHTML                  = dt[24]; // Akun Telegram
                         D.get.id('data-akunLain').innerHTML                  = dt[25]; // Akun lain (data ganda)
                         D.get.id('data-jejakDigital').innerHTML              = dt[26]; // Jejak digital (data ganda)
-                        D.get.id('data-gambar').innerHTML                    = dt[27]; // Gambar
-                        D.get.id('data-informasiTambahan').innerHTML         = dt[28]; // Informasi tambahan
-                        D.get.id('data-aktivitas').innerHTML                 = dt[29]; // Aktivitas (3 data)
+                        D.get.id('data-dokumen').innerHTML                   = dt[27]; // Dokumen
+                        D.get.id('data-gambar').innerHTML                    = dt[28]; // Gambar
+                        D.get.id('data-informasiTambahan').innerHTML         = dt[29]; // Informasi tambahan
+                        D.get.id('data-aktivitas').innerHTML                 = dt[30]; // Aktivitas (3 data)
                         
                         // Memanggil fungsi 2
-                        callback(hideShow_slotKeterangan);
+                        callback(showAll);
                     }
                 }, 150);
             }, // Akhir fungsi 1
@@ -1129,7 +1171,7 @@
             // Fungsi 2 - Membuat eventListener untuk link dan button
             deklarasi_eventListener = callback => {
                 // Konfigurasi evenListener untuk link dan button
-                let eventListeners = ['keteranganSD', 'keteranganSMP', 'keteranganSMA', 'keteranganPerguruanTinggi', 'instagram', 'facebook', 'twitter', 'akunLain', 'jejakDigital', 'gambar', 'informasiTambahan', 'aktivitas'],
+                let eventListeners = ['keteranganSD', 'keteranganSMP', 'keteranganSMA', 'keteranganPerguruanTinggi', 'instagram', 'facebook', 'twitter', 'akunLain', 'jejakDigital', 'dokumen', 'gambar', 'informasiTambahan', 'aktivitas'],
                     isReady = () => {
                         let exist = 0, element_HTML;
                         eventListeners.forEach(e => {
@@ -1163,24 +1205,11 @@
 
                     // Memanggil fungsi 3
                     setTimeout(() => {
-                        callback(showAll)
+                        callback()
                     }, 100);
             }, // Akhir fungsi 2
-
-            // Fungsi 3 - Jika data tertentu bernilai q('??'), maka elemen HTML terkait akan disembunyikan, dan tidak perlu ditampilkan
-            hideShow_slotKeterangan = callback => {
-                // 11(SD)  13(SMP)  15(SMA)  17(Perguruan Tinggi)
-                ['SD', 'SMP', 'SMA', 'PerguruanTinggi'].forEach(e => {
-                    if(D.get.id('data-keterangan' + e).innerText === q) {
-                        D.get.id('slot-keterangan' + e).style.display = 'none';
-                    }
-                });
-
-                // Memanggil fungsi 4
-                callback();
-            }, // Akhir fungsi 3
         
-            // Fungsi 4 - Menampilkan tag body yang sebelumnya disembunyikan
+            // Fungsi 3 - Menampilkan tag body yang sebelumnya disembunyikan
             showAll = () => {
                 bukaTutup('body');
             }; // Akhir fungsi 4
