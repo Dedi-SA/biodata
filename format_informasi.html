@@ -573,23 +573,23 @@
         document.head.getElementsByTagName('title')[0].innerText = 'Memproses data ....';
         let a = document.getElementById('target_halamanUtama').children,
 
-            remove = (n, char) => {
-                if (Array.isArray(n)) {
+            remove = (string, char) => {
+                if (Array.isArray(string)) {
                     if (typeof char === 'string')
-                        return n.filter(e => e !== char);
+                        return string.filter(e => e !== char);
                     
                     else if (Array.isArray(char))
-                        return n.filter(e => !char.includes(e));
+                        return string.filter(e => !char.includes(e));
                 }
-                else if (typeof n === 'string') {
+                else if (typeof string === 'string') {
                     if (typeof char === 'string')
-                        return n.replaceAll(char, '');
+                        return string.replaceAll(char, '');
                     
                     else if (Array.isArray(char)) {
                         char.filter(e => typeof e === 'string').forEach(e => {
-                            n = n.replaceAll(e, '')
+                            string = string.replaceAll(e, '')
                         });
-                        return n;
+                        return string;
                     }
                 }
             },
